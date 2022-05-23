@@ -300,4 +300,43 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{Geração de código}
+
+    \begin{itemize}
+        \item A geração de código é a última etapa da compilação
+        \pause
+
+        \item Ela produz o programa alvo, em geral em linguagem de máquina relocável ou código de montagem
+        \pause
+
+        \item Nesta etapa devem ser atribuídas localizações de memória para as variáveis e também feita a atribuição das variáveis aos registradores
+        \pause
+    \end{itemize}
+
+    \begin{figure}
+        \centering 
+
+        \begin{tikzpicture}
+
+            \node[anchor=west] at (9, 4.5) { \footnotesize \code{asm}{LDR r2, [id2]} };
+            \node[anchor=west] at (9, 4.0) { \footnotesize \mintinline{asm}{MUL r2, #1.8} };
+            \node[anchor=west] at (9, 3.5) { \footnotesize \mintinline{asm}{MOV r1, #32.0} };
+            \node[anchor=west] at (9, 3.0) { \footnotesize \code{asm}{ADD r1, r2} };
+            \node[anchor=west] at (9, 2.5) { \footnotesize \code{asm}{STR r1, [id1]} };
+
+            \node[draw,very thick,fill=gray!30,inner sep=8pt] (Y) at (6, 3.5) { \scriptsize \begin{tabular}{c}\texttt{gerador de}\\ \texttt{código}\end{tabular} };
+
+            \node[anchor=west] at (0, 3.9) { \footnotesize \texttt{temp1 = 1.8 * id2} };
+            \node[anchor=west] at (0, 3.1) { \footnotesize \texttt{id1 = temp1 + 32.0} };
+
+            \draw[very thick,-latex] (Y) to (8.5, 3.5);
+            \draw[very thick,latex-] (Y) to (3.5, 3.5);
+        \end{tikzpicture}
+
+        \caption{Geração de código em pseudo assembly}
+    \end{figure}
+
+
+\end{frame}
+
 
