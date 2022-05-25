@@ -230,3 +230,184 @@
     \end{enumerate}
 \end{frame}
 
+\begin{frame}[fragile]{Análise gramatical preditiva}
+
+    \begin{itemize}
+        \item Uma análise gramatical descendente recursiva é um método \textit{top-down} de análise sintática na qual são executados procedimentos recursivos
+            para processar a entrada
+        \pause
+
+        \item Cada não-terminal da entrada é associado a um procedimento
+        \pause
+
+        \item Se \textit{lookahead} determina, sem ambiguidades, o procedimento a ser executado, a análise gramatical descendente recursiva é denominada
+        análise gramatical preditiva
+        \pause
+
+        \item A sequência de chamadas de procedimentos no processamento da entrada determina, de forma implícita, a árvore gramaticalno processamento da entrada determina, de forma implícita, a árvore gramatical
+        \pause
+
+        \item Além dos procedimentos associados aos não-terminais, a análise pode definir outros procedimentos auxiliares que podem simplificar tarefas como
+            a leitura de tokens e a atualização de \textit{lookahead}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Reconhecimento de tokens}
+
+    O procedimento \Call{reconhecer}{\,} confronta o valor de \textit{lookahead} e um determinado token. Em caso de coincidência, ele atualiza \textit{lookahead} com
+    o próximo token da entrada.
+    \pause
+    
+    \vspace{0.2in}
+    \begin{algorithmic}[1]
+        \Procedure{reconhecer}{$token$}
+        \Statex
+        \If{$lookahead$ = $token$}
+            \Comment{$lookahead$ é uma variável global}
+            \State{$lookahead$ \gets \Call{proximoToken}{\,}}
+        \Else
+            \State{\Call{erro}{\,}}
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{frame}
+
+\begin{frame}[fragile]{Procedimento associado ao não terminal $tipo$}
+
+    \begin{algorithmic}[1]
+        \Procedure{tipo}{\,}
+        \If{$lookahead$ \code{apl}{∊} \{ \code{pascal}{integer, char, num} \} }
+            \State{\Call{primitivo}{\,}}
+        \ElsIf{$lookahead$ = $\uparrow$}
+            \State{\Call{reconhecer}{$\uparrow$}}
+            \State{\Call{reconhecer}{\code{pascal}{id}}}
+        \ElsIf{$lookahead$ = \code{pascal}{array}}
+            \State{\Call{reconhecer}{\code{pascal}{array}}}, \State{\Call{reconhecer}{\code{pascal}{[}}}
+            \State{\Call{primitivo}{\,}}
+            \State{\Call{reconhecer}{\code{pascal}{]}}}, \State{\Call{reconhecer}{\code{pascal}{of}}}
+            \State{\Call{tipo}{\,}}
+        \Else
+            \State{\Call{erro}{\,}}
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Procedimento associado ao não terminal $primitivo$}
+
+    \begin{algorithmic}[1]
+        \Procedure{primitivo}{\,}
+        \If{$lookahead$ = \code{pascal}{integer} }
+            \State{\Call{reconhecer}{\code{pascal}{integer}}}
+        \ElsIf{$lookahead$ = \code{pascal}{char}}
+            \State{\Call{reconhecer}{\code{pascal}{char}}}
+        \ElsIf{$lookahead$ = \code{pascal}{num}}
+            \State{\Call{reconhecer}{\code{pascal}{num}}}
+            \State{\Call{reconhecer}{\code{pascal}{:}}}
+            \State{\Call{reconhecer}{\code{pascal}{num}}}
+        \Else
+            \State{\Call{erro}{\,}}
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Primeiros símbolos}
+
+    \begin{block}{Definição de primeiros símbolos}
+        Seja $\alpha$ o lado direito de uma produção. Então \Call{primeiro}{$\alpha$} é o conjunto de tokens que figuram como primeiros simbolos de uma ou mais
+        cadeias geradas a partir de $\alpha$. Se \code{apl}{∊} pode ser gerado a partir de $\alpha$, então \code{apl}{∊} pertence a \Call{primeiro}{$\alpha$}.
+    \end{block}
+
+    \vspace{0.2in}
+    Por exemplo, na gramática de geração de subtipos em Pascal, 
+
+    \begin{center}\Call{primeiro}{$primitivo$} = \{ \code{pascal}{integer, char, num} \}\end{center}
+
+    e
+
+    \begin{center}\Call{primeiro}{$\uparrow$\code{pascal}{id}} = \{ $\uparrow$ \}\end{center}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Primeiros símbolos e análise gramatica preditiva}
+
+    \begin{itemize}
+        \item A análise gramatical preditiva depende dos conjuntos \Call{primeiro}{$X$} de todos não-terminais $X$ da gramática
+        \pause
+
+        \item Isto acontece principalmente nos casos onde a gramática possui duas ou mais produções para um mesmo não-terminal (por exemplo, $A \to \alpha$ e 
+        $A\to \beta$)
+        \pause
+
+        \item Para rque a análise gramatical recursiva descendente seja preditiva é necessário que os primeiros símbolos de cada produção sejam distintos
+        \pause
+
+        \item No exemplo dado,
+
+        \begin{center}
+        \Call{primeiro}{$\alpha$} $\cap$ \Call{primeiro}{$\beta$} = \emptyset
+        \end{center}
+        \pause
+
+        \item Caso esta condição se verifique para todos os pares de produções distintas de um mesmo não-terminal, a produção $\gamma$ deve ser usada se
+        $lookahead \in$ \Call{primeiro}{\gamma}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Projeto de um analisador gramatical preditivo}
+
+    Um analisador gramatical preditivo é um programa que contém um procedimento para cada não-terminal. Cada procedimento deve seguir dois passos:
+    \pause
+
+    \begin{enumerate}
+        \item Determinar a produção a ser usada a partir de $lookahead$. Para tanto, deve ser localizada, entre as produções $\alpha_1, \alpha_2, \ldots, \alpha_N$,
+            a produção $\alpha_i$ tal que $lookahead \in \Call{primeiro}{\alpha_i}$ (deve valor a seguinte propriedade: \Call{primeiro}{$\alpha_i$} $\cap$
+            \Call{primeiro}{$\alpha_j$} = $\emptyset$ se $i\neq j$. Se $\alpha_k$ = \code{apl}{∊} para algum $k$, $\alpha_k$ deve ser usada se $lookahead$ não estiver
+            presente em nenhuma outra produção
+        \pause
+
+        \item Identificada a produção, o procedimento imita a produção, reconhecendo os terminais da produção e chamandos os procedimentos dos não-terminais, na
+            mesma ordem da produção
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Produções recursivas à esquerda}
+
+    \begin{block}{Definição de produção recursiva à esquerda}
+        Uma produção é recursiva à esquerda se o não-terminal à esquerda da produção figura como primeiro símbolo da produção. Por exemplo, se $\alpha$ e $\beta$
+        são sequências de terminais e não-terminais que não iniciam em $A$, então a produção
+        \[
+            A \to A\alpha\ |\ \beta
+        \]
+        é recursiva à esquerda.
+    \end{block}
+    \pause
+
+    \vspace{0.2in}
+    Observação: analisadores gramaticais recursivos descendentes pode rodar indefinidamente caso usem uma produção recursiva à esquerda
+\end{frame}
+
+\begin{frame}[fragile]{Produções recursivas à direita}
+
+    \begin{block}{Definição de produção recursiva à direita}
+        Uma produção é recursiva à direita se o não-terminal à esquerda da produção figura como último símbolo da produção. Por exemplo, se $\alpha$ e $\beta$
+        são sequências de terminais e não-terminais que não terminam em $R$, então a produção
+        \[
+            \begin{array}{l}
+            A \to   \beta R\\
+            R \to   \alpha R\ |\ \code{apl}{∊}
+            \end{array}
+        \]
+        é recursiva à direita.
+    \end{block}
+    \pause
+
+    \vspace{0.2in}
+    Observação: produções recursivas à direita dificultam a tradução de expressões que contém operadores associativos à esquerda
+\end{frame}
