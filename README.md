@@ -5,3 +5,4 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
 1. [Introdução](introducao/introducao.pdf)
 1. Um compilador simples de uma passagem
     1. [Visão geral](visao_geral/visao_geral.pdf)
+    1. [Um tradutor para expressões simples](tradutor_simples/tradutor_simples.pdf)
