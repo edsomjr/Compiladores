@@ -33,14 +33,14 @@ int main()
 {
     while (true)
     {
-        auto [lookahed, valor] = scanner();
+        auto [lookahead, valor] = scanner();
 
-        if (lookahed == EOF)
+        if (lookahead == EOF)
             break;
-        else if (lookahed == NUM)
+        else if (lookahead == NUM)
             std::cout << "Número lido: " << valor << '\n';
         else
-            std::cout << "Token lido: " << (char) lookahed << '\n';
+            std::cout << "Token lido: " << (char) lookahead << '\n';
     }
 
     return 0;
