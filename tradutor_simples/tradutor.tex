@@ -64,3 +64,63 @@
     \end{figure}
 
 \end{frame}
+
+\begin{frame}[fragile]{Esquema de tradução da gramática para expressões para a notação posfixa}
+
+    \[
+        \begin{array}{rl}
+            expr \to & digito\ resto \\
+            \\
+            resto \to & +\ digito\ \ \{ imprimir(\code{cpp}{'+'}) \}\ \ resto \\
+            resto \to & -\ digito\ \ \{ imprimir(\code{cpp}{'-'}) \}\ \ resto \\
+            resto \to & \code{apl}{∊} \\
+            \\
+            digito \to & 0\ \ \{ imprimir(\code{cpp}{'0')} \} \\
+            digito \to & 1\ \ \{ imprimir(\code{cpp}{'1')} \} \\
+            \ldots \\
+            digito \to & 9\ \ \ \ \{ imprimir(\code{cpp}{'9')} \} \\
+        \end{array}
+    \]
+\end{frame}
+
+\begin{frame}[fragile]{Rotina de extração do próximo token em C++}
+
+    \inputsnippet{cpp}{1}{10}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina de tratamento de erro e declaração de {\it lookahead} em C++}
+
+    \inputsnippet{cpp}{12}{18}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina de reconhecimento de tokens em C++}
+
+    \inputsnippet{cpp}{20}{26}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina associada ao não-terminal {\it expr} em C++}
+
+    \inputsnippet{cpp}{52}{56}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina associada ao não-terminal {\it digito} em C++}
+
+    \inputsnippet{cpp}{28}{38}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina associada ao não-terminal {\it resto} em C++}
+
+    \inputsnippet{cpp}{40}{50}{codes/tradutor.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Rotina principal do tradutor em C++}
+
+    \inputsnippet{cpp}{58}{67}{codes/tradutor.cpp}
+
+\end{frame}
