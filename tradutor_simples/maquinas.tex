@@ -1,0 +1,93 @@
+\section{Máquinas de Pilha Abstratas}
+
+\begin{frame}[fragile]{Máquinas de Pilha Abstratas}
+
+    \begin{itemize}
+        \item A interface de vanguarda do compilador produz uma representação intermediária do programa fonte, que será usada pela interface de retaguarda para
+            produzir o programa alvo
+        \pause
+
+        \item Uma possível forma para a representação intermediária é a máquina de pilha abstrata
+        \pause
+
+        \item Uma máquina de pilha abstrata possui memórias separadas para dados e instruções, e todas as operações aritméticas são realizadas sobre os valores
+            em uma pilha
+        \pause
+
+        \item As instruções são divididas em três classes: aritmética inteira, manipulação de pilha e fluxo de controle
+        \pause
+
+        \item O ponteiro $pc$ indica qual é a próxima instrução a ser executada
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Instruções aritméticas}
+
+    \begin{itemize}
+        \item  A máquina de pilha abstrata precisa implementar cada operador da linguagem intermediária
+        \pause
+
+        \item Operações elementares, como adição e subtração, são suportadas diretamente
+        \pause
+
+        \item Operações mais sofisticadas devem ser implementadas como uma sequência de instruções da máquina
+        \pause
+
+        \item A título de simplificação, assuma que existe uma instrução para cada operação aritmética
+        \pause
+
+        \item O código de uma máquina de pilha abstrata para uma expressão simula a avaliação de um representação posfixa, usando uma pilha
+        \pause
+
+        \item A avaliação segue da esquerda para a direita, empilhando os operandos
+        \pause
+
+        \item  Quando um operador é encontrado, seus operandos são extraídos da pilha
+        (do último para o primeiro), a operação é realizada e o resultado é inserido no topo da pilha
+    \end{itemize}
+
+\end{frame}
+
+\input{simulation}
+
+\begin{frame}[fragile]{Valores-L e valores-R}
+
+    \begin{itemize}
+        \item O significado de um identificador depende da posição onde ele ocorre em uma atribuição
+        \pause
+
+        \item No lado esquerdo, o identificador se refere à localização de memória onde o valor deve ser armazenado
+        \pause
+
+        \item No lado direito, o identificador se refere ao valor armazenado na localização de memória associada ao identificador
+        \pause
+
+        \item Valor-L e valor-R se referem aos valores apropriados para os lados esquerdo e direito de uma atribuição, respectivamente
+        \pause
+
+        \item Um mesmo identificador pode ser um valor-L e um valor-R na mesma atribuição (por exemplo, o identificador \code{cpp}{x} em \code{cpp}{x = x + 1})
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Manipulação da pilha}
+
+    Uma máquina de pilha abstrata suporta as seguintes instruções para a manipulação da pilha:
+    \begin{table}
+        \center 
+        \begin{tabularx}{0.9\textwidth}{p{3cm}X}
+            \toprule
+            \textbf{Instrução} & \textbf{Significado} \\
+            \midrule
+            \code{cpp}{push} $v$ & empilha $v$ \\
+            \code{cpp}{pop} & desempilha o valor do topo da pilha \\
+            \code{cpp}{valor-r} $p$ & empilha o valor armazenado no endereço de memória $p$ \\
+            \code{cpp}{valor-l} $p$ & empilha o endereço de memória $p$ \\
+            \code{cpp}{:=} & o valor-R do topo da pilha é armazenado no valor-L do subtopo (elemento que está abaixo do topo) da pilha \\
+            \code{cpp}{copiar} & empilha o valor do topo da pilha \\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+
+\end{frame}
