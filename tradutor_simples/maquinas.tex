@@ -91,3 +91,138 @@
     \end{table}
 
 \end{frame}
+
+\begin{frame}[fragile]{Tradução de expressões}
+
+    \begin{itemize}
+        \item O código para avaliar uma expressão na máquina de pilha abstrata tem uma relação direta com a notação posfixa
+        \pause
+
+        \item Por exemplo, a expressão \code{cpp}{a + b} é traduzida para o código intermediário
+            \inputsyntax{cpp}{codes/soma.cpp}
+        \pause
+
+        \item As atribuições são traduzidas da seguinte maneira: o valor-L do identificador é empilhado, a expressão à direita é avaliada e o seu valor $r$ é
+            atribuído ao identificador
+        \pause
+
+        \item Formalmente,
+        \[
+            cmd \to \mathbf{id} := expr \ \{\ cmd.t := \code{cpp}{"valor-l"}\ ||\ \mathbf{id}.lexema\ ||\ expr\ ||\ \code{cpp}{":="}\ \}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Tradução da expressão \code{cpp}{C = 5*F/9 + 32} para máquina de pilha abstrata}
+    \inputcode{cpp}{codes/c_to_f.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Fluxo de controle}
+
+    \begin{itemize}
+        \item A máuqina de pilha abstrata executa as instruções sequencialmente, na ordem em que foram dadas
+        \pause
+
+        \item Há três formas de se especificar um desvio (salto) no fluxo de execução
+        \pause
+        \begin{enumerate}
+            \item o operando da instrução fornece o endereço da localização alvo;
+            \pause 
+
+            \item o operando da instrução fornece a distãncia relativa (positiva ou negativa) a ser saltada
+            \pause
+
+            \item o alvo é especificado simbolicamente (a máquina deve suportar rótulos)
+            \pause
+        \end{enumerate}
+
+        \item Nas duas primeiras formas, uma alternativa é especificar que o salto está no topo da pilha
+        \pause
+
+        \item A terceira forma é a mais simples de se implementar, pois não há necessidade de se recalcular os endereços caso o número de instruções seja
+            modificado durante a otimização
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Instruções de fluxo de controle}
+
+    Uma máquina de pilha abstrata suporta as seguintes instruções para o fluxo de controle:
+    \begin{table}
+        \center 
+        \begin{tabularx}{0.9\textwidth}{p{3cm}X}
+            \toprule
+            \textbf{Instrução} & \textbf{Significado} \\
+            \midrule
+            \code{python}{rótulo} $r$ & especifica o rótulo $r$ como possível alvo de desvios; não há outros efeitos \\
+            \code{python}{goto} $r$ & a próxima instrução é tomada a partir do rótulo $r$ \\
+            \code{python}{gofalse} $r$ & desempilha o topo da pilha: salta para $r$ se o valor for igual a zero \\
+            \code{python}{gotrue} $r$ & desempilha o topo da pilha: salta para $r$ se o valor for diferente de zero \\
+            \code{python}{parar} & encerra a execução \\
+            \bottomrule
+        \end{tabularx}
+    \end{table}
+
+\end{frame}
+
+\begin{frame}[fragile]{Gabaritos para tradução de condicionais e laços}
+
+    \begin{figure}
+        \centering 
+        \begin{tikzpicture}
+            \node at (2, 6.5) { \code{cpp}{if} };
+
+            \draw[very thick] (0, 5) rectangle (4, 6);
+            \node at (2, 5.5) { \footnotesize código para $expr$ };
+            \draw[very thick,fill=gray!30] (0, 4) rectangle (4, 5);
+            \node at (2, 4.5) { \footnotesize \code{python}{gofalse} $saida$ };
+            \draw[very thick] (0, 3) rectangle (4, 4);
+            \node at (2, 3.5) { \footnotesize código para $cmd$ };
+            \draw[very thick,fill=gray!30] (0, 2) rectangle (4, 3);
+            \node at (2, 2.5) { \footnotesize \code{python}{rotulo} $saida$ };
+
+            \node at (8, 6.5) { \code{cpp}{while} };
+
+            \draw[very thick,fill=gray!30] (6, 5) rectangle (10, 6);
+            \node at (8, 5.5) { \footnotesize \code{cpp}{rotulo} $teste$ };
+            \draw[very thick] (6, 4) rectangle (10, 5);
+            \node at (8, 4.5) { \footnotesize código para $expr$ };
+            \draw[very thick,fill=gray!30] (6, 3) rectangle (10, 4);
+            \node at (8, 3.5) { \footnotesize \code{python}{gofalse} $saida$ };
+            \draw[very thick] (6, 2) rectangle (10, 3);
+            \node at (8, 2.5) { \footnotesize código para $cmd$ };
+            \draw[very thick,fill=gray!30] (6, 1) rectangle (10, 2);
+            \node at (8, 1.5) { \footnotesize \code{python}{goto} $teste$ };
+            \draw[very thick,fill=gray!30] (6, 0) rectangle (10, 1);
+            \node at (8, 0.5) { \footnotesize \code{python}{rotulo} $saida$ };
+
+
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Unicidade dos rótulos}
+
+    \begin{itemize}
+        \item Os rótulos $saida$ e $teste$ que ilustram os gabaritos das condicionais e dos laços devem ser únicos, para evitar possíveis ambiguidades
+        \pause
+
+        \item É preciso, portanto, de uma estratégia que torne tais rótulos únicos durante a tradução
+        \pause
+
+        \item Seja $novoRotulo$ um procedimento que gera, a cada chamada, um novo rótulo único
+        \pause
+
+        \item A ação semântica associada ao comando \code{pascal}{if} assumiria a seguinte forma:
+        \[
+            \begin{array}{rll}
+            cmd \to \code{pascal}{if}\ expr\ \code{pascal}{then}\ cmd_1 \ \{\ & saida & := novoRotulo; \\
+            & cmd.t & := expr.t\ \\ & & ||\ \code{cpp}{"gofalse"}\ saida\ \\ & & ||\ cmd_1.t \\
+            & & ||\ \code{cpp}{"rotulo"}\ saida\ \}
+            \end{array}
+        \]
+    \end{itemize}
+
+\end{frame}

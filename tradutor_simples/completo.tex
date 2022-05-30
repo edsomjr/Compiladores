@@ -1,0 +1,260 @@
+\section{Código completo do tradutor}
+
+\begin{frame}[fragile]{Código completo do tradutor}
+
+    \begin{itemize}
+        \item O código a seguir implementa um tradutor de expressões em forma infixa, terminadas por ponto-e-vírgula, para forma posfixa
+        \pause
+
+        \item Ele será implementado a partir da tradução dirigida a sintaxe
+        \pause
+
+        \item As expressões conterão números, identificadores e os operadores \code{cpp}{+, -, *, /, div} e \code{cpp}{mod}
+        \pause
+
+        \item Os tokens são: \textbf{id}, para identificadores, \textbf{num}, para constantes inteiras e \textbf{eof} para fim de arquivo
+        \pause
+        
+        \item Cada módulo será implementado em um par de arquivos \code{cpp}{.cpp} e \code{cpp}{.h}, exceto pelo módulo principal (\code{cpp}{main.cpp})
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Especificação para um tradutor infixa-posfixa}
+
+\[
+    \begin{array}{lcll}
+        inicio & \to & lista\ \mathbf{eof} \\
+        lista & \to & expr\ \code{cpp}{;}\ \ \{\ imprimir(\mintinline{cpp}{'\n'})\ \}\ \ lista \\
+        & | & \code{apl}{∊} \\
+        expr & \to & expr\ \code{cpp}{+}\ termo & \{\ imprimir(\code{cpp}{'+'})\ \} \\
+        & | & expr\ \code{cpp}{-}\ termo & \{\ imprimir(\code{cpp}{'-'})\ \} \\
+        & | & termo \\
+        termo & \to & termo\ \code{cpp}{*}\ fator & \{\ imprimir(\code{cpp}{'*'})\ \} \\
+        & | & termo\ \code{cpp}{/}\ fator & \{\ imprimir(\code{cpp}{'/'})\ \} \\
+        & | & termo\ \mathbf{div}\ fator & \{\ imprimir(\code{cpp}{"DIV"})\ \} \\
+        & | & termo\ \mathbf{mod}\ fator & \{\ imprimir(\code{cpp}{"MOD"})\ \} \\
+        & | & fator \\
+        fator & \to & (expr) \\
+        & | & \mathbf{id} & \{\ imprimir(\mathbf{id}.lexema)\ \} \\
+        & | & \mathbf{num} & \{\ imprimir(\mathbf{id}.valor)\ \}
+    \end{array}
+\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Descrição dos tokens}
+
+    \begin{table}
+        \centering 
+
+        \begin{tabularx}{0.95\textwidth}{Xcl}
+        \toprule
+        \textbf{Lexema} & \textbf{Token} & \textbf{Atributo} \\
+        \midrule
+        espaço em branco \\
+        \rowcolor[gray]{0.9}
+        sequência de dígitos & \code{cpp}{NUM} & valor númerico da sequência \\
+        \textbf{div} & \code{cpp}{DIV} \\
+        \rowcolor[gray]{0.9}
+        \textbf{mod} & \code{cpp}{MOD} & \\
+        sequências iniciada em letra e seguida de letras e dígitos & \code{cpp}{ID} & lexema \\
+        \rowcolor[gray]{0.9}
+        caractere de fim de arquivo & \code{cpp}{DONE} & \\
+        qualquer outro caractere & o próprio caractere & \\
+        \bottomrule
+        \end{tabularx}
+
+    \end{table}
+
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \code{cpp}{main.cpp}}
+
+    \begin{itemize}
+        \item Este módulo é responsável pela início da execução do programa
+        \pause
+
+        \item Ele simplesmente invoca o tradutor
+    \end{itemize}
+    \pause
+
+    \inputcode{cpp}{codes/tradutor/main.cpp}
+
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \code{cpp}{token}}
+
+    \begin{itemize}
+        \item Este módulo define uma estrutura para a representação de um token
+        \pause
+
+        \item Cada token tem um tipo e um atributo associado
+        \pause
+
+        \item Como o atributo de \code{cpp}{NUM} é inteiro e de \code{cpp}{ID} é string, foi utilizado o tipo \code{cpp}{variant<int, string>} de C++17
+        \pause
+
+        \item Os tipos dos tokens foram codificados como inteiros, com valores foram da faixa ASCII, para evitar conflitos com os tokens compostos por um
+            único caractere
+        \pause
+
+        \item Também foi definida uma função para a impressão de um token, que trata internamente as diferenças entre os tipos
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{token.h}}
+    \inputcode{cpp}{codes/tradutor/token.h}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{token.cpp}}
+    \inputsnippet{cpp}{1}{18}{codes/tradutor/token.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{token.cpp}}
+    \inputsnippet{cpp}{20}{38}{codes/tradutor/token.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Tabela de símbolos}
+
+    \begin{itemize}
+        \item Este módulo define uma classe para a representação de uma tabela de símbolos
+        \pause
+
+        \item Esta classe segue o padrão Singleton, pois deve haver uma única tabela de símbolos, a qual será compartilhada por todas as fases do compilador
+        \pause
+
+        \item A estrutura que armazena os símbolos é um dicionário (classe \code{cpp}{map} de C++), onde as chaves são os lexemas e os valores são os tokens
+        \pause
+
+        \item Na inicialização da tabela são adicionadas, ao dicionário, todas as palavras reservadas
+        \pause
+
+        \item O método \code{cpp}{insert()} insere um novo símbolo no dicionário
+        \pause
+
+        \item O método \code{cpp}{find()} localizar um símbolo já inserido, ou retorna vazio, caso o dicionário não tenha nenhum token associado ao lexema
+            passado como parâmetro
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{table.h}}
+    \inputcode{cpp}{codes/tradutor/table.h}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{table.cpp}}
+    \inputsnippet{cpp}{1}{19}{codes/tradutor/table.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{table.cpp}}
+    \inputsnippet{cpp}{21}{39}{codes/tradutor/table.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \code{cpp}{scanner}}
+
+    \begin{itemize}
+        \item Este módulo implementa o analisador léxico do tradutor
+        \pause
+
+        \item Como este analisador não tem estado, ele foi implementado por meio de um \code{cpp}{namespace}, o que permite usar a mesma notação de método
+            estático de um classe, embora a implementação seja a de uma função regular de C++
+        \pause
+
+        \item A função \code{cpp}{next_token()} extrai o próximo token da entrada padrão
+        \pause
+
+        \item O \textit{scanner} ignora todos os espaços em branco
+        \pause
+
+        \item Os demais tokens são extraídos conforme a especificação
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{scanner.h}}
+    \inputcode{cpp}{codes/tradutor/scanner.h}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{scanner.cpp}}
+    \inputsnippet{cpp}{1}{19}{codes/tradutor/scanner.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{scanner.cpp}}
+    \inputsnippet{cpp}{21}{37}{codes/tradutor/scanner.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{scanner.cpp}}
+    \inputsnippet{cpp}{39}{57}{codes/tradutor/scanner.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \code{cpp}{parser}}
+
+    \begin{itemize}
+        \item Este módulo implementa o analisador sintático do tradutor
+        \pause
+
+        \item De fato, é um analisador gramatical preditivo que, em conjunto com as ações semânticas especificadas, produz um tradutor de notação infixa para
+            posfixa
+        \pause
+
+        \item Ele invoca o \textit{scanner} para obter os tokens da entrada, um por vez
+        \pause
+
+        \item Cada não-terminal da gramática é implementado por meio de um procedimento
+        \pause
+
+        \item Cada expressão da entrada será traduzida para uma linha da saída, em notação posfixa
+        \pause
+
+        \item As expressões da entrada devem ser terminadas por \code{cpp}{;}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.h}}
+    \inputcode{cpp}{codes/tradutor/parser.h}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{1}{15}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{17}{31}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{33}{50}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{52}{70}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{72}{90}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{92}{108}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivo \code{cpp}{parser.cpp}}
+    \inputsnippet{cpp}{110}{128}{codes/tradutor/parser.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \code{cpp}{error}}
+
+    \begin{itemize}
+        \item Este módulo é responsável pelo tratamento de erros
+        \pause
+
+        \item A abordagem utilizada é simplificada: é impressa a mensagem indicada e o programa é encerrado por meio da função \code{cpp}{exit()}
+        \pause
+
+    \end{itemize}
+
+    \inputcode{cpp}{codes/tradutor/error.cpp}
+\end{frame}
