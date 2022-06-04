@@ -209,7 +209,7 @@
         \item Para isto, os lexemas de todas as palavras-chave devem ser inseridos na tabela de símbolos, com seus respectivos tokens e atributos
         \pause
 
-        \item A função $inserirToken(s)$ insere o lexema $s$ na tabela de símbolos como um token \textbf{id}, caso $s$ não esteja presente na tabela; caso
+        \item A função $install(s)$ insere o lexema $s$ na tabela de símbolos como um token \textbf{id}, caso $s$ não esteja presente na tabela; caso
             contrário, a função retorna o token e os atributos associados a $s$ na tabela
     \end{itemize}
 
@@ -229,7 +229,7 @@
 
             \node at (9.55, 6.3) { \texttt{*} };
 
-            \node[anchor=west] at (9.75, 6) { \footnotesize \texttt{retorne \{ $inserirToken(s)$ \} } };
+            \node[anchor=west] at (9.75, 6) { \footnotesize \texttt{retorne \{ $install(s)$ \} } };
 
             \draw[very thick,-latex] (X) to node[above] { \scriptsize \texttt{\begin{tabular}{c}estado de\\ partida\end{tabular}} } (A9);
             \draw[very thick,-latex] (A9) to node[above] { \footnotesize $\mathbf{letra}$ } (A10);
@@ -360,4 +360,64 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{Diagramas de transição para espaços em branco}
 
+    \begin{figure}
+        \centering
+
+        \begin{tikzpicture} 
+            \coordinate (X) at (0, 6);
+
+            \node[draw,circle,very thick] (A28) at (3, 6) { \texttt{28} };
+            \node[draw,circle,very thick] (A29) at (6, 6) { \texttt{29} };
+            \node[draw,circle,double,very thick] (A30) at (9, 6) { \texttt{30} };
+           
+            \node at (9.55, 6.3) { \texttt{*} };
+
+%            \node[anchor=west] at (9.75, 6) { \footnotesize \texttt{retorne \{ \texttt{NUM}, $valor$\ \} } };
+
+            \draw[very thick,-latex] (X) to node[above] { \scriptsize \texttt{\begin{tabular}{c}estado de\\ partida\end{tabular}} } (A28);
+            \draw[very thick,-latex] (A28) to node[above] { \footnotesize $\mathbf{delim}$ } (A29);
+            \draw[very thick,-latex] (A29) to [loop above] node[above] { \footnotesize $\mathbf{delim}$ } (A29);
+            \draw[very thick,-latex] (A29) to node[above] { \footnotesize $\mathbf{outro}$ } (A30);
+
+        \end{tikzpicture} 
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{1}{19}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{21}{35}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{37}{46}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{48}{62}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{64}{83}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{85}{92}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{94}{112}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{114}{126}{codes/diagramas.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Implementação dos digramas de transição em C++}
+    \inputsnippet{cpp}{128}{142}{codes/diagramas.cpp}
+\end{frame}
