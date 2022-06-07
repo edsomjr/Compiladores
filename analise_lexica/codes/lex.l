@@ -1,5 +1,4 @@
 %{
-    /* Definições de constantes manifestas */
     enum {
         LT, LE, EQ, NE, GT, GE,
         IF, THEN, ELSE, ID, NUM, RELOP, END_OF_FILE
@@ -10,7 +9,6 @@
     int instalar_num();
 %}
 
-/* Definições regulares */
 delim   [ \t\n]
 ws      {delim}+
 letra   [A-Za-z]
@@ -20,7 +18,7 @@ num     {digito}+(\.{digito}+)?(E[+-]?(digito)+)?
 
 %%
 
-{ws}    { printf("WS\n");/* Nenhuma ação e nenhum valor retornado */ }
+{ws}    { printf("WS\n"); /* Nenhuma ação e nenhum valor retornado */ }
 if      { return IF; }
 then    { return THEN; }
 else    { return ELSE; }
@@ -44,7 +42,7 @@ int instalar_id()
 
 int instalar_num()
 {
-    // Insere o valor do lexema e o token na tabela de números e retorna o índice da tabela
+    // Insere o valor do lexema na tabela de números e retorna o índice da tabela
     // onde o número foi inserido. O lexema fica armazenado na variável yytext
     return -2;
 }

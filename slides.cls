@@ -39,6 +39,7 @@
 % Setup
 \usetikzlibrary{calc}
 \usefonttheme{professionalfonts}
+%\usemintedstyle{borland}
 
 \hypersetup{
     colorlinks=true,
