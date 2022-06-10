@@ -9,3 +9,5 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
 1. Análise léxica
     1. [O papel do analisador léxico](analise_lexica/analise_lexica.pdf)
     1. [Autômatos finitos](automatos/automatos.pdf)
+1. Análise sintática
+    1. [O papel do analisador sintático](analise_sintatica/analise_sintatica.pdf)
