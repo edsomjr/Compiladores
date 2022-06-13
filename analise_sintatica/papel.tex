@@ -89,10 +89,124 @@
 
 \end{frame}
 
-\begin{frame}[fragile]{Tratamento dos erros de sintaxe}
+\begin{frame}[fragile]{Tipos de erro que um compilador pode encontrar}
+
+    Dentre os diferentes tipos de erro que um compilador podem encontrar, há quatro importantes tipos de erro:
+    \pause
+
+    \vspace{0.1in}
+
+    \begin{enumerate}
+        \item erros léxicos, relacionados aos tipos e a identificação dos tokens
+        \pause
+
+        \item erros sintáticos, que surgem da inconformidade da disposição dos tokens em relação às regras gramaticais
+        \pause
+
+        \item erros semânticos, que lidam com questões de compatibilidade de tipos e o significado das expressões da linguagem
+        \pause
+
+        \item erros lógicos, que envolvem expressões semanticamente corretas mas que podem levar a laços infinitos e outros erros
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Metas de um tratador de erros sintáticos}
+
+    Há três metas principais a serem atingidas por um tratador de erros sintáticos:
+    \pause
+
+    \vspace{0.1in}
+
+    \begin{enumerate}
+        \item Relatar a presença de erros de forma clara e precisa
+        \pause
+
+        \item Recuperar-se de cada o mais rápido possível e de forma que possa identificar erros subsequentes
+        \pause
+
+        \item Não atrasar o processamento de programas sintaticamente corretos
+    \end{enumerate}
+
+    \vspace{0.1in}
+    Cada uma destas metas representa um desafio à parte
+\end{frame}
+
+\begin{frame}[fragile]{Relato de erros}
 
     \begin{itemize}
-        \item 
+        \item Uma vez encontrado um erro, o tratador deve produzir um relato (saída) que indique a natureza e a localização do erro no programa-fonte
+        \pause
+
+        \item Em geral, o erro acontece no próprio token, ou alguns tokens antes, do token que está sendo avaliado quando o erro é identificado
+        \pause
+
+        \item Uma estratégia simples é reportar a linha do programa-fonte onde se encontra o token em questão
+        \pause
+
+        \item Se for possível identificar a natureza do erro, deve ser produzida uma mensagem de compreensível sobre o erro e uma possível sugestão de
+            correção
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de código C++ com erro e a mensagem produzida pelo GCC}
+    \inputsnippet{cpp}{1}{18}{codes/erro.cpp}
+    \vspace{0.2in}
+    \inputsnippet{bash}{1}{18}{codes/gcc.sh}
+\end{frame}
+
+\begin{frame}[fragile]{Estratégias de recuperação de erros}
+
+    \begin{itemize}
+        \item Dentre as diferentes estratégias de recuperação de erros, há quatro delas que possuem ampla aplicabilidade
+        \pause
+
+        \item Na modalidade de desespero o compilador, ao descobrir um erro, segue descartando símbolos da entrada, um por vez, até que seja encontrado um token
+            que pertence ao conjunto dos denominados tokens de sincronização
+        \pause
+
+        \item Em geral, os tokens de sincronização são delimitadores
+        \pause
+
+        \item Esta é a mais simples de implementar dentre as quatro estratégias de recuperação de erros e tem a garantia de não entrar em um laço infinito
+        \pause
+
+        \item A segunda estratégia é a recuperação de frases, onde é feita uma pequena correção local que permita ao analisador seguir adiante
+        \pause
+
+        \item Um exemplo seria inserir um ponto-e-vírgula ausente 
+        \pause
+
+        \item Não funciona muito bem se o erro aconteceu antes do token que identificou o erro
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Estratégias de recuperação de erros}
+
+    \begin{itemize}
+        \item Outra estratégia consiste nas produções de erro, as quais geram construções ilegais associadas a erros frequentes
+        \pause
+
+        \item Ao inserir tais produções na gramática linguagem, o analisador seria capaz de identificar tais erros com precisão e produzir diagnósticos precisos
+            sobre o erro e sua eventual correção
+        \pause
+
+        \item Tem como desvantagem o fato de impactar na performance, por conta das verificações adicionais que não faziam parte da gramática original da linguagem
+        \pause
+
+        \item Por fim, na estratégia de correção global o compilador tentar realizar o mínimo de alterações na entrada para que a mesma seja válida de acordo
+            com a gramática da linguagem
+        \pause
+
+        \item Esta técnica se baseia na heurística que grande parte dos erros pode ser corrigida com poucas modificações
+        \pause
+
+        \item Tem grande custo de tempo e de memória
+        \pause
+
+        \item Além disso, o programa modificado pode não ser o que o programado desejava escrever
     \end{itemize}
 
 \end{frame}
