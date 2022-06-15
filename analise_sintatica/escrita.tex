@@ -291,3 +291,92 @@
         \end{array}
     \]
 \end{frame}
+
+\begin{frame}[fragile]{Gramáticas recursivas à esquerda}
+
+    \begin{itemize}
+        \item Uma gramática é recursiva à esquerda se possui um não-terminal $A$ tal que existe um derivação $A\overset{\scalebox{0.5}{+}}{\Rightarrow} A\alpha$
+            para alguma cadeia $\alpha$
+        \pause
+
+        \item Métodos \textit{top-down} não podem processar gramáticas recursivas à esquerda, demandando uma reescrita da gramática que elimine a recursão à
+        esquerda
+        \pause
+
+        \item Uma recursão simples à esquerda acontece se existe um produção $A\to A\alpha$
+        \pause
+
+        \item A recursão simples à esquerda de uma produção da forma $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
+        \[
+            \begin{array}{l}
+                A \to \beta A' \\
+                A' \to \alpha A'\ |\ \code{apl}{∊}
+            \end{array}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de eliminação de recursão simples à esquerda}
+
+\[
+    \begin{array}{lp{3cm}l}
+        E\to E\ \code{apl}{+}\ T\ |\ T & & E\to TE' \\
+        T\to T\ \code{apl}{×}\ F\ |\ F & & E'\to \code{apl}{+}\ TE'\ |\ \code{apl}{∊} \\
+        F\to (E)\ |\ \textbf{id} & & T\to FT'\\
+        & & T'\to \code{apl}{×}\ FT'\ |\ \code{apl}{∊} \\
+        & & F\to (E)\ |\ \textbf{id}
+    \end{array}
+\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Eliminação de recursão à esquerda}
+
+    \begin{itemize}
+        \item No caso geral, é possível eliminar todas as recursões simples à esquerda nas produções-$A$ de uma só vez
+        \pause
+
+        \item Primeiramente, organize todas as produções-$A$ na forma
+        \[
+            A\to A\alpha_1\ |\ A\alpha_2\ |\ \ldots\ |\ A\alpha_m\ |\ \beta_1\ |\ \beta_2\ |\ \ldots\ |\ \beta_n
+        \]
+        onde nenhum $\beta_j$ começa com um $A$
+        \pause
+
+        \item Em seguida, substitua estas produções-$A$ pelas produções
+        \[
+            \begin{array}{l}
+                A\to \beta_1 A'\ |\ \beta_2 A'\ |\ \ldots \ |\ \beta_n A'\\
+                A'\to \alpha_1  A'\ |\ \alpha_2 A'\ |\ \ldots\ |\ \alpha_m A'\ |\ \code{apl}{∊}
+            \end{array}
+        \]
+        \pause
+
+        \item Esta substituição elimina todas as recursões simples à esquerda de uma só vez, desde que $\alpha_i \neq \code{apl}{∊}$ para todo $i = 1, 2, \ldots, m$
+        \pause
+
+        \item Esta técnica, porém, não elimina recursões à esquerda envolvendo derivações com dois ou mais passos
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo para eliminação de recursão à esquerda}
+
+    \begin{algorithmic}[1]
+        \Require{Uma gramática $G$ sem ciclos (isto é, produções $A\overset{\scalebox{0.5}{+}}{\Rightarrow} A$) e sem produções-\code{apl}{∊} (do tipo $A\to 
+            \code{apl}{∊}$)}
+        \Ensure{Uma gramática equivalente a $G$ sem recursão à esquerda}
+ 
+        \vspace{0.2in}
+
+        \State{Liste, em alguma ordem, os não-terminais $A_1, A_2, \ldots, A_n$}
+        \For{$i\gets 1, n$}
+            \For{$j\gets 1, i - 1$}
+                \State{substitua cada produção $A_i\to A_j\gamma$ pelas produções $$A_i \to \delta_1\gamma \ |\ \delta_2\gamma \ |\ \ldots \ |\ \delta_k\gamma,$$ onde $A_j\to \delta_1 \ |\ \delta_2 \ |\ \ldots \ |\ \delta_k$ são todas as produções-$A_j$ atuais}
+            \EndFor
+            \State{elimine todas as recursões simples à esquerda nas produções-$A_i$}
+        \EndFor
+    \end{algorithmic} 
+
+\end{frame}
