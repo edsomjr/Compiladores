@@ -380,3 +380,237 @@
     \end{algorithmic} 
 
 \end{frame}
+
+\begin{frame}[fragile]{Exemplo de eliminação de recursão à esquerda}
+
+    \begin{itemize}
+        \item Considere a gramática
+        \[
+            \begin{array}{l}
+                S \to Aa\ |\ b \\
+                A \to Ac\ |\ Sc\ |\ \code{apl}{∊}
+            \end{array}
+        \]
+        \pause
+
+        \item Observe que o não-terminal $S$ é recursivo à esquerda, pois
+        \[
+            S \Rightarrow Aa \Rightarrow Sda
+        \]
+        \pause
+
+        \item A aplicação do algoritmo de eliminação de recursão poderia não funcionar, por conta da produção-\code{apl}{∊} do não-terminal $A$, mas neste
+            caso em particular o algoritmo de fato elimina a recursão
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de eliminação de recursão à esquerda}
+
+    \begin{itemize}
+        \item Usando a ordenação $S, A$, o primeiro iteração do algoritmo não altera a gramática, uma vez que $S$ não tem recursão simples à esquerda
+        \pause
+
+        \item Na segunda iteração, as produções-$A$ que envolvem $S$ devem ser substituídas, obtendo
+        \[
+            A\to Ac\ |\ Aad\ |\ bd\ |\ \code{apl}{∊}
+        \]
+        \pause
+
+        \item A eliminação da recursão simples à esquerda nas produções-$A$ resulta na gramática livre de recursão à esquerda
+        \[
+            \begin{array}{l}
+                S \to Aa\ |\ b \\
+                A \to bdA'\ |\ A' \\
+                A' \to cA'\ |\ adA'\ |\ \code{apl}{∊}
+            \end{array}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Fatoração à esquerda}
+
+    \begin{itemize}
+        \item A fatoração à esquerda é uma técnica útil para a criação de gramáticas que beneficia a análise preditiva
+        \pause
+
+        \item A ideia central da fatoração à esquerda e evitar ambiguidades, quando duas ou mais produções tenham prefixos comuns
+        \pause
+
+        \item Por exemplo, considere as produções $A \to \alpha \beta_1\ |\ \alpha \beta_2$
+        \pause
+
+        \item Se a entrada contém uma cadeia não-vazia derivada a partir de $\alpha$, não é possível decidir, de antemão, qual das duas produções usar
+        \pause
+
+        \item A fatoração à esquerda propõe a reescrita das produções da seguinte forma, que elimina a ambiguidade
+        \[
+            \begin{array}{l}
+                A \to \alpha A' \\
+                A' \to \beta_1\ |\ \beta_2
+            \end{array}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de fatoração à esquerda}
+
+    \begin{itemize}
+        \item Muitas linguagens permitem que o comando \textbf{if-then-else} tenha um \textbf{else} vazio:
+        \[
+            \begin{array}{rcl}
+                cmd & \to & \textbf{if}\ expr\ \textbf{then}\ cmd\ \textbf{else}\ cmd \\ 
+                & | & \textbf{if}\ expr\ \textbf{then}\ cmd
+            \end{array}
+        \]
+        \pause
+
+        \item Esta gramática pode ser abstraída da seguinte forma
+        \[
+            \begin{array}{l}
+                S \to iEtS\ |\ iEtSeS\ |\ a \\
+                E \to b
+            \end{array}
+        \]
+        \pause
+
+        \item A fatoração à esquerda esta gramática resulta em
+        \[
+            \begin{array}{l}
+                S \to iEtSS'\ |\ a \\
+                S' \to eS\ |\ \code{apl}{∊} \\
+                E \to b
+            \end{array}
+        \]
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de linguagens não livres de contexto}
+
+    \begin{itemize}
+        \item Considere a linguagem abstrata
+        \[
+            L_1 = \{ wcw\ |\ w\in (a\ |\ b)^*\}
+        \]
+        \pause
+
+        \item As sentenças de $L_1$ são formada por uma cadeia $w$ de $a$'s e $b$'s, seguida de um $c$ e repetida em seguida (por exemplo, $abaabcabaab$)
+        \pause
+
+        \item É possível demostrar que a linguagem $L_1$ não é livre de contexto
+        \pause
+
+        \item Tal linguagem abstrai o problema de se verificar se um identificador ($w$) foi declarado antes de seu uso ($c$ é o que separa a declaração do
+            primeiro uso)
+        \pause
+
+        \item Não sendo possível definir tal regra sintaticamente, esta verificação fica postergada para a análise semântica
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de linguagens não livres de contexto}
+
+    \begin{itemize}
+        \item Considere a linguagem abstrata
+        \[
+            L_2 = \{ a^nb^mc^nd^m\ |\ n \geq 1\ \mbox{e}\ m\geq 1\}
+        \]
+        \pause
+
+        \item As senteças de $L_2$ são cadeias onde o número de $a$'s coincide com o número de $c$'s, e o número de $b$'s coincide com o número de $d$'s, em ordem
+            lexicográfica
+        \pause
+
+        \item $L_2$ também não é livre de contexto
+        \pause
+
+        \item Ela abstrai o problema de ser verificar se o número de parâmetros na declaração de uma função é igual ao número de parâmetros na chamada ($a^n$ e
+            $b^m$ seriam as listas de parâmetros de dois procedimentos e $c^n$ e $d^n$ o número de parâmetros na chamada destes procedimentos)
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de linguagens não livres de contexto}
+
+    \begin{itemize}
+        \item A linguagem
+        \[
+            L_3 = \{ a^nb^nc^n\ |\ n\geq 1\}
+        \]
+        também não é livre de contexto
+        \pause
+
+        \item A diferença entre uma linguagem livre de uma não-livre pode ser sutil
+        \pause
+
+        \item Por exemplo, a linguagem
+        \[
+            L'_1 = \{ wcw^R\ |\ w\in (a\ |\ b)^*\},
+        \]
+        onde $w^R$ é o reverso de $w$, é livre de contexto
+        \pause
+
+        \item Ela pode ser gerada pela gramática $S\to aSa\ |\ bSb\ |\ \code{apl}{∊}$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de linguagens não livres de contexto}
+
+    \begin{itemize}
+        \item A linguagem
+        \[
+            L'_2 = \{ a^nb^mc^md^n\ |\ n\geq 1\ \mbox{e}\ m\geq 1\}
+        \]
+        também é livre de contexto
+        \pause
+
+        \item A gramática abaixo gerada $L'_2$:
+        \[
+            \begin{array}{l}
+                S \to aSd\ |\ aAd \\
+                A \to bAc\ |\ bc
+            \end{array}
+        \]
+        \pause
+
+        \item A linguagem
+        \[
+            L''_2 = \{ a^nb^nc^md^m\ |\ n\geq 1\ \mbox{e}\ m\geq 1\}
+        \]
+        também é livre de contexto
+        \pause
+
+        \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de linguagens não livres de contexto}
+
+    \begin{itemize}
+        \item Ela pode ser gerada pela gramática
+        \[
+            \begin{array}{l}
+                S \to A\ |\ B \\
+                A \to aAb\ |\ ab \\
+                B \to cBd\ |\ cd
+            \end{array}
+        \]
+        \pause
+
+        \item Por fim, a linguagem
+        \[
+            L'_3 = \{ a^nb^n\ |\ n\geq 1\}
+        \]
+        é livre de contexto, gerada pela gramática $S\to aSb\ |\ ab$
+        \pause
+
+        \item Informalmente, pode-se afirmar que um autômato finito não pode realizar contagens e que uma gramática pode manter uma contagem de dois itens, mas
+            não de três
+    \end{itemize}
+
+\end{frame}
