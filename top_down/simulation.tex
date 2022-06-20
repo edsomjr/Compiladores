@@ -1,0 +1,399 @@
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E$ };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E$ };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.3, 3.2) to (6.3, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T$ };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.3, 3.2) to (6.3, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $E\to TE'$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+        \draw[thick] (2, 4) rectangle (3, 5);
+        \node at (2.5, 4.5) { $F$ };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.3, 3.2) to (6.3, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $T\to FT'$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+        \draw[thick] (2, 4) rectangle (3, 5);
+        \node at (2.5, 4.5) { \textbf{id} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.3, 3.2) to (6.3, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $F\to \textbf{id}$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+%        \draw[thick] (2, 4) rectangle (3, 5);
+%        \node at (2.5, 4.5) { \textbf{id} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.675, 3.2) to (6.675, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+%        \node[anchor=west] at (11, 4) { $F\to \textbf{id}$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+%        \draw[thick] (2, 3) rectangle (3, 4);
+%        \node at (2.5, 3.5) { $T'$ };
+
+%        \draw[thick] (2, 4) rectangle (3, 5);
+%        \node at (2.5, 4.5) { \textbf{id} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.675, 3.2) to (6.675, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $T'\to \code{apl}{∊}$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T$ };
+
+        \draw[thick] (2, 4) rectangle (3, 5);
+        \node at (2.5, 4.5) { \code{apl}{+} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (6.675, 3.2) to (6.675, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T$ };
+
+%        \draw[thick] (2, 4) rectangle (3, 5);
+%        \node at (2.5, 4.5) { \code{apl}{+} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (7.05, 3.2) to (7.05, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+        \draw[thick] (2, 4) rectangle (3, 5);
+        \node at (2.5, 4.5) { $F$ };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (7.05, 3.2) to (7.05, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $T\to FT'$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+        \draw[thick] (2, 4) rectangle (3, 5);
+        \node at (2.5, 4.5) { \textbf{id} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (7.05, 3.2) to (7.05, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+        \node[anchor=west] at (11, 4) { $F\to \textbf{id}$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Comportamento do analisador preditivo não-recursivo para a cadeia ``$\textbf{id}\code{apl}{+}\textbf{id}\code{apl}{×}\textbf{id}$''}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (12, 0) { . };
+        \node[opacity=0] at (12, 7) { . };
+
+        \node at (2.5, 0.5) { \texttt{Pilha} };
+
+        \draw[very thick] (1.5, 1) to (3.5, 1);
+
+        \draw[thick] (2, 1) rectangle (3, 2);
+        \node at (2.5, 1.5) { \texttt{\$} };
+
+        \draw[thick] (2, 2) rectangle (3, 3);
+        \node at (2.5, 2.5) { $E'$ };
+
+        \draw[thick] (2, 3) rectangle (3, 4);
+        \node at (2.5, 3.5) { $T'$ };
+
+%        \draw[thick] (2, 4) rectangle (3, 5);
+%        \node at (2.5, 4.5) { \textbf{id} };
+
+        \node[anchor=west] at (5, 5) { \texttt{Entrada} };
+
+        \node[anchor=west] at (6, 4) { \textbf{id} \code{apl}{+} \textbf{id} \code{apl}{×} \textbf{id} \texttt{\$} };
+        \draw[-latex,thick] (7.45, 3.2) to (7.45, 3.8);
+
+        \node[anchor=west] at (10, 5) { \texttt{Saída} };
+
+%        \node[anchor=west] at (11, 4) { $F\to \textbf{id}$ };
+%        \node[anchor=west] at (11, 4) { $E'\to \code{apl}{+}TE'$ };
+    \end{tikzpicture}
+
+\end{frame}
