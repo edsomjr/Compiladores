@@ -141,3 +141,192 @@
 
 \input{simulation}
 
+\begin{frame}[fragile]{Funções auxiliares}
+
+    \begin{itemize}
+        \item Duas funções associadas à gramática $G$ auxiliam a construção de uma analisador sintático preditivo não-recursivo
+        \pause
+
+        \item Estas funções, \Call{primeiro}{\ } e \Call{seguinte}{\ }, apoiam o preenchimento da tabela sintática preditiva para $G$
+        \pause
+
+        \item Os tokens produzidos pela função \Call{seguinte}{\ } também podem ser usados como tokens de sincronização na recuperação de erros na modalidade de
+            desespero
+        \pause
+    \end{itemize}
+
+    \begin{block}{Definição}
+        Seja $\alpha$ uma cadeia de símbolos gramaticais. Então \Call{primeiro}{$\alpha$} é o conjunto de terminais que começam as cadeias derivadas a partir de
+            $\alpha$. Se $\alpha \overset{\scalebox{0.5}{\code{apl}{*}}}{\Rightarrow} \code{apl}{∊}$ então $\code{apl}{∊}\in \Call{primeiro}{\alpha}$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Funções auxiliares}
+
+    \begin{block}{Definição}
+        Seja $A$ um não-terminal. Então \Call{seguinte}{$A$} é o conjunto de terminais $a$ que podem aparecer imediatamente à direita de $A$ em alguma forma
+            sentencial, isto é, o conjunto de terminais $a$ tais que existe uma derivação 
+            $S \overset{\scalebox{0.5}{\code{apl}{*}}}{\Rightarrow} \alpha Aa\beta$ para algum $\alpha$ e $\beta$.
+
+        \vspace{0.1in}
+        Se $A$ puder ser o símbolo mais à direita em alguma forma sentencial, então $\texttt{\$}\in \Call{seguinte}{A}$.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo para o cálculo de {\sc primeiro}(\ )}
+
+    \begin{algorithmic}[1]
+        \Require{um símbolo gramatical $X$}
+        \Ensure{o conjunto \Call{primeiro}{$X$}}
+
+        \vspace{0.2in}
+        \If{$X$ é um terminal}
+            \State{\Call{primeiro}{$X$} = $\{\ X\ \}$}
+        \EndIf
+        \If{$X\to \code{apl}{∊}$}
+            \State{adicione \code{apl}{∊} ao conjunto \Call{primeiro}{$X$}}
+        \EndIf
+        \If{$X$ é um não terminal e $X\to Y_1Y_2\ldots Y_k$}
+            \State{coloque $a$ em \Call{primeiro}{$X$} se $a\in\Call{primeiro}{Y_i}$ e $Y_1, Y_2, \ldots, Y_{i-1} \overset{\scalebox{0.5}{\code{apl}{*}}}{\Rightarrow} \code{apl}{∊}$}
+            \State{se $\code{apl}{∊}\in \Call{primeiro}{Y_j}$ para todo $j = 1, 2, \ldots, k$, coloque \code{apl}{∊} em \Call{primeiro}{$X$}}
+        \EndIf
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo para o cálculo de {\sc primeiro}(\ )}
+
+    \begin{algorithmic}[1]
+        \Require{uma cadeia $Y = X_1X_2\ldots Y_n$}
+        \Ensure{o conjunto \Call{primeiro}{$Y$}}
+
+        \vspace{0.2in}
+        \For{$i=1,n$}
+            \State{adicione todos os símbolos diferente de \code{apl}{∊} de \Call{primeiro}{$X_i$} em \Call{primeiro}{$Y$}}
+            \If{$\code{apl}{∊}\not\in \Call{primeiro}{X_i}$}
+                \State{interrompa o laço}
+            \EndIf
+        \EndFor
+        \Statex
+        \If{$\code{apl}{∊}\in\Call{primeiro}{X_j}$ para todo $j = 1, 2, \ldots, n$}
+            \State{adicione \code{apl}{∊} ao conjunto \Call{primeiro}{$Y$}}
+        \EndIf
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Algoritmo para o cálculo de {\sc seguinte}(\ )}
+
+    \begin{algorithmic}[1]
+        \Require{uma gramatica $G$}
+        \Ensure{os conjuntos \Call{seguinte}{$A$} para todos não-terminais $A$ em $G$}
+
+        \vspace{0.2in}
+        \State{Coloque \texttt{\$} no conjunto \Call{seguinte}{$S$}, onde $S$ é o símbolo de partida}
+        \Statex
+        \While{há algo a ser adicionado a qualquer conjunto \Call{seguinte}{\ }}
+            \If{existe um produção $A\to \alpha B\beta$}
+                \State{adicione todos os elementos diferentes de \code{apl}{∊} do \Call{primeiro}{$\beta$} em \Call{seguinte}{$B$}}
+            \EndIf
+            \If{existe um produção $A\to \alpha B$ ou uma produção $A\to \alpha B\beta$ onde $\code{apl}{∊} \in \Call{primeiro}{\beta$}}
+                \State{adicione todos os elementos de \Call{seguinte}{$A$} em \Call{seguinte}{$B$}}
+            \EndIf
+        \EndWhile
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Gramática para expressões aritméticas e conjuntos auxiliares}
+
+    \begin{figure}
+        \centering 
+        \begin{tikzpicture}
+            \node[anchor=west] at (0, 6) { $E\to TE $ };
+            \node[anchor=west] at (0, 5.5) { $E'\to \code{apl}{+}TE'\ |\ \code{apl}{∊}$ };
+            \node[anchor=west] at (0, 5.0) { $T\to FT'$ };
+            \node[anchor=west] at (0, 4.5) { $E'\to \code{apl}{×}FT'\ |\ \code{apl}{∊}$ };
+            \node[anchor=west] at (0, 4.0) { $F\to (E)\ |\ \textbf{id}$ };
+
+            \node[anchor=west] at (4, 6) { $\Call{primeiro}{E} = \Call{primeiro}{T} = \Call{primeiro}{F} = \{\ (, \textbf{id}\ \}$ };
+            \node[anchor=west] at (4, 5.5) { $\Call{primeiro}{E'} = \{\ \code{apl}{+}, \code{apl}{∊}\ \}$ };
+            \node[anchor=west] at (4, 5.0) { $\Call{primeiro}{T'} = \{\ \code{apl}{×}, \code{apl}{∊}\ \}$ };
+
+            \node[anchor=west] at (4, 4.0) { $\Call{seguinte}{E} = \Call{seguinte}{E'} = \{\ ), \texttt{\$}\ \}$ };
+            \node[anchor=west] at (4, 3.5) { $\Call{seguinte}{T} = \Call{seguinte}{T'} = \{\ \code{apl}{+}, ), \texttt{\$}\ \}$ };
+            \node[anchor=west] at (4, 3.0) { $\Call{seguinte}{F} = \{\ \code{apl}{+}, \code{apl}{×}, ), \texttt{\$}\ \}$ };
+        \end{tikzpicture}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Construção de tabelas sintáticas preditivas}
+
+    \begin{algorithmic}[1]
+        \Require{uma gramática $G$}
+        \Ensure{uma tabela sintática preditiva $M$} 
+
+        \vspace{0.2in}
+        \For{cada produção $A\to \alpha$ de $G$}
+            \For{cada terminal $a\in\Call{primeiro}{\alpha}$}
+                \State{adicione $A\to \alpha$ na posição $M[A, a]$}
+            \EndFor
+            \If{$\code{apl}{∊}\in\Call{primeiro}{\alpha}$}
+                \For{cada terminal $b\in\Call{seguinte}{A}$}
+                    \State{adicione $A\to \alpha$ na posição $M[A, b]$}
+                \EndFor
+                \If{$\texttt{\$}\in\Call{seguinte}{A}$}
+                    \State{adicione $A\to \alpha$ na posição $M[A, \texttt{\$}]$}
+                \EndIf
+            \EndIf
+        \EndFor
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Ambiguidades na tabela sintática preditiva}
+
+    \begin{itemize}
+        \item Embora o algoritmo de produção de tabelas sintáticas preditivas possa ser aplicado em qualquer gramática $G$, algumas gramáticas produzirão
+            múltiplas entradas para determinados pares $(A, a)$
+        \pause
+
+        \item Considere a gramática que abstrai o comando \textbf{if-then-else}:
+        \[
+            \begin{array}{l}
+            S \to iEtSS'\ |\ a \\
+            S' \to eS\ |\ \code{apl}{∊} \\
+            E \to b
+            \end{array}
+        \]
+        \pause
+
+        \item Esta gramática possui duas entradas para $M[S', e]$: a saber $S'\to eS$ e $S'\to \code{apl}{∊}$, uma vez que $\Call{seguinte}{S'} = \{e, \texttt{\$}\}$
+        \pause
+    
+        \item Neste caso, a ambiguidade pode ser resolvida optando pela primeira produção e descartando a segunda ($S'\to \code{apl}{∊}$)
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Tabela sintática para a gramática que abstrai o comando \textbf{if-then-else}}
+
+    \begin{table}
+        \centering
+        \begin{tabular}{c|c|c|c|c|c|c}
+        \toprule
+        \multirow{2}{*}{\texttt{\begin{tabular}{c}Não-\\ terminal\end{tabular}}} & \multicolumn{6}{c}{\texttt{Símbolo da entrada}} \\
+        \cmidrule{2-7}
+        & $a$ & $b$ & $e$ & $i$ & $t$ & \texttt{\$} \\
+        \midrule
+        $S$ & $S\to a$ & & & $S\to iEtSS'$ & & \\
+        \rowcolor[gray]{0.9}
+        $S'$ & & & $\begin{array}{c}S'\to \code{apl}{∊}\\ S'\to eS\end{array}$ & & & $S'\to \code{apl}{∊}$ \\
+        $E$ & & $E\to b$ & & & &\\
+        \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+
