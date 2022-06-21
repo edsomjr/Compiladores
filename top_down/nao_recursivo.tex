@@ -329,4 +329,41 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{Gramáticas $LL(1)$}
+
+    \begin{block}{Definição}
+        Uma gramática cuja tabela sintática não possui entradas multiplamente definidas são denominadas gramáticas $LL(1)$. O primeiro $L$ da sigla indica a
+        varredura da esquerda para a direita (\textit{left to right}); o segundo $L$ diz respeito à produção de uma derivação mais à esquerda da cadeia
+        (\textit{left linear}); o número $1$ sinaliza que é necessário um único token de \textit{lookahead} a cada passo para a tomada de decisões sintáticas.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Propriedades das gramáticas $LL(1)$}
+
+    \begin{itemize}
+        \item Nenhuma gramática recursiva à esquerda ou ambígua pode ser $LL(1)$
+        \pause
+
+        \item Uma gramática $G$ é $LL(1)$ se, e somente se, sempre que $A\to \alpha\ |\ \beta$ forem duas produções distintas de $G$, valem as seguintes condições:
+        \pause
+        \begin{enumerate} 
+            \item $\alpha$ e $\beta$ não derivam, ao mesmo tempo, cadeias começando pelo mesmo terminal $a$, qualquer que seja $a$
+            \pause
+
+            \item no máximo um dos dois ($\alpha$ ou $\beta$) deriva a cadeia vazia
+            \pause
+
+            \item se $\beta \overset{\scalebox{0.5}{*}}{\Rightarrow} \code{apl}{∊}$, então $\alpha$ não deriva qualquer cadeia começando por um terminal em
+                \Call{seguinte}{$A$}
+            \pause
+        \end{enumerate} 
+
+        \item A gramática para expressões aritméticas é $LL(1)$
+        \pause
+
+        \item A gramática que generaliza o comando \textbf{if-then-else} não é $LL(1)$
+    \end{itemize}
+
+\end{frame}
 

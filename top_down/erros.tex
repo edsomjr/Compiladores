@@ -1,0 +1,27 @@
+\section{Recuperação de erros na análise preditiva}
+
+\begin{frame}[fragile]{Recuperação de erros na análise preditiva}
+
+    \begin{itemize}
+        \item A pilha de um analisador preditivo não-recursivo torna explícitos os terminais e os não-terminais que o mesmo espera reconhecer com o restante
+            da entrada
+        \pause
+
+        \item Um erro é detectado na análise preditiva em dois casos
+        \pause
+
+        \item O primeiro deles acontece quando o terminal do topo da pilha não reconhece o próximo símbolo da entrada
+        \pause
+
+        \item O segundo caso ocorre quando o não-terminal $A$ está no topo da pilha, $a$ é o próximo símbolo da entrada e a entrada $M[A, a]$ da tabela sintática
+            está vazia
+        \pause
+
+        \item A recuperação de erros na modalidade do desespero pula os símbolos da entrada até encontrar um token pertencente ao conjunto pré-definido dos
+            tokens de sincronização
+        \pause
+
+        \item A efetividade desta abordagem depende da escolha dos tokens de sincronização
+    \end{itemize}
+
+\end{frame}
