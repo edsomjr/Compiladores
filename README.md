@@ -12,3 +12,5 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
 1. Análise sintática
     1. [O papel do analisador sintático](analise_sintatica/analise_sintatica.pdf)
     1. [Análise sintática _top-down_](top_down/top_down.pdf)
+1. Tradução dirigida pela sintaxe
+    1. [Definições dirigidas pela sintaxe](traducao/traducao.pdf)
