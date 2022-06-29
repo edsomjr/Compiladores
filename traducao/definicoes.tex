@@ -362,3 +362,41 @@
 
 \end{frame}
 
+\begin{frame}[fragile]{Ordenação topológica}
+
+    \begin{block}{Definição}
+        Seja $G(V, E)$ um grafo direcionado acíclico. Uma ordenação topológica de $G$ é uma sequência de vértices $v_1, v_2, \ldots, v_N$ tal que, se 
+            $(v_i, v_j)\in E$, então $v_i$ antecede $v_j$ na sequência.
+    \end{block}
+
+    \vspace{0.2in}
+    \pause
+
+    Qualquer ordenação topológica do grafo de dependências fornece uma ordem válida de avaliação das regras gramaticais que definem os valores dos atributos, uma
+        vez que, quando a regra $b := f(c_1, c_2, \ldots, c_k)$ for avaliada, os atributos $c_1, c_2, \ldots, c_k$ já terão seus valores definidos.
+\end{frame}
+
+\begin{frame}[fragile]{Tradução a partir de uma definição dirigida pela sintaxe}
+
+    Pode-se definir uma tradução a partir de uma definição dirigida pela sintaxe da seguinte forma:
+    \pause
+
+    \vspace{0.2in}
+
+    \begin{enumerate}
+        \item Construa a árvore gramatical da entrada e acordo com a gramática subjacente
+        \pause
+
+        \item Construa o grafo de dependências
+        \pause
+
+        \item Gere uma ordenação topológica do grafo de dependências
+        \pause
+
+        \item Use a ordenação topológica para avaliar as regras semânticas
+        \pause
+
+        \item A avaliação das regras semânticas produzirá a tradução da entrada
+    \end{enumerate}
+
+\end{frame}
