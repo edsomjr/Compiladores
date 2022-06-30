@@ -3,7 +3,135 @@
 \begin{frame}[fragile]{Construção de árvores sintáticas para expressões}
 
     \begin{itemize}
-        \item 
+        \item Árvores sintáticas para expressões podem ser construídas de forma semelhante à tradução para notação posfixa
+        \pause
+
+        \item Deve ser construído um nó para cada operação e cada operando
+        \pause
+
+        \item Os filhos do nó de um operador ser subárvores que representam as subexpressões que constituem os operandos daquele operador
+        \pause
+
+        \item Cada nó pode ser implementado como um registro com vários campos que caracterizam o nó
+        \pause
+
+        \item O registro de nós que representam operadores devem conter um campo que identifica o operador e os demais campos devem ser ponteiros para os
+            operandos
+        \pause
+
+        \item As folhas das árvores contém os tokens
+        \pause
+
+        \item O registro de uma folha deve identificar o token e também armazenar um ponteiro para a entrada do token na tabela de símbolos
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}[fragile]{Funções para a criação de nós da árvore sintática de uma expressão}
+
+    Cada uma das funções abaixo retorna um ponteiro para o nó criado. Assuma que os operadores são todos binários.
+    \vspace{0.2in}
+    \pause
+
+    \begin{enumerate}
+        \item \Call{criarNo}{$op, L, R$}: cria um nó de operador cujo rótulo é $op$, $L$ é o ponteiro do operando à esquerda e $R$ o ponteiro do operando à
+            direita
+        \pause
+
+        \item \Call{criarFolha}{\textbf{id}, $p$}: cria um nó para um identificador com rótulo \textbf{id}, onde $p$ é o ponteiro para o identificador na tabela 
+            de símbolos
+        \pause
+
+        \item \Call{criarFolha}{\textbf{num}, $val$}: cria um nó para um número, com rótulo \textbf{num}, cujo valor é indicado por $val$
+    \end{enumerate}
+
+\end{frame}
+
+\input{tree}
+
+\begin{frame}[fragile]{Definição dirigida pela sintaxe para a construção de árvores sintáticas}
+
+    \begin{itemize}
+        \item É possível construir árvores sintáticas para expressões por meio de uma definição S-atribuída
+        \pause
+
+        \item As regras semânticas agendam as chamadas das funções de criação de nós que irão construir a árvore
+        \pause
+
+        \item O atributo sintetizado $nptr$ controla os ponteiros para os nós retornados pelas funções
+        \pause
+
+        \item O atributo $entrada$ armazena o endereço de um token na tabela de símbolos e o atributo $val$ o valor de um número
+        \pause
+
+        \item Estes dois atributos devem ser computados na análise léxica
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Definição dirigida pela sintaxe para expressões aritméticas de adição e subtração}
+
+    \begin{table}
+        \centering
+        \begin{tabular}{lp{2cm}l}
+        \toprule
+        \textbf{Produção} & & \textbf{Regra semântica} \\
+        \midrule
+        $E\to E_1\ \code{apl}{+}\ T$ & & $E.nptr := \Call{criarNo}{\code{apl}{+}, E_1.nptr, T.nptr}$ \\
+        \rowcolor[gray]{0.9}
+        $E\to E_1\ \code{apl}{-}\ T$ & & $E.nptr := \Call{criarNo}{\code{apl}{-}, E_1.nptr, T.nptr}$ \\
+        $E\to T$ & & $E.nptr := T.nptr$ \\
+        \rowcolor[gray]{0.9}
+        $T\to (E)$ & & $T.nptr := E.nptr$ \\
+        $T\to \textbf{id}$ & & $T.nptr := \Call{criarNo}{\textbf{id}, \textbf{id}.entrada}$ \\
+        \rowcolor[gray]{0.9}
+        $T\to \textbf{num}$ & & $T.nptr := \Call{criarNo}{\textbf{num}, \textbf{num}.val}$ \\
+        \bottomrule
+        \end{tabular} 
+    \end{table}
+
+\end{frame}
+
+\begin{frame}[fragile]{DAG}
+
+    \begin{itemize}
+        \item Um grafo direcionado acíclico (\textit{directed acyclic graph -- DAG}) é um grafo cujas arestas são direcionadas e que não possui ciclos
+        \pause
+
+        \item Um DAG pode ser usado para identificar subexpressões comuns em uma expressão
+        \pause
+
+        \item De forma similar às árvores sintáticas, um nó representa um operador e seus filhos representam os operandos
+        \pause
+
+        \item Se houver uma ou mais expressões comuns, os nós do DAG podem ter ``mais de um pai''
+        \pause
+
+        \item Nas árvores sintáticas, expressões comuns são duplicadas na árvore
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Construção do DAG a partir de uma definição S-atribuída}
+
+    \begin{itemize}
+        \item Uma definição S-atribuída para a construção de árvores sintáticas para expressões aritméticas de adições e subtrações pode se adaptada para a 
+            construção do DAG
+        \pause
+
+        \item De fato, basta modificar o comportamento das funções \Call{criarNo}{\ } e \Call{criarFolha}{\ }
+        \pause
+
+        \item Ao invés de criar um novo nó a cada chamada, estas funções devem verificar se os parâmatros passados já não foram usados para construir um nó
+        \pause
+
+        \item Em caso afirmativo, as funções devem retornar o ponteiro usado anteriormente na criação do nó
+        \pause
+
+        \item Caso contrário, deve ser criado um novo nó e o ponteiro criado deve ser armazenado em uma tabela, associado aos parâmetros usados, para consulta
+            posterior
+    \end{itemize}
+
+\end{frame}
+
+\input{dag}
