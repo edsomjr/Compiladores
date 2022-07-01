@@ -43,7 +43,7 @@
         \item As rotinas descritas para a tabela de símbolos permitem um tratamento direto de quaisquer palavras reservadas da linguagem
         \pause
 
-        \item Por exemplo, considere que \textbf{div} \textbf{mod} são palavras reservadas
+        \item Por exemplo, considere que \textbf{div} e \textbf{mod} são palavras reservadas
         \pause
 
         \item A rotina de inserção permite associar os lexemas \code{cpp}{"div"} e \code{cpp}{"mod"} aos tokens \textbf{div} e \textbf{mod}:
@@ -76,7 +76,7 @@
                 \If{$lexema$ não está na tabela de símbolos}
                     \State{\Call{inserir}{$lexema$, \code{cpp}{ID}}}
                 \EndIf
-                \State{\Return{\{ \code{cpp}{ID}, $lexema$} \}}
+                \State{\Return{\{ \Call{obterToken}{$lexema$}, $lexema$} \}}
             \Else
                 \State{\Return{\{ $c$, \code{cpp}{NONE}} \}}
             \EndIf
