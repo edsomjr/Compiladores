@@ -29,8 +29,7 @@
             gerador
         \pause
 
-        \item Escrever o analisador léxico em alguma linguagemde programação convencional (C, C++, etc). A buferização fica atrelada aos mecanismos de I/O da
-            linguagem
+        \item Escrever o analisador léxico em alguma linguagem de programação convencional (C, C++, etc). A buferização fica atrelada aos mecanismos de I/O da linguagem
         \pause
 
         \item Escrever o analisador em linguagem de montagem e tratar explicitamente a leitura da entrada e a buferização
@@ -47,7 +46,7 @@
         \item Em geral, $N$ corresponde ao tamanho de um bloco do disco (por exemplo, 1024 ou 4096 caracteres)
         \pause
 
-        \item Cada metade do \textit{buffer} é preenchida de uma única vez, por meio da chamada de uma função de leitura dos sistema
+        \item Cada metade do \textit{buffer} é preenchida de uma única vez, por meio da chamada de uma função de leitura do sistema
         \pause
 
         \item Caso restem na entrada menos do que $N$ caracteres, é inserido um caractere especial no \textit{buffer} para indicar o fim da entrada
@@ -85,7 +84,7 @@
 \begin{frame}[fragile]{Atualização dos {\it buffers} e o ponteiro $R$}
 
     \begin{itemize}
-        \item Se o ponteiro $R$ tentar se deslocar para além do meio do \textit{buffer}, será preciso preencher a metade direita com $N$ novos caracteres antes 
+        \item Se o ponteiro $R$ tentar se deslocar para além do meio do \textit{buffer}, será preciso preencher a metade direita com $N$ novos caracteres antes
             deste avanço
         \pause
 
@@ -115,7 +114,7 @@
             \Comment{\textit{Assuma que os índices de {\it buffer} começem em zero}}
         \ElsIf{}
             \State{$R\gets R + 1$}
-        \EndIf 
+        \EndIf
     \end{algorithmic}
 
 \end{frame}
@@ -155,7 +154,7 @@
             \Else{}
                 \Comment{\textit{\code{cpp}{EOF} está no buffer, indicando o fim da entrada}}
                 \State{Finalize a análise léxica}
-            \EndIf 
+            \EndIf
         \EndIf
     \end{algorithmic}
 
