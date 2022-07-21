@@ -6,7 +6,7 @@
         \item A análise léxica é a primeira fase de um compilador
         \pause
 
-        \item Um analisador léxico deve ser os caracteres da entrada e produzir uma sequência de tokens, os quais serão usados pelo \textit{parser} durante a
+        \item Um analisador léxico deve ler os caracteres da entrada e produzir uma sequência de tokens, os quais serão usados pelo \textit{parser} durante a
             análise sintática
         \pause
 
@@ -26,7 +26,7 @@
 \begin{frame}[fragile]{Interação entre o analisador léxico e o {\it parser}}
 
     \begin{figure}
-        \centering 
+        \centering
 
         \begin{tikzpicture}
             \node (A) at (0, 6) {\footnotesize \texttt{\begin{tabular}{c}programa\\ fonte\end{tabular}} };
@@ -53,8 +53,7 @@
         \item A separação entre estas duas fases pode simplificar uma das duas (ou ambas)
         \pause
 
-        \item A eficiência do compilador é melhorada, uma vez que a separação permite o uso de técnicas especializadas, como buferização, para melhorar o 
-            desempenho da leitura da entrada e extração de tokens
+        \item A eficiência do compilador é melhorada, uma vez que a separação permite o uso de técnicas especializadas, como buferização, para melhorar o desempenho da leitura da entrada e extração de tokens
         \pause
 
         \item A separação permite uma melhor portabilidade do compilador, uma vez que diferenças entre a captura da entrada e codificação de caracteres,

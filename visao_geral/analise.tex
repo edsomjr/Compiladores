@@ -53,12 +53,12 @@
         \pause
 
         \begin{enumerate}[(a)]
-            \item Para o nó $n$, rotulado pelo não-terminal $A$, selecione uma das produções para $A$ e construa os filhos de $n$ com os símbolos do lado 
+            \item Para o nó $n$, rotulado pelo não-terminal $A$, selecione uma das produções para $A$ e construa os filhos de $n$ com os símbolos do lado
             direito da produção
             \pause
 
             \item Encontre o próximo nó no qual uma subárvore deve ser construída
-        \end{enumerate} 
+        \end{enumerate}
     \end{enumerate}
     \pause
 
@@ -92,7 +92,7 @@
     \pause
     \vspace{0.2in}
 
-    Observação: os dois pontos (`$..$') formam um único token. 
+    Observação: os dois pontos (`$..$') formam um único token.
 
 \end{frame}
 
@@ -108,9 +108,9 @@
         \pause
 
         \begin{center}
-           \begin{tikzpicture} 
+           \begin{tikzpicture}
                 \node (A) at (6, 6) { \footnotesize $tipo$ };
-           \end{tikzpicture} 
+           \end{tikzpicture}
         \end{center}
         \pause
 
@@ -119,7 +119,7 @@
         \pause
 
         \begin{center}
-           \begin{tikzpicture} 
+           \begin{tikzpicture}
                 \node (A) at (5, 5) { \footnotesize $tipo$ };
                 \node (B1) at (0, 3.5) { \footnotesize \code{pascal}{array} };
                 \node (B2) at (2, 3.5) { \footnotesize \code{pascal}{[} };
@@ -134,9 +134,9 @@
                 \draw[thick] (A) to (B4);
                 \draw[thick] (A) to (B5);
                 \draw[thick] (A) to (B6);
-           \end{tikzpicture} 
+           \end{tikzpicture}
         \end{center}
- 
+
     \end{enumerate}
 \end{frame}
 
@@ -157,7 +157,7 @@
         \pause
 
        \begin{center}
-           \begin{tikzpicture} 
+           \begin{tikzpicture}
                 \node (A) at (5, 5) { \footnotesize $tipo$ };
                 \node (B1) at (0, 3.75) { \footnotesize \code{pascal}{array} };
                 \node (B2) at (2, 3.75) { \footnotesize \code{pascal}{[} };
@@ -178,10 +178,10 @@
                 \draw[thick] (B3) to (C1);
                 \draw[thick] (B3) to (C2);
                 \draw[thick] (B3) to (C3);
-        
-           \end{tikzpicture} 
+
+           \end{tikzpicture}
         \end{center}
- 
+
     \end{enumerate}
 \end{frame}
 
@@ -198,7 +198,7 @@
 
         \pause
        \begin{center}
-           \begin{tikzpicture} 
+           \begin{tikzpicture}
                 \node (A) at (5, 5) { \footnotesize $tipo$ };
                 \node (B1) at (0, 3.75) { \footnotesize \code{pascal}{array} };
                 \node (B2) at (2, 3.75) { \footnotesize \code{pascal}{[} };
@@ -223,10 +223,10 @@
                 \draw[thick] (B3) to (C3);
                 \draw[thick] (B6) to (D1);
                 \draw[thick] (E1) to (D1);
-        
-           \end{tikzpicture} 
+
+           \end{tikzpicture}
         \end{center}
- 
+
     \end{enumerate}
 \end{frame}
 
@@ -258,7 +258,7 @@
     O procedimento \Call{reconhecer}{\,} confronta o valor de \textit{lookahead} e um determinado token. Em caso de coincidência, ele atualiza \textit{lookahead} com
     o próximo token da entrada.
     \pause
-    
+
     \vspace{0.2in}
     \begin{algorithmic}[1]
         \Procedure{reconhecer}{$token$}
@@ -323,14 +323,14 @@
     \end{block}
 
     \vspace{0.2in}
-    Por exemplo, na gramática de geração de subtipos em Pascal, 
+    Por exemplo, na gramática de geração de subtipos em Pascal,
 
     \begin{center}\Call{primeiro}{$primitivo$} = \{ \code{pascal}{integer, char, num} \}\end{center}
 
     e
 
     \begin{center}\Call{primeiro}{$\uparrow$\code{pascal}{id}} = \{ $\uparrow$ \}\end{center}
-    
+
 \end{frame}
 
 \begin{frame}[fragile]{Primeiros símbolos e análise gramatica preditiva}
@@ -339,11 +339,11 @@
         \item A análise gramatical preditiva depende dos conjuntos \Call{primeiro}{$X$} de todos não-terminais $X$ da gramática
         \pause
 
-        \item Isto acontece principalmente nos casos onde a gramática possui duas ou mais produções para um mesmo não-terminal (por exemplo, $A \to \alpha$ e 
+        \item Isto acontece principalmente nos casos onde a gramática possui duas ou mais produções para um mesmo não-terminal (por exemplo, $A \to \alpha$ e
         $A\to \beta$)
         \pause
 
-        \item Para rque a análise gramatical recursiva descendente seja preditiva é necessário que os primeiros símbolos de cada produção sejam distintos
+        \item Para que a análise gramatical recursiva descendente seja preditiva é necessário que os primeiros símbolos de cada produção sejam distintos
         \pause
 
         \item No exemplo dado,
