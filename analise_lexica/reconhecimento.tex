@@ -27,7 +27,7 @@
         \mathbf{else} & \to & \texttt{else} \\ 
         \mathbf{relop} & \to & \texttt{< | <= | = | <> | > | >=} \\ 
         \mathbf{id} & \to & \mathbf{letra}\ (\mathbf{letra}\ |\ \mathbf{dígito})^* \\
-        \mathbf{num} & \to & \mathbf{dígito}^* (\texttt{.}\ \mathbf{dígito}^+)?(\texttt{E}(\texttt{+|-})?\ \mathbf{dígito}^+)?\\
+        \mathbf{num} & \to & \mathbf{dígito}^+ (\texttt{.}\ \mathbf{dígito}^+)?(\texttt{E}(\texttt{+|-})?\ \mathbf{dígito}^+)?\\
         \mathbf{letra} & \to & \texttt{A | B | ... | Z | a | b | ... | z} \\
         \mathbf{dígito} & \to & \texttt{0 | 1 | 2 | ... | 9}
     \end{array}
@@ -170,6 +170,7 @@
             \node[draw,circle,double,very thick] (A7) at (9, 2) { \texttt{7} };
             \node[draw,circle,double,very thick] (A8) at (9, 1) { \texttt{8} };
 
+            \node at (9.5, 4.25) { \texttt{*} };
             \node at (9.5, 1.25) { \texttt{*} };
 
             \node[anchor=west] at (9.5, 6) { \footnotesize \texttt{retorne \{ $\mathbf{relop}$, LE\ \}} };
