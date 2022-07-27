@@ -1,8 +1,8 @@
-    valor-l     C
+    valor-l     F
     push        9
-    push        5
-    valor-r     F
+    valor-r     C
     *
+    push        5
     /
     push        32
     +
