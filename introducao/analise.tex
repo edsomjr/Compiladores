@@ -69,14 +69,14 @@
     \pause
     Por exemplo, no enunciado
         \begin{center}
-        \code{cpp}{C = 1.8 * F + 32}
+        \code{cpp}{F = 1.8 * C + 32}
         \end{center}
     a análise léxica identificaria os seguintes \textit{tokens}:
     \pause
     \vspace{0.1in}
 
     \begin{enumerate}
-        \item o identificador \code{cpp}{C}
+        \item o identificador \code{cpp}{F}
         \pause
         \item o símbolo de atribuição \code{cpp}{=}
         \pause
@@ -84,7 +84,7 @@
         \pause
         \item o símbolo de multiplicação \code{cpp}{*}
         \pause
-        \item o identificador \code{cpp}{F}
+        \item o identificador \code{cpp}{C}
         \pause
         \item o símbolo de adição \code{cpp}{+}
         \pause
@@ -124,7 +124,7 @@
 
         \begin{tikzpicture}
             \node (A) at (0, 5) { \footnotesize \texttt{identificador} };
-            \node (A1) at (0, 4) { \code{cpp}{C} };
+            \node (A1) at (0, 4) { \code{cpp}{F} };
             \node (B) at (4, 6) { \footnotesize \begin{tabular}{c}\texttt{enunciado de}\\ \texttt{atribuição}\end{tabular} };
             \node (B1) at (4, 5) { \code{cpp}{=} };
             \node (C) at (8, 5) { \footnotesize \texttt{expressão} };
@@ -139,7 +139,7 @@
             \node (F2) at (4, 1) { \code{cpp}{1.8} };
             \node (G) at (8, 3) { \footnotesize \texttt{expressão} };
             \node (G1) at (8, 2) { \footnotesize \texttt{identificador} };
-            \node (G2) at (8, 1) { \code{cpp}{F} };
+            \node (G2) at (8, 1) { \code{cpp}{C} };
 
             \draw[very thick] (A) to (B);
             \draw[very thick] (A) to (A1);
@@ -159,7 +159,7 @@
             \draw[very thick] (D) to (G);
         \end{tikzpicture}
 
-        \caption{Árvore gramatical do enunicado \code{cpp}{C = 1.8 * F + 32}}
+        \caption{Árvore gramatical do enunciado \code{cpp}{F = 1.8 * C + 32}}
     \end{figure}
 
 \end{frame}
@@ -180,7 +180,7 @@
         promoção (ou conversão) de tipo, a depender da linguagem alvo
         \pause
 
-        \item Por exemplo, na expressão à direita do enunciado \code{cpp}{C = 1.8 * F + 32}, o operando à esquerda da soma tem tipo ponto flutuante e o da direita
+        \item Por exemplo, na expressão à direita do enunciado \code{cpp}{F = 1.8 * C + 32}, o operando à esquerda da soma tem tipo ponto flutuante e o da direita
             tipo inteiro: o valor \code{cpp}{32} deve ser promovido para ponto flutuante ou deve ser sinalizado um erro de tipo
     \end{itemize}
 

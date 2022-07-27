@@ -93,7 +93,7 @@
         \centering 
 
         \begin{tikzpicture}
-            \node (A) at (6, 6) { \code{cpp}{celsius = 1.8 * fahrenheit + 32} };
+            \node (A) at (6, 6) { \code{cpp}{fahrenheit = 1.8 * celsius + 32} };
             \node[draw,very thick,fill=gray!30,inner sep=8pt] (B) at (6, 4) { \begin{tabular}{c}\texttt{analisador}\\ \texttt{léxico}\end{tabular} };
             \node (C) at (6, 2) { \texttt{\textbf{id}$_1$ = 1.8 * \textbf{id}$_2$ + 32 } };
 
@@ -101,7 +101,7 @@
             \draw[very thick,-latex] (B) to (C);
         \end{tikzpicture}
 
-        \caption{Análise léxica do enunciado \code{cpp}{celsius = 1.8 * fahrenheit + 32} }
+        \caption{Análise léxica do enunciado \code{cpp}{fahrenheit = 1.8 * celsius + 32} }
     \end{figure}
 
 \end{frame}
