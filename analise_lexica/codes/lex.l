@@ -14,7 +14,7 @@ ws      {delim}+
 letra   [A-Za-z]
 digito  [0-9]
 id      {letra}({letra}|{digito})*
-num     {digito}+(\.{digito}+)?(E[+-]?(digito)+)?
+num     {digito}+(\.{digito}+)?(E[+-]?{digito}+)?
 
 %%
 
