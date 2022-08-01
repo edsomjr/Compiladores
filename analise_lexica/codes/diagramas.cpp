@@ -13,7 +13,7 @@ map<int, vector<edge>> diagram {
     { 1, { { 2, match<'='> }, { 3, match<'>'> }, { 4, wildcard } } },
     { 6, { { 7, match<'='> }, { 8, wildcard } } },
     { 9, { { 10, isalpha } } },
-    { 10, { { 10, isalpha }, { 11, wildcard } } },
+    { 10, { { 10, isalnum }, { 11, wildcard } } },
     { 28, { { 29, isspace } } },
     { 29, { { 29, isspace }, { 30, wildcard } } },
 };
