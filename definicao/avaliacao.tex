@@ -1,0 +1,688 @@
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T$ };
+        \node (R) at (7, 4.75) { $R$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T$ };
+        \node (R) at (7, 4.75) { $R$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T$ };
+        \node (R) at (7, 4.75) { $R$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T$ };
+        \node (R2) at (10, 3.5) { $R$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T$ };
+        \node (R2) at (10, 3.5) { $R$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T$ };
+        \node (R2) at (10, 3.5) { $R$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T$ };
+        \node (R3) at (13, 2.25) { $R$ };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T$ };
+        \node (R3) at (13, 2.25) { $R$ };
+        \node (N3) at (10, 1) { $\textbf{num}$ };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T$ };
+        \node (R3) at (13, 2.25) { $R$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { $R$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { $R.h = 2$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { $R.h = 2$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+        \node (V) at (13, 1) { \code{apl}{∊} };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,dotted] (R3) to (V);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.h = -1$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { ${R.s = 2}$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+        \node (V) at (13, 1) { \code{apl}{∊} };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,dotted] (R3) to (V);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+        \draw[thick,-latex] (V) to [bend right] (R3);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.h = 1$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.s = 2$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { ${R.s = 2}$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+        \node (V) at (13, 1) { \code{apl}{∊} };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,dotted] (R3) to (V);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+        \draw[thick,-latex] (V) to [bend right] (R3);
+        \draw[thick,-latex] (R3) to [bend right] (R2);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.s = 2$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.s = 2$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { ${R.s = 2}$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+        \node (V) at (13, 1) { \code{apl}{∊} };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,dotted] (R3) to (V);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+        \draw[thick,-latex] (V) to [bend right] (R3);
+        \draw[thick,-latex] (R3) to [bend right] (R2);
+        \draw[thick,-latex] (R2) to [bend right] (R);
+    \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avaliação da expressão \code{apl}{1-2+3}}
+
+    \begin{tikzpicture}
+        \node[opacity=0] at (0, 0) { . }; 
+        \node[opacity=0] at (14, 7) { . }; 
+
+        \node (E) at (4, 6) { $E.val = 2$ };
+        \node (T) at (1, 4.75) { $T.val = 1$ };
+        \node (R) at (7, 4.75) { $R.s = 2$ };
+        \node (N1) at (1, 3.5) { $\textbf{num}.val = 1$ };
+
+        \node (M) at (5.5, 3.5) { $-$ };
+        \node (T2) at (7, 3.5) { $T.val = 2$ };
+        \node (R2) at (10, 3.5) { $R.s = 2$ };
+        \node (N2) at (7, 2.25) { $\textbf{num}.val = 2$ };
+
+        \node (P) at (8.5, 2.25) { $+$ };
+        \node (T3) at (10, 2.25) { $T.val = 3$ };
+        \node (R3) at (13, 2.25) { ${R.s = 2}$ };
+        \node (N3) at (10, 1) { $\textbf{num}.val = 3$ };
+        \node (V) at (13, 1) { \code{apl}{∊} };
+
+
+        \draw[thick,dotted] (E) to (T);
+        \draw[thick,dotted] (E) to (R);
+        \draw[thick,dotted] (N1) to (T);
+        \draw[thick,dotted] (M) to (R);
+        \draw[thick,dotted] (T2) to (R);
+        \draw[thick,dotted] (R2) to (R);
+        \draw[thick,dotted] (N2) to (T2);
+        \draw[thick,dotted] (R2) to (P);
+        \draw[thick,dotted] (R2) to (T3);
+        \draw[thick,dotted] (R2) to (R3);
+        \draw[thick,dotted] (T3) to (N3);
+        \draw[thick,dotted] (R3) to (V);
+        \draw[thick,-latex] (N1) to [bend left] (T);
+        \draw[thick,-latex] (T) to (R);
+        \draw[thick,-latex] (N2) to [bend left] (T2);
+        \draw[thick,-latex] (T2) to (R2);
+        \draw[thick,-latex] (N3) to [bend left] (T3);
+        \draw[thick,-latex] (T3) to (R3);
+        \draw[thick,-latex] (V) to [bend right] (R3);
+        \draw[thick,-latex] (R3) to [bend right] (R2);
+        \draw[thick,-latex] (R2) to [bend right] (R);
+        \draw[thick,-latex] (R) to [bend right] (E);
+    \end{tikzpicture}
+
+\end{frame}

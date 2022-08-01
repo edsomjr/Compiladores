@@ -1,9 +1,62 @@
 \section{Tradução {\it top-down}}
 
-\begin{frame}[fragile]{Eliminação de recursão à esquerda}
+\begin{frame}[fragile]{Esquemas de tradução e recursão à esquerda}
 
     \begin{itemize}
-        \item 
+        \item Na prática, trabalhar com um esquema de tradução, ao invés de uma definição dirigida pela sintaxe, é vantajoso no sentido de que, em um esquema
+            de tradução, a ordem de avaliação das ações semânticas e dos valores dos atributos é dada explicitamente
+        \pause
+
+        \item Como a maioria dos operadores aritméticos são associativos à esquerda, o uso de gramaticas recursivas à esquerda acaba sendo uma consequência
+            natural
+        \pause
+
+        \item Eliminar a recursão à esquerda permite a implementação de um tradutor preditivo
+        \pause
+
+        \item Contudo, a eliminação à esquerda, sem o devido cuidado, pode modificar a associatividade do operador e, consequentemente, alterar o resultado das 
+        expressões
+        \pause
+
+        \item Compare as duas expressões abaixo, onde cada linha com uma associatividade diferente
+            \inputsyntax{apl}{codes/expr.apl} 
     \end{itemize}
 
 \end{frame}
+
+\begin{frame}[fragile]{Esquema de tradução com uma gramática recursiva à esquerda}
+
+\[
+    \begin{array}{rlp{2cm}l}
+        E \to& E_1 + T & & \{E.val := E_1.val + T.val\} \\
+        E \to& E_1 - T & & \{E.val := E_1.val - T.val\} \\
+        E \to& T & & \{E.val := T.val\} \\
+        T \to& (E) & & \{T.val := E.val\} \\
+        T \to& \textbf{num} & & \{T.val := \textbf{num}.val\}
+    \end{array}
+\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Esquema de tradução transformado com uma gramática recursiva à direita}
+
+\[
+    \begin{array}{rlp{2cm}l}
+        E \to& T & & \{R.h := T.val\} \\
+             & R & & \{E.val := R.s\} \\
+        R \to& + & & \\
+             & T & & \{R_1.h := R.h + T.val\} \\
+             & R_1 & & \{R.s := R_1.s\} \\
+        R \to& - & & \\
+             & T & & \{R_1.h := R.h - T.val\} \\
+             & R_1 & & \{R.s := R_1.s\} \\
+        R \to& \code{apl}{∊} & & \{R.s := R.h\} \\
+        T \to& ( & & \\
+             & E & & \\
+             & ) & & \{T.val := E.val\} \\
+        T \to& \textbf{num} & & \{T.val := \textbf{num}.val\}\\
+    \end{array}
+\]
+\end{frame}
+
+\input{avaliacao}
