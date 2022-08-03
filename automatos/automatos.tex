@@ -225,7 +225,7 @@
 \begin{frame}[fragile]{Autômatos finitos determinísticos}
 
     \begin{block}{Definição de AFD}
-        Um autômato finito deerminístico (AFD) é um caso especial de AFN no qual
+        Um autômato finito determinístico (AFD) é um caso especial de AFN no qual
         \begin{enumerate}
             \item nenhum estado possui um transição rotulada pelo símbolo \code{apl}{∊} (denominada transição-\code{apl}{∊}); e
             \item para cada estado $s$ existe no máximo uma transição rotulada com o caractere $c$ partindo de $s$.
@@ -296,7 +296,7 @@
         \Call{fechamento-\code{apl}{∊}}{$s$} & Conjunto de estados do AFN atingíveis a partir do estado $s$ somente por meio de transições-\code{apl}{∊} \\
         \rowcolor[gray]{0.9}
         \Call{fechamento-\code{apl}{∊}}{$T$} & Conjunto de estados do AFN atingíveis a partir de algum estado $s\in T$ somente por meio de transições-\code{apl}{∊} \\
-        \Call{movimento}{$T, a$} & Conjunto de estados do AFN para o qual existe uma transição $s\in T$ cujo rótulo é o símbolo da entrada $a$ \\
+        \Call{movimento}{$T, a$} & Conjunto de estados do AFN para o qual existe uma transição partindo de $s\in T$ cujo rótulo é o símbolo da entrada $a$ \\
         \bottomrule
         \end{tabularx}
     \end{table}
@@ -310,7 +310,7 @@
             é o estado inicial
         \pause
 
-        \item Seja $T$ o conjunto de todos os estados atingíveis a partir de $s_0$ e uma dada sequência de símbolos da entrada, e seja $a$ o próximo símbolo
+        \item Seja $T$ o conjunto de todos os estados atingíveis a partir de $s_0$ e que $a$ seja o próximo símbolo da entrada
         \pause
 
         \item Ao ver $a$, $N$ pode seguir para qualquer estado em \Call{movimento}{$T, a$}
@@ -338,7 +338,7 @@
         \item Os demais estados são adicionados segundo o algoritmo descrito a seguir
         \pause
 
-        \item Os estados de aceitação de $D$ são aqueles cujo conjunto de estados de AFN que representa contém ao menos um estado de aceitação de $N$
+        \item Os estados de aceitação de $D$ são aqueles cujo conjunto de estados de AFN que ele representa contém ao menos um estado de aceitação de $N$
     \end{itemize}
 
 \end{frame}
@@ -418,7 +418,7 @@
             \draw[thick,-latex] (A8) to node[left]{ $b$ } (A9);
             \draw[thick,-latex] (A9) to node[left]{ $b$ } (A10);
             \draw[thick,-latex] (A0) to [bend right=100] node[below]{ \code{apl}{∊} } (A7);
-            \draw[thick,-latex] (A1) to [bend left=30] node[above]{ \code{apl}{∊} } (A6);
+            \draw[thick,latex-] (A1) to [bend left=30] node[above]{ \code{apl}{∊} } (A6);
 
         \end{tikzpicture} 
         \end{footnotesize}
