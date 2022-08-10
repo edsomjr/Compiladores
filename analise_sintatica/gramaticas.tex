@@ -30,13 +30,13 @@
 
         \item São não-terminais:
             \begin{enumerate}[(i)]
-                \item Letras maiúsculas do início do alfabeto (por exemplo, $A, B, C, \ldots$
+                \item Letras maiúsculas do início do alfabeto (por exemplo, $A, B, C, \ldots$)
                 \item A letra $S$, em geral indicado o símbolo de partida
                 \item Nomes em itálico formados por letras minúculas (por exemplo, $cmd$ e $expr$)
             \end{enumerate}
         \pause
 
-        \item Letras maiúsculas do final do alfabeto ($X, Y, Z$) representam símbolos gramaticais, isto é, terminais ou não-terminais
+        \item Letras maiúsculas do final do alfabeto (em geral, $X, Y, Z$) representam símbolos gramaticais, isto é, terminais ou não-terminais
     \end{enumerate}
 
 \end{frame}
@@ -45,7 +45,7 @@
 
     \begin{enumerate}
         \setcounter{enumi}{3}
-        \item Letras minúsculas do fim do alfabeto ($x, y, z$) representam cadeias de terminais
+        \item Letras minúsculas do fim do alfabeto (em geral, $x, y, z$) representam cadeias de terminais
         \pause
 
         \item Letras gregas minúsculas (por exemplo, $\alpha, \beta, \gamma, \ldots$) representam cadeias de símbolos gramaticais (por exemplo, $A\to \alpha$ seria
@@ -86,8 +86,8 @@
 \begin{frame}[fragile]{Derivações}
 
     \begin{block}{Definição de derivação}
-        Seja $E$ um não-terminal, $E\to \alpha_1\ |\ \alpha_2\ |\ \ldots \ |\ \alpha_N$ produções-$E$ e $\sigma = \beta\ E\ \gamma$. É dito que $\sigma$ deriva 
-            $\beta\ \alpha_i\ \gamma$, e notamos $\sigma \Rightarrow \beta\ \alpha_i\ \gamma$, se uma das instâncias de $E$ em $\sigma$ é substituída por uma
+        Sejam $E$ um não-terminal, $E\to \alpha_1\ |\ \alpha_2\ |\ \ldots \ |\ \alpha_N$ produções-$E$ e $\sigma = \beta\ E\ \gamma$. É dito que $\sigma$ deriva 
+            $\beta\ \alpha_i\ \gamma$, e notamos $\sigma \Rightarrow \beta\ \alpha_i\ \gamma$, se a instância de $E$ em $\sigma$ é substituída por uma
             das alternativas $\alpha_i$ das produções-$E$.
 
         \vspace{0.1in}
@@ -141,11 +141,11 @@
 
             \vspace{0.1in}
 
-            Se duas gramaticas $G_1$ e $G_2$ geram a mesma linguagem, então $G_1$ e $G_2$ são ditas equivalentes.
+            Se duas gramáticas $G_1$ e $G_2$ geram a mesma linguagem, então $G_1$ e $G_2$ são ditas equivalentes.
 
             \vspace{0.1in}
 
-            Se $S \overset{\scalebox{0.5}{*}}{\Rightarrow} \alpha$, onde $\alpha$ pode conter tanto terminais quanto não-terminais e pode ser vazia, $\alpha$ é denominada uma forma sentencial de $G$.
+            Se $S \overset{\scalebox{0.5}{*}}{\Rightarrow} \alpha$, onde $\alpha$ pode conter tanto terminais quanto não-terminais, $\alpha$ é denominada uma forma sentencial de $G$.
     \end{block}
 
 \end{frame}
@@ -160,10 +160,10 @@
             mais à esquerda) ou mais à direita (derivações canônicas)
         \pause
 
-        \item Uma árvore gramatical pode ser vista como uma representação gráfica de uma derivação que determine uma ordem de substituição
+        \item Uma árvore gramatical pode ser vista como uma representação gráfica de uma derivação com uma ordem específica de substituição
         \pause
 
-        \item A ordem escolhida definirá o formato da árvore
+        \item A ordem de substituição definirá o formato da árvore
         \pause
 
         \item Uma gramática que produz mais de uma árvore gramatical para alguma sentença é dita ambígua

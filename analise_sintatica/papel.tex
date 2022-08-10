@@ -13,7 +13,7 @@
             projeto inicial de uma linguagem
         \pause
 
-        \item Uma gramática bem projetada implica uma estrutura para a linguagem que é útil para a tradução para a linguagem alvo e para a detecção de erros
+        \item Uma gramática bem projetada implica uma estrutura na linguagem que é útil para a tradução para a linguagem alvo e para a detecção de erros
         \pause
 
         \item A inclusão de novas características em uma linguagem é facilitada se a implementação foi baseada em uma descrição gramatical
@@ -59,6 +59,7 @@
             \draw[very thick,-latex,dashed] (C) to node[above] { \texttt{\begin{tabular}{c}árvore\\ sintática\end{tabular}} } (E);
             \draw[very thick,latex-latex] (B) to [bend right] (D);
             \draw[very thick,latex-latex] (E) to [bend left] (D);
+            \draw[very thick,latex-latex] (C) to (D);
             \draw[very thick,-latex] (E) to (F);
         \end{tikzpicture}
         \end{scriptsize}
@@ -122,14 +123,15 @@
         \item Relatar a presença de erros de forma clara e precisa
         \pause
 
-        \item Recuperar-se de cada o mais rápido possível e de forma que possa identificar erros subsequentes
+        \item Recuperar-se de cada erro o mais rápido possível e de forma que se possa identificar os erros subsequentes
         \pause
 
         \item Não atrasar o processamento de programas sintaticamente corretos
     \end{enumerate}
+    \pause
 
     \vspace{0.1in}
-    Cada uma destas metas representa um desafio à parte
+    Cada uma destas metas representa um desafio à parte.
 \end{frame}
 
 \begin{frame}[fragile]{Relato de erros}
@@ -144,7 +146,7 @@
         \item Uma estratégia simples é reportar a linha do programa-fonte onde se encontra o token em questão
         \pause
 
-        \item Se for possível identificar a natureza do erro, deve ser produzida uma mensagem de compreensível sobre o erro e uma possível sugestão de
+        \item Se for possível identificar a natureza do erro, deve ser produzida uma mensagem compreensível sobre o erro e uma possível sugestão de
             correção
     \end{itemize}
 
@@ -189,7 +191,7 @@
         \item Outra estratégia consiste nas produções de erro, as quais geram construções ilegais associadas a erros frequentes
         \pause
 
-        \item Ao inserir tais produções na gramática linguagem, o analisador seria capaz de identificar tais erros com precisão e produzir diagnósticos precisos
+        \item Ao inserir tais produções na gramática da linguagem, o analisador seria capaz de identificar tais erros com precisão e produzir diagnósticos precisos
             sobre o erro e sua eventual correção
         \pause
 
@@ -206,7 +208,7 @@
         \item Tem grande custo de tempo e de memória
         \pause
 
-        \item Além disso, o programa modificado pode não ser o que o programado desejava escrever
+        \item Além disso, o programa modificado pode não ser o que o programador desejava escrever
     \end{itemize}
 
 \end{frame}

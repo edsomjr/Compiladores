@@ -88,7 +88,7 @@
         \item Esta gramática gera todas as cadeias de parêntesis balanceadas
         \pause
 
-        \item Para provar esta afirmação, primeiro é preciso provar que qualquer cada sentença derivável de $S$ é balanceada
+        \item Para provar esta afirmação, primeiro é preciso provar que qualquer cada sentença derivável de $S$ é uma cadeia de parêntesis balanceada
         \pause
 
         \item Esta prova é feita por indução no número de passos da derivação
@@ -109,10 +109,10 @@
         \[
             S\Rightarrow (S)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)y
         \]
-        onde $x$ e $y$ são derivações com que $n$ passos
+        onde $x$ e $y$ são cadeias obtidas por meios de derivações que totalizam exatamente $n - 1$ passos
         \pause
 
-        \item Pela hipótese de indução, $x$ e $y$ são balanceadas e, portanto, a derivação $S$ com exatamente $n$ passos também é balanceada
+        \item Pela hipótese de indução, $x$ e $y$ são cadeias de parêntesis balanceadas e, portanto, a derivação $S$ com exatamente $n$ passos também é balanceada
     \end{itemize}
 
 \end{frame}
@@ -142,7 +142,7 @@
         \item Pela hipótese de indução, $x$ e $y$ são deriváveis a partir de $S$
         \pause
 
-        \item Assim, $w$ é derivável a partir de $S$, por meio da derivação
+        \item Assim, $w$ é derivável a partir de $S$ por meio da derivação
         \[
             S\Rightarrow (S)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)y
         \]
@@ -306,7 +306,7 @@
         \item Uma recursão simples à esquerda acontece se existe um produção $A\to A\alpha$
         \pause
 
-        \item A recursão simples à esquerda de uma produção da forma $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
+        \item A recursão simples à esquerda de uma produção $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
         \[
             \begin{array}{l}
                 A \to \beta A' \\
@@ -388,7 +388,7 @@
         \[
             \begin{array}{l}
                 S \to Aa\ |\ b \\
-                A \to Ac\ |\ Sc\ |\ \code{apl}{∊}
+                A \to Ac\ |\ Sd\ |\ \code{apl}{∊}
             \end{array}
         \]
         \pause
@@ -432,10 +432,10 @@
 \begin{frame}[fragile]{Fatoração à esquerda}
 
     \begin{itemize}
-        \item A fatoração à esquerda é uma técnica útil para a criação de gramáticas que beneficia a análise preditiva
+        \item A fatoração à esquerda é uma técnica útil para a criação de gramáticas que beneficiam a análise preditiva
         \pause
 
-        \item A ideia central da fatoração à esquerda e evitar ambiguidades, quando duas ou mais produções tenham prefixos comuns
+        \item A ideia central da fatoração à esquerda é evitar ambiguidades, quando duas ou mais produções tenham prefixos comuns
         \pause
 
         \item Por exemplo, considere as produções $A \to \alpha \beta_1\ |\ \alpha \beta_2$
@@ -595,7 +595,7 @@
         \item Ela pode ser gerada pela gramática
         \[
             \begin{array}{l}
-                S \to A\ |\ B \\
+                S \to AB \\
                 A \to aAb\ |\ ab \\
                 B \to cBd\ |\ cd
             \end{array}
