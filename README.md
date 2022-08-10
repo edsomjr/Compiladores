@@ -14,4 +14,4 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
     1. [Análise sintática _top-down_](top_down/top_down.pdf)
 1. Tradução dirigida pela sintaxe
     1. [Definições dirigidas pela sintaxe](traducao/traducao.pdf)
-    1. [Definicoes L-atribuídas](definicoes/definicoes.pdf)
+    1. [Definicoes L-atribuídas](definicao/definicao.pdf)
