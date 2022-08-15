@@ -160,7 +160,7 @@
         \[
             \begin{array}{rcl}
                 cmd & \to & \textbf{if}\ expr\ \textbf{then}\ cmd \\
-                & | & \textbf{if}\ expr\ \textbf{then}\ \textbf{else}\ cmd \\
+                & | & \textbf{if}\ expr\ \textbf{then}\ cmd \textbf{else}\ cmd \\
                 & | & \textbf{outro}
             \end{array}
         \]
@@ -408,7 +408,7 @@
 \begin{frame}[fragile]{Exemplo de eliminação de recursão à esquerda}
 
     \begin{itemize}
-        \item Usando a ordenação $S, A$, o primeiro iteração do algoritmo não altera a gramática, uma vez que $S$ não tem recursão simples à esquerda
+        \item Usando a ordenação $S, A$, a primeiro iteração do algoritmo não altera a gramática, uma vez que $S$ não tem recursão simples à esquerda
         \pause
 
         \item Na segunda iteração, as produções-$A$ que envolvem $S$ devem ser substituídas, obtendo
