@@ -115,7 +115,7 @@
         \item Gramáticas recursivas à esquerda podem levar a laços infinitos, mesmo com o retrocesso
         \pause
 
-        \item Isto pode acontecer com múltiplas expansões de um não-terminal que não consomem a entrada
+        \item Isto pode acontecer com múltiplas expansões de um não-terminal que não consome a entrada
     \end{itemize}
 \end{frame}
 
@@ -165,7 +165,7 @@
 
 \end{frame}
 
-\begin{frame}[fragile]{Geração de diagrams de transição para analisadores sintáticos preditivos}
+\begin{frame}[fragile]{Geração de diagramas de transição para analisadores sintáticos preditivos}
 
     \begin{algorithmic}[1]
         \Require{uma gramática $G$} 
@@ -199,7 +199,7 @@
         \item Se a aresta é rotulada pelo não-terminal $A$, o analisador segue para o estado inicial de $A$, sem reconhecer o próximo token da entrada
         \pause
 
-        \item Se, em algum momento, o analisador atinge o estado final de $A$, ele deve seguir para $t$, tendo ``lido $A$`` (isto é, reconhecendo quaisquer
+        \item Se, em algum momento, o analisador atinge o estado final de $A$, ele deve seguir para $t$, tendo ``lido $A$'' (isto é, reconhecendo quaisquer
             tokens que surgiram no caminho do estado inicial ao final de $A$)
         \pause
 
@@ -295,7 +295,7 @@
 
     \begin{itemize}
         \item A análise gramatical preditiva só pode ser realizada se os diagramas dos não-terminais forem determinísticos, isto é, caso não exista mais de uma
-            transição de um mesmo estado para outros para a mesma entrada
+            transição de um mesmo estado para outros para um mesmo rótulo
         \pause
 
         \item Caso exista ambiguidades, estas devem ser resolvidas de forma \textit{ad hoc}

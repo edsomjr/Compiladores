@@ -63,7 +63,7 @@
             caractere \texttt{\$})
         \pause
 
-        \item A pilha contém símbolos gramaticais, um o sentinela indicando o fundo da pilha
+        \item A pilha contém símbolos gramaticais, onde o sentinela indica o fundo da pilha
         \pause
 
         \item Inicialmente a pilha deve contém o símbolo de partida da gramática logo acima do sentinela
@@ -131,7 +131,7 @@
         $E'$ & & $E'\to \code{apl}{+}TE'$ & & & $E'\to \code{apl}{∊}$ & $E'\to \code{apl}{∊}$ \\
         $T$ & $T\to FT'$ & & & $T\to FT'$ & \\
         \rowcolor[gray]{0.9}
-        $T'$ & & $T'\to \code{apl}{∊}$ & $T'\to FT'$ & & $T'\to \code{apl}{∊}$ & $T'\to \code{apl}{∊}$ \\
+        $T'$ & & $T'\to \code{apl}{∊}$ & $T'\to \code{apl}{×}FT'$ & & $T'\to \code{apl}{∊}$ & $T'\to \code{apl}{∊}$ \\
         $F$ & $F\to \textbf{id}$ & & & $F\to (E)$ & & \\
         \bottomrule
         \end{tabular}
@@ -242,7 +242,7 @@
     \begin{figure}
         \centering 
         \begin{tikzpicture}
-            \node[anchor=west] at (0, 6) { $E\to TE $ };
+            \node[anchor=west] at (0, 6) { $E\to TE' $ };
             \node[anchor=west] at (0, 5.5) { $E'\to \code{apl}{+}TE'\ |\ \code{apl}{∊}$ };
             \node[anchor=west] at (0, 5.0) { $T\to FT'$ };
             \node[anchor=west] at (0, 4.5) { $E'\to \code{apl}{×}FT'\ |\ \code{apl}{∊}$ };
