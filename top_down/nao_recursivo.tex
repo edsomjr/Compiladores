@@ -103,7 +103,7 @@
     \begin{algorithmic}[10]
         \algrestore{bkbreak}
             \ElsIf{$X$ é um não-terminal}
-                \If{$M[A, a] = X \to Y_1Y_2\ldots Y_k$}
+                \If{$M[X, a] = X \to Y_1Y_2\ldots Y_k$}
                     \State{remova $X$ da pilha}
                     \State{empilhe $Y_k, Y_{k - 1}, \ldots, Y_1$, com $Y_1$ no topo da pilha}
                     \State{escreva a produção $X \to Y_1Y_2\ldots Y_k$ na saída}
