@@ -48,7 +48,7 @@
         \item Regras semânticas podem ter efeitos colaterais associados
         \pause
 
-        \item Na prática, a árvore semãntica ou o grafo de dependências não precisam ser construídos explicitamente
+        \item Na prática, a árvore semântica ou o grafo de dependências não precisam ser construídos explicitamente
         \pause
 
         \item Uma árvore gramatical que exibe os valores dos atributos de cada nó é denominada árvore gramatical anotada
@@ -275,7 +275,7 @@
 
     \begin{algorithmic}[1]
         \Require{Uma árvore gramatical de uma definição dirigida pela sintaxe}
-        \Ensure{O grafo de dependência}
+        \Ensure{O grafo de dependências}
 
         \vspace{0.2in}
 
@@ -355,7 +355,7 @@
             \draw[-latex,thick] (X2) to (X8);
             \draw[-latex,thick] (X3) to (X6);
             \draw[-latex,thick] (X5) to (X7);
-            \draw[-latex,thick] (X9) to (X7);
+            \draw[latex-,thick] (X9) to (X7);
             \draw[-latex,thick] (X1) to (X10);
         \end{tikzpicture} 
     \end{figure}
@@ -384,7 +384,7 @@
     \vspace{0.2in}
 
     \begin{enumerate}
-        \item Construa a árvore gramatical da entrada e acordo com a gramática subjacente
+        \item Construa a árvore gramatical da entrada de acordo com a gramática subjacente
         \pause
 
         \item Construa o grafo de dependências
