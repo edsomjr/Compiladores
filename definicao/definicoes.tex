@@ -28,11 +28,11 @@
         \vspace{0.2in}
 
         \Procedure{visit}{$node$}
-            \For{cada filho $m$ de $n$, da esquerda para a direita}
+            \For{cada filho $m$ de $node$, da esquerda para a direita}
                 \State{avalie os atributos herdados de $m$}
                 \State{\Call{visit}{$m$}}
             \EndFor
-            \State{avalie os atributos sintetizados de $n$}
+            \State{avalie os atributos sintetizados de $node$}
         \EndProcedure
     \end{algorithmic}
 
@@ -119,24 +119,24 @@
             \node (A) at (2, 6) { $E$ };
 
             \node (B) at (1, 5) { $T$ };
-            \node (B1) at (0, 4) { \code{apl}{9} };
-            \node (B2) at (3, 4) { \footnotesize \{ \Call{imprimir}{\code{apl}{'9'}} \} };
+            \node (B1) at (0, 4) { \code{apl}{1} };
+            \node (B2) at (3, 4) { \footnotesize \{ \Call{imprimir}{\code{apl}{'1'}} \} };
 
             \node (C) at (6, 5) { $R$ };
             \node (C1) at (5, 4) { \code{apl}{-} };
             \node (C2) at (7.5, 4) { \footnotesize \{ \Call{imprimir}{\code{apl}{'-'}} \} };
 
             \node (D) at (6, 4) { $T$ };
-            \node (D1) at (5, 3) { \code{apl}{5} };
-            \node (D2) at (7, 3) { \footnotesize \{ \Call{imprimir}{\code{apl}{'5'}} \} };
+            \node (D1) at (5, 3) { \code{apl}{2} };
+            \node (D2) at (7, 3) { \footnotesize \{ \Call{imprimir}{\code{apl}{'2'}} \} };
 
             \node (E) at (11, 4) { $R$ };
             \node (E1) at (9, 3) { \code{apl}{+} };
             \node (E2) at (12, 3) { \footnotesize \{ \Call{imprimir}{\code{apl}{'+'}} \} };
 
             \node (F) at (10, 3) { $T$ };
-            \node (F1) at (9, 2) { \code{apl}{2} };
-            \node (F2) at (11, 2) { \footnotesize \{ \Call{imprimir}{\code{apl}{'2'}} \} };
+            \node (F1) at (9, 2) { \code{apl}{3} };
+            \node (F2) at (11, 2) { \footnotesize \{ \Call{imprimir}{\code{apl}{'3'}} \} };
 
             \node (G) at (14, 3) { $R$ };
             \node (G1) at (14, 2) { \code{apl}{∊} };
