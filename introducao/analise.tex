@@ -4,14 +4,14 @@
 
     \begin{itemize}
         \item A compilação é composta por duas partes: análise e síntese
-        \pause
+       %\pause
 
         \item A análise divide o programa fonte em partes constituintes e as organiza em uma representação intermediária
-        \pause
+       %\pause
 
         \item Em geral, a representação intermediária consiste em uma árvore sintática, onde cada nó representa uma operação e cada filho representa um
             operando
-        \pause
+       %\pause
 
         \item A síntese constrói o programa alvo a partir desta representação intermediária
     \end{itemize}
@@ -48,15 +48,15 @@
 \begin{frame}[fragile]{Análise do programa fonte}
 
     A análise é composta por três fases:
-    \pause
+   %\pause
 
     \begin{enumerate}
         \item \textit{análise linear}: o fluxo de caracteres que compõem o programa alvo é lido, da esquerda para direita, e agrupado em \textit{tokens} (sequência
             de caracteres com significado coletivo)
-        \pause
+       %\pause
 
         \item \textit{análise hierárquica}: os \textit{tokens} são ordenados hierarquicamente em coleções aninhadas com significado coletivo
-        \pause
+       %\pause
 
         \item \textit{análise semântica}: verificação que garante que os componentes do programa se combinam de forma significativa
     \end{enumerate}
@@ -66,28 +66,28 @@
 \begin{frame}[fragile]{Análise léxica}
 
     Em um compilador, a análise linear também é denominada análise léxica ou esquadrinhamento.
-    \pause
+   %\pause
     Por exemplo, no enunciado
         \begin{center}
         \code{cpp}{F = 1.8 * C + 32}
         \end{center}
     a análise léxica identificaria os seguintes \textit{tokens}:
-    \pause
+   %\pause
     \vspace{0.1in}
 
     \begin{enumerate}
         \item o identificador \code{cpp}{F}
-        \pause
+       %\pause
         \item o símbolo de atribuição \code{cpp}{=}
-        \pause
+       %\pause
         \item a constante em ponto flutuante \code{cpp}{1.8}
-        \pause
+       %\pause
         \item o símbolo de multiplicação \code{cpp}{*}
-        \pause
+       %\pause
         \item o identificador \code{cpp}{C}
-        \pause
+       %\pause
         \item o símbolo de adição \code{cpp}{+}
-        \pause
+       %\pause
         \item a constante inteira \code{cpp}{32}
     \end{enumerate}
 \end{frame}
@@ -95,22 +95,22 @@
 \begin{frame}[fragile]{Análise sintática}
 
     A análise hierárquica também é denominada análise sintática ou gramatical. Ela agrupa os \textit{tokens} hierarquicamente, em geral em uma
-    árvore gramatical.\pause
+    árvore gramatical%\pause
 
     \vspace{0.1in}
-    A estrutura hierárquica pode ser definida por meio de regras recursivas. \pause Por exemplo, considere as seguintes regras:
-    \pause
+    A estrutura hierárquica pode ser definida por meio de regras recursivas.%\pause Por exemplo, considere as seguintes regras:
+   %\pause
     \vspace{0.1in}
 
     \begin{enumerate}
         \item qualquer identificador é uma expressão
-        \pause
+       %\pause
 
         \item qualquer número é uma expressão
-        \pause
+       %\pause
 
         \item se $E_1$ e $E_2$ são expressões, também são expressões $E_1 + E_2$ e $E_1 * E_2$
-        \pause
+       %\pause
     
         \item se $I$ é um identificador e $E$ uma expressão, então $I = E$ é um enunciado
     \end{enumerate}
@@ -168,17 +168,17 @@
 
     \begin{itemize}
         \item A análise semântica verifica potenciais erros semânticos no programa alvo
-        \pause
+       %\pause
 
         \item Ela usa a árvore da análise sintática para identificar operadores e operandos das expressões e enunicados
-        \pause
+       %\pause
 
         \item Ela também faz a verificação de tipos
-        \pause
+       %\pause
 
         \item Caso os tipos dos operandos não sejam compatíveis com os tipos esperados pelos operadores, esta análise ou retorna um erro ou adicionar uma
         promoção (ou conversão) de tipo, a depender da linguagem alvo
-        \pause
+       %\pause
 
         \item Por exemplo, na expressão à direita do enunciado \code{cpp}{F = 1.8 * C + 32}, o operando à esquerda da soma tem tipo ponto flutuante e o da direita
             tipo inteiro: o valor \code{cpp}{32} deve ser promovido para ponto flutuante ou deve ser sinalizado um erro de tipo

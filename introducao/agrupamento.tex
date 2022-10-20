@@ -4,16 +4,16 @@
 
     \begin{itemize}
         \item Na práticas, as fases de um compilador são agrupadas em duas interfaces: vanguarda e retaguarda
-        \pause
+       %\pause
 
         \item A interface de vanguarda contém as fases que dependem primariamente do programa fonte e que independem da máquina alvo
-        \pause
+       %\pause
 
         \item Em geral, ela inclui as fases de análise, a criação da tabela de símbolos e a geração de código intermediário
-        \pause
+       %\pause
 
         \item Ela também inclui o tratamento de erros associados a estas fases
-        \pause
+       %\pause
 
         \item Embora a otimização faça parte primariamente da interface de retaguarda, é possível aplicar algum nível de otimização na interface de
         vanguarda
@@ -25,16 +25,16 @@
 
     \begin{itemize}
         \item A interface de retaguarda contém as fases que dependem primariamente da máquina alvo, e independem do programa alvo
-        \pause
+       %\pause
 
         \item O ponto de partida é o código intermediário
-        \pause
+       %\pause
 
         \item Assim, esta interface contém, em geral, as fases de otimização e geração de código
-        \pause
+       %\pause
 
         \item Ela também manipula a tabela de símbolos e trata dos erros associados à estas últimas duas fases
-        \pause
+       %\pause
 
         \item No cenário ideal, ambas interfaces são independentes, o que permite fixar uma delas e alterar a outra para obter diferentes compiladores com
         diferentes objetivos

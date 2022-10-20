@@ -1,6 +1,6 @@
 \ProvidesClass{slides}
 
-\LoadClass[11pt,xcolor=svgnames,aspectratio=169]{beamer}
+\LoadClass[11pt,aspectratio=169]{beamer}
 
 % packages
 \usepackage{lean_progress}
@@ -12,9 +12,8 @@
 \usepackage{genealogytree}
 
 \usepackage{tikz}
-\usepackage{xcolor}
-\usepackage{colortbl}
 \usepackage{inconsolata}
+%\usepackage[svgnames,dvipsnames,table]{xcolor}
 
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -47,6 +46,7 @@
     filecolor=black,      
     urlcolor=blue,
 }
+\definecolor{DarkGreen}{RGB}{70,130,180}
 
 % New commands
 \newcommand{\generatetoc}{

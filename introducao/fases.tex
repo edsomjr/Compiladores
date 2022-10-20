@@ -4,16 +4,16 @@
 
     \begin{itemize}
         \item Conceitualmente, o compilador opera em fases
-        \pause
+       %\pause
 
         \item Cada fase manipula o programa fonte e entrega o resultado para a próxima fase
-        \pause
+       %\pause
 
         \item Na prática, algumas fases podem ser agrupadas, e a representação intermediária entre elas pode ser não se construída explicitamente
-        \pause
+       %\pause
 
         \item As primeiras fases estão relacionadas à análise do programa fonte, as últimas estão relacionadas à síntese (construção do programa alvo)
-        \pause
+       %\pause
 
         \item Duas atividades interagem com todas as fases: a gerência da tabela de símbolos e o tratamento de erros
     \end{itemize}
@@ -55,14 +55,14 @@
 
     \begin{itemize}
         \item Esta atividade registra os identificadores do programa alvo e identifica seus diversos atributos
-        \pause
+       %\pause
 
         \item Exemplos de possíveis atributos de um identificador: nome, tipo, memória e escopo
-        \pause
+       %\pause
 
         \item Caso o identificador se refira a um procedimento, dentre seus atributos devem constar a quantidade de seus parâmetros e respectivos tipos, modo 
             de passagem (cópia ou referência) e o tipo do retorno, se houver
-        \pause
+       %\pause
 
         \item Os identificadores e seus respectivos atributos são armazenados em uma estrutura denominada tabela de símbolos
     \end{itemize}
@@ -73,14 +73,14 @@
 
     \begin{itemize}
         \item A cada fase da compilação podem acontecer um ou mais erros
-        \pause
+       %\pause
 
         \item Após a identificação do erro, o compilador deve tratá-lo de alguma maneira e, se possível, continuar o processo em busca de outros erros
-        \pause
+       %\pause
 
         \item Abortar a compilação logo no primeiro erro pode diminuir a utilidade do compilador (por exemplo, o prosseguimento da compilação após um erro
             léxico pode ajudar na geração de uma sugestão de correção para o erro)
-        \pause
+       %\pause
 
         \item As análises sintática e semântica podem identificar uma parcela considerável dos erros no programa fonte
     \end{itemize}
@@ -194,23 +194,23 @@
 
     \begin{itemize}
         \item A árvore resultante da análise semântica é transformada pelo compilador em um código intermediário
-        \pause
+       %\pause
 
         \item Esta representação pode ser entendida como um código para uma máquina abstrata
-        \pause
+       %\pause
 
         \item O código intermediário deve ter duas qualidades fundamentais:
-        \pause
+       %\pause
         \begin{enumerate}
             \item deve ser fácil de gerar
-            \pause
+           %\pause
 
             \item deve ser fácil de traduzir para o programa alvo
         \end{enumerate}
-        \pause
+       %\pause
 
         \item Uma representação possível é o código de três endereços
-        \pause
+       %\pause
 
         \item Além de computar expressões, esta representação também precisa tratar dos fluxos de controle e das chamadas de procedimentos
     \end{itemize}
@@ -261,13 +261,13 @@
 
     \begin{itemize}
         \item Esta fase procura formas de melhorar o código intermediário, com o intuito de melhorar a performance do código de máquina do programa alvo
-        \pause
+       %\pause
 
         \item Algumas otimizações são triviais, outras demandam algoritmos sofisticados, impactando no tempo de compilação
-        \pause
+       %\pause
 
         \item As otimizações não devem alterar a semântica do código intermediário
-        \pause
+       %\pause
 
         \item As otimizações podem melhorar, além do tempo de execução, o uso de memória do programa alvo
     \end{itemize}
@@ -304,13 +304,13 @@
 
     \begin{itemize}
         \item A geração de código é a última etapa da compilação
-        \pause
+       %\pause
 
         \item Ela produz o programa alvo, em geral em linguagem de máquina relocável ou código de montagem
-        \pause
+       %\pause
 
         \item Nesta etapa devem ser atribuídas localizações de memória para as variáveis e também feita a atribuição das variáveis aos registradores
-        \pause
+       %\pause
     \end{itemize}
 
     \begin{figure}
