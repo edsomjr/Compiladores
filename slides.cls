@@ -46,7 +46,6 @@
     filecolor=black,      
     urlcolor=blue,
 }
-\definecolor{DarkGreen}{RGB}{70,130,180}
 
 % New commands
 \newcommand{\generatetoc}{
