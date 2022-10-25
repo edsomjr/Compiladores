@@ -21,7 +21,7 @@ Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Facul
     1. [Uma linguagem para especificação de analisadores léxicos](3_5_uma_linguagem_para_especificacao_de_analisadores_lexicos/3_5_uma_linguagem_para_especificacao_de_analisadores_lexicos.pdf)
     1. [Autômatos finitos](3_6_automatos_finitos/3_6_automatos_finitos.pdf)
 1. Análise sintática
-    1. [O papel do analisador sintático](analise_sintatica/analise_sintatica.pdf)
+    1. [O papel do analisador sintático](4_1_o_papel_do_analisador_sintatico/4_1_o_papel_do_analisador_sintatico.pdf)
     1. [Análise sintática _top-down_](top_down/top_down.pdf)
 1. Tradução dirigida pela sintaxe
     1. [Definições dirigidas pela sintaxe](traducao/traducao.pdf)
