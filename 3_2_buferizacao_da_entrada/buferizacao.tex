@@ -1,0 +1,189 @@
+\section{Buferização da entrada}
+
+\begin{frame}[fragile]{Buferização}
+
+    \begin{itemize}
+        \item Como a análise léxica é a única fase do compilador que lê os caracteres do programa fonte, um a um, ela pode concentrar uma parte significativa
+            do tempo de execução do compilador
+       %\pause
+
+        \item Isto porque o acesso à entrada (em geral, um arquivo em disco) pode ser o gargalo, em termos de performance, do compilador
+       %\pause
+
+        \item A buferização consiste no uso de um ou mais vetores auxiliares (\textit{buffers}), que permitem a leitura da entrada em blocos, de modo que o analisador léxico
+            leia os caracteres a partir destes \textit{buffers}, os quais são atualizados e preenchidos à medida do necessário
+       %\pause
+
+        \item Com a buferização os acesso aos disco são reduzidos e a leitura dos caracteres passa a ser feita em memória, com acessos consideravelmente mais
+            rápidos
+    \end{itemize}
+
+\end{frame}
+\begin{frame}[fragile]{Estratégias para implementação de analisadores léxicos}
+
+    Há três estratégias gerais para se implementar um analisador léxico, cada uma delas tratando a buferização de modo diferente. São elas, da mais
+    simples para a mais complexa:
+   %\pause
+    \begin{itemize}
+        \item Usar um gerador de analisador léxico, a partir de uma entrada especificada a partir de expressões regulares. A buferização é tratada pelo próprio
+            gerador
+       %\pause
+
+        \item Escrever o analisador léxico em alguma linguagem de programação convencional (C, C++, etc). A buferização fica atrelada aos mecanismos de I/O da linguagem
+       %\pause
+
+        \item Escrever o analisador em linguagem de montagem e tratar explicitamente a leitura da entrada e a buferização
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Pares de {\it buffers}}
+
+    \begin{itemize}
+        \item Na técnica de pares de \textit{buffers}, um \textit{buffer} (região contígua da memória) é dividido em duas metades, com $N$ caracteres cada
+       %\pause
+
+        \item Em geral, $N$ corresponde ao tamanho de um bloco do disco (por exemplo, 1024 ou 4096 caracteres)
+       %\pause
+
+        \item Cada metade do \textit{buffer} é preenchida de uma única vez, por meio da chamada de uma função de leitura do sistema
+       %\pause
+
+        \item Caso restem na entrada menos do que $N$ caracteres, é inserido um caractere especial no \textit{buffer} para indicar o fim da entrada
+            (em geral, o caractere \code{c}{EOF} - \textit{end of file})
+       %\pause
+
+        \item Usando esta técnica, os tokens devem ser extraídos do \textit{buffer}, sem o uso de chamadas individuais da rotina que lê um caractere da entrada
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Dois ponteiros}
+
+    \begin{itemize}
+        \item Os tokens podem ser extraídos do par de \textit{buffers} por meio do uso de dois ponteiros $L$ e $R$
+       %\pause
+
+        \item Uma cadeia de caracteres delimitada por este dois ponteiros é o lexema atual
+       %\pause
+
+        \item Inicialmente, $L$ e $R$ apontam para o primeiro caractere do próximo lexema a ser identificado
+       %\pause
+
+        \item O ponteiro $R$ então avança até que o padrão de um token seja reconhecido
+       %\pause
+
+        \item Daí o lexema é processado e ambos ponteiros se movem para o primeiro caractere após o lexema
+       %\pause
+
+        \item Neste cenário, espaços em branco e comentários são padrões que não produzem tokens
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Atualização dos {\it buffers} e o ponteiro $R$}
+
+    \begin{itemize}
+        \item Se o ponteiro $R$ tentar se deslocar para além do meio do \textit{buffer}, será preciso preencher a metade direita com $N$ novos caracteres antes
+            deste avanço
+       %\pause
+
+        \item De forma semelhante, se $R$ atingir a extremidade direita do \textit{buffer}, a metade à esquerda deve ser devidamente atualizada
+       %\pause
+
+        \item Após esta atualização, $R$ deve retornar para a primeira posição do \textit{buffer}
+       %\pause
+
+        \item O uso de um par de \textit{buffers} e dois ponteiros tem uma limitação clara: o lexema pode ter, no máxixmo, $2N$ caracteres
+       %\pause
+
+        \item O recuo de $R$, se necessário, também é limitado pela posição que $L$ ocupa
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Avanço de $R$ em um par de {\it buffers}}
+
+    \begin{algorithmic}[1]
+        \If{$R$ está no fim da primeira metade}
+            \State{Atualize a segunda metade com a leitura de $N$ novos caracteres}
+            \State{$R\gets R + 1$}
+        \ElsIf{$R$ está no fim da segunda metade}
+            \State{Atualize a primeira metade com a leitura de $N$ novos caracteres}
+            \State{$R\gets 0$}
+            \Comment{\textit{Assuma que os índices de {\it buffer} começem em zero}}
+        \ElsIf{}
+            \State{$R\gets R + 1$}
+        \EndIf
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Sentinelas}
+
+    \begin{itemize}
+        \item O uso de um valor sentinela no fim de cada metade do \textit{buffer} permite a redução dos testes para o avanço de $R$
+       %\pause
+
+        \item Além disso, o valor sentinela em outra posição do \textit{buffer} indica o fim da entrada
+       %\pause
+
+        \item A redução do número de testes (de dois para um, na maioria dos casos) decorrente do uso de sentinelas leva a um ganho de performance do analisador
+            léxico e, consequentemente, do compilador
+       %\pause
+
+        \item O valor sentinela (em geral, \code{c}{EOF}) deve ser diferente de qualquer caractere válido da entrada, para evitar um encerramento prematuro da
+            entrada, caso tal caractere faça parte da entrada
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Atualização de $R$ com o uso de sentinelas}
+
+    \begin{algorithmic}[1]
+        \State{$R\gets R + 1$}
+        \Statex{}
+        \If{$R = $ \code{cpp}{EOF}}
+            \If{$R$ está no fim da primeira metade}
+                \State{Atualize a segunda metade com a leitura de $N$ novos caracteres}
+                \State{$R\gets R + 1$}
+            \ElsIf{$R$ está no fim da segunda metade}
+                \State{Atualize a primeira metade com a leitura de $N$ novos caracteres}
+                \State{$R\gets 0$}
+                \Comment{\textit{Assuma que os índices de {\it buffer} começem em zero}}
+            \Else{}
+                \Comment{\textit{\code{cpp}{EOF} está no buffer, indicando o fim da entrada}}
+                \State{Finalize a análise léxica}
+            \EndIf
+        \EndIf
+    \end{algorithmic}
+
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.h}}
+    \inputsnippet{cpp}{1}{15}{codes/buffer.h}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.h}}
+    \inputsnippet{cpp}{17}{26}{codes/buffer.h}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.cpp}}
+    \inputsnippet{cpp}{1}{17}{codes/buffer.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.cpp}}
+    \inputsnippet{cpp}{19}{39}{codes/buffer.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.cpp}}
+    \inputsnippet{cpp}{40}{60}{codes/buffer.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.cpp}}
+    \inputsnippet{cpp}{62}{81}{codes/buffer.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Módulo \texttt{buffer.cpp}}
+    \inputsnippet{cpp}{83}{92}{codes/buffer.cpp}
+\end{frame}

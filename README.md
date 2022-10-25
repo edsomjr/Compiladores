@@ -15,6 +15,7 @@ Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Facul
     1. [Juntando as técnicas](2_9_juntando_as_tecnicas/2_9_juntando_as_tecnicas.pdf)
 1. Análise léxica
     1. [O papel do analisador léxico](3_1_o_papel_do_analisador_lexico/3_1_o_papel_do_analisador_lexico.pdf)
+    1. [Buferização da entrada](3_2_buferizacao_da_entrada/3_2_buferizacao_da_entrada.pdf)
     1. [Autômatos finitos](automatos/automatos.pdf)
 1. Análise sintática
     1. [O papel do analisador sintático](analise_sintatica/analise_sintatica.pdf)
