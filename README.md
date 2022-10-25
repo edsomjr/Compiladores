@@ -14,7 +14,7 @@ Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Facul
     1. [Máquinas de pilha abstratas](2_8_maquinas_de_pilha_abstratas/2_8_maquinas_de_pilha_abstratas.pdf)
     1. [Juntando as técnicas](2_9_juntando_as_tecnicas/2_9_juntando_as_tecnicas.pdf)
 1. Análise léxica
-    1. [O papel do analisador léxico](analise_lexica/analise_lexica.pdf)
+    1. [O papel do analisador léxico](3_1_o_papel_do_analisador_lexico/3_1_o_papel_do_analisador_lexico.pdf)
     1. [Autômatos finitos](automatos/automatos.pdf)
 1. Análise sintática
     1. [O papel do analisador sintático](analise_sintatica/analise_sintatica.pdf)
