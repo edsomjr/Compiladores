@@ -5,19 +5,19 @@
     \begin{itemize}
         \item Um reconhecedor é um programa que identifica, respondendo \code{cpp}{"Sim"} ou \code{cpp}{"Nao"}, se uma cadeia é ou não uma sentença válida de uma
             determinada linguagem
-        \pause
+       %\pause
 
         \item Uma estratégia para a compilação de expressões regulares em reconhecedores é o uso de diagramas de transição generalizados, denominados autômatos
             finitos
-        \pause
+       %\pause
 
         \item Um autômato finito pode ser determinístico ou não-determinístico: no segundo caso, podem exister duas ou mais transições com o mesmo rótulo partindo
             de um mesmo estado
-        \pause
+       %\pause
 
         \item Autômatos determinísticos podem resultar em reconhecimentos mais rápidos do que os não-determinísticos, porém em geral são muito maiores, no
             que diz respeito ao número de estados e transições
-        \pause
+       %\pause
 
         \item É possível representar expressões regulares em ambos tipos de autômatos finitos
     \end{itemize}
@@ -47,19 +47,19 @@
 
     \begin{itemize}
         \item Um AFN pode ser representado por meio de um grafo direcionado e rotulado, denominado grafo de transição
-        \pause
+       %\pause
 
         \item Em um grafo de transição, os nós representam os estados e as arestas definem a função de transição
-        \pause
+       %\pause
 
         \item Os rótulos das arestas são os símbolos associados à transição, e a direção da aresta parte do estado atual para o próximo estado
-        \pause
+       %\pause
 
         \item Grafos de transição se assemelham aos diagramas de transição, com duas diferenças fundamentais
-        \pause
+       %\pause
 
         \item A primeira diferença é que um mesmo rótulo pode estar associado a duas ou mais arestas partindo de um mesmo estado
-        \pause
+       %\pause
 
         \item A segunda é que o símbolo \code{apl}{∊} pode rotular uma aresta
     \end{itemize}
@@ -94,20 +94,20 @@
 
     \begin{itemize}
         \item Uma alternativa para a implementação da função de transição é a tabela de transições
-        \pause
+       %\pause
 
         \item Em uma tabela de transições cada linha representa um estado e cada coluna representa um rótulo
-        \pause
+       %\pause
 
         \item Se necessário, é necessário adicionar uma coluna para o rótulo \code{apl}{∊}
-        \pause
+       %\pause
 
         \item A entrada da tabela posicionada na línha $i$, coluna $c$, contém o conjunto de estados que podem suceder o estado $i$ quando o caractere $c$
             for lido na entrada
-        \pause
+       %\pause
 
         \item De fato, a tabela de transições corresponde à representação do grafo de transições como uma matriz de adjacências
-        \pause
+       %\pause
 
         \item Outra alternativa é representar o grafo por meio de uma lista de adjacências
     \end{itemize}
@@ -137,20 +137,20 @@
 
     \begin{itemize}
         \item Um caminho em um grafo de transições é uma sequência de arestas de transição
-        \pause
+       %\pause
 
         \item Os rótulos das arestas, quando concatenados, formam uma cadeia $s$
-        \pause
+       %\pause
 
         \item Caso o símbolo \code{apl}{∊} seja o rótulo de uma ou mais arestas de um caminho, na concatenação dos rótulos este símbolo é descartado
-        \pause
+       %\pause
 
         \item Um AFN aceita uma cadeia de entrada $s$ se, e somente se, existe um caminho no grafo de transições que parte do estado inicial e que termina em 
             algum estado de aceitação
-        \pause
+       %\pause
 
         \item Pode existir mais de um caminho que leva a um estado de aceitação
-        \pause
+       %\pause
 
         \item A linguagem definida por um AFN é o conjunto de cadeias que são aceitas
     \end{itemize}
@@ -264,20 +264,20 @@
 
     \begin{itemize}
         \item Dado um AFN, é possivel determinar um AFD que reconheça a mesma linguagem
-        \pause
+       %\pause
 
         \item A ideia central da conversão de um AFN para um AFD é fazer com que cada estado do AFD corresponda a um conjunto de estados do AFN
-        \pause
+       %\pause
 
         \item Seja $N$ um AFN e $D$ um AFD
-        \pause
+       %\pause
 
         \item O primeiro passo para a conversão é construir uma tabela de transições $Dtrans$ para $D$
-        \pause
+       %\pause
 
         \item Cada estado do AFD corresponderá a um conjunto de estados do AFN e $Dtrans$ será construída de forma a simular, ``em paralelo'', todas as
             possíveis transições de $N$ para uma dada entrada
-        \pause
+       %\pause
 
         \item Para esta tarefa, são necessárias algumas operações que envolvem um estado $s$ de $N$ e um conjunto $T$ de estados de $N$
     \end{itemize}
@@ -308,13 +308,13 @@
     \begin{itemize}
         \item Antes mesmo de ver o primeiro símbolo da entrada, $N$ pode estar em qualquer estado pertencente a \Call{fechamento-\code{apl}{∊}}{$s_0$}, onde $s_0$
             é o estado inicial
-        \pause
+       %\pause
 
         \item Seja $T$ o conjunto de todos os estados atingíveis a partir de $s_0$ e que $a$ seja o próximo símbolo da entrada
-        \pause
+       %\pause
 
         \item Ao ver $a$, $N$ pode seguir para qualquer estado em \Call{movimento}{$T, a$}
-        \pause
+       %\pause
 
         \item Se existem transições-\code{apl}{∊}, $N$ pode estar em qualquer estado em \Call{fechamento-\code{apl}{∊}}{$M$}, onde $M$ = \Call{movimento}{$T, a$}, após ver $a$
 
@@ -326,17 +326,17 @@
 
     \begin{itemize}
         \item O conjunto de todos os estados de $D$ é denominado $Estados$-$D$
-        \pause
+       %\pause
 
         \item Cada estado de $D$ corresponde a um conjunto de estados de AFN que poderiam ser atingidos em $N$ após uma sequência de símbolos da entrada, incluindo
             as possíveis transições-\code{apl}{∊} antes ou depois dos símbolos serem vistos
-        \pause
+       %\pause
 
         \item O estado de partida de $D$ é \Call{fechamento-\code{apl}{∊}}{$s_0$}
-        \pause
+       %\pause
 
         \item Os demais estados são adicionados segundo o algoritmo descrito a seguir
-        \pause
+       %\pause
 
         \item Os estados de aceitação de $D$ são aqueles cujo conjunto de estados de AFN que ele representa contém ao menos um estado de aceitação de $N$
     \end{itemize}
@@ -432,16 +432,16 @@
         \item O estado inicial do AFD será o estado
         \[
             \texttt{A} = \Call{fechamento-\code{apl}{∊}}{\texttt{0}} = \{ \texttt{0, 1, 2, 4, 7} \}
-        \] \pause
+        \]%\pause
 
         \item Veja que no cálculo de \Call{fechamento-\code{apl}{∊}}{\texttt{0}}, o estado \texttt{0} é atingível por meio de um caminho vazio
-        \pause
+       %\pause
 
         \item O alfabeto da linguagem é $\Sigma = \{\ a, b\ \}$
-        \pause
+       %\pause
 
         \item Seguindo o algoritmo, o próximo estado será \texttt{B} = \Call{fechamento-\code{apl}{∊}}{$M$}, onde $M$ = \Call{movimento}{$A, a$}
-        \pause
+       %\pause
 
         \item Segue que
         \[
@@ -459,13 +459,13 @@
             \texttt{B} = 
                 \Call{fechamento-\code{apl}{∊}}{\{\texttt{3, 8}\}} =  \{\texttt{1, 2, 3, 4, 6, 7, 8}\}
         \]
-        \pause
+       %\pause
 
         \item A transição entre estes dois estados deve ser registrada na tabela $Dtrans$:
         \[
             Dtrans[\texttt{A}, a] = \texttt{B}
         \]
-        \pause
+       %\pause
 
         \item O próximo estado \texttt{C} é computado a partir de \Call{movimento}{\texttt{A}, $b$} $= \{\texttt{5}\}$:
         \[
@@ -479,7 +479,7 @@
 
     \begin{itemize}
         \item Assim, $Dtrans[\texttt{A}, b] = \texttt{C}$
-        \pause
+       %\pause
 
         \item Seguindo o algoritmo, apenas mais dois estados distintos serão encontrado:
         \[
@@ -488,10 +488,10 @@
                 \texttt{E} = \{\texttt{1, 2, 4, 5, 6, 7, 10}\} \\
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Dentre os estados identificados, apenas \texttt{E} é estado de aceitação, pois contém o estado \texttt{10} de $N$
-        \pause
+       %\pause
 
         \item No pior caso, seriam identificados $2^n$ novos estados, onde $n$ é o número de estados do AFN
     \end{itemize}
