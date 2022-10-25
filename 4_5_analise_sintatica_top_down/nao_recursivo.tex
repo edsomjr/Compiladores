@@ -5,14 +5,14 @@
     \begin{itemize}
         \item É possível construir um analisador sintático preditivo não-recursivo, no qual as chamadas recursivas são eliminadas por meio do uso de uma
             pilha explícita
-        \pause
+       %\pause
 
         \item Seja recursivo ou não, o principal problema a ser resolvido por um analisador sintático é o de identificar a produção que deve ser aplicada a
             um não-terminal
-        \pause
+       %\pause
 
         \item Um analisador sintático não-recursivo busca em uma tabela sintática pela produção a ser aplicada
-        \pause
+       %\pause
 
         \item Tal tabela pode ser construída diretamente a partir de certas gramáticas
     \end{itemize}
@@ -57,17 +57,17 @@
 
     \begin{itemize}
         \item Um analisador sintático preditivo não-recursivo é composto por um \textit{buffer} de entrada, uma pilha, uma tabela sintática e um fluxo de saída
-        \pause
+       %\pause
 
         \item O \textit{buffer} de entrada contém a cadeia a ser analisada, seguida de um sentinela que indique o fim da cadeia (assuma que o sentinela é o
             caractere \texttt{\$})
-        \pause
+       %\pause
 
         \item A pilha contém símbolos gramaticais, onde o sentinela indica o fundo da pilha
-        \pause
+       %\pause
 
         \item Inicialmente a pilha deve contém o símbolo de partida da gramática logo acima do sentinela
-        \pause
+       %\pause
     
         \item A tabela sintática é uma matriz $M[A, a]$ cuja primeira dimensão contém não-terminais $A$ e a segunda contém terminais $a$ ou o sentinela
             \texttt{\$}
@@ -145,14 +145,14 @@
 
     \begin{itemize}
         \item Duas funções associadas à gramática $G$ auxiliam a construção de uma analisador sintático preditivo não-recursivo
-        \pause
+       %\pause
 
         \item Estas funções, \Call{primeiro}{\ } e \Call{seguinte}{\ }, apoiam o preenchimento da tabela sintática preditiva para $G$
-        \pause
+       %\pause
 
         \item Os tokens produzidos pela função \Call{seguinte}{\ } também podem ser usados como tokens de sincronização na recuperação de erros na modalidade de
             desespero
-        \pause
+       %\pause
     \end{itemize}
 
     \begin{block}{Definição}
@@ -289,7 +289,7 @@
     \begin{itemize}
         \item Embora o algoritmo de produção de tabelas sintáticas preditivas possa ser aplicado em qualquer gramática $G$, algumas gramáticas produzirão
             múltiplas entradas para determinados pares $(A, a)$
-        \pause
+       %\pause
 
         \item Considere a gramática que abstrai o comando \textbf{if-then-else}:
         \[
@@ -299,10 +299,10 @@
             E \to b
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Esta gramática possui duas entradas para $M[S', e]$: a saber $S'\to eS$ e $S'\to \code{apl}{∊}$, uma vez que $\Call{primeiro}{S'} = \{e, \texttt{\$}\}$
-        \pause
+       %\pause
     
         \item Neste caso, a ambiguidade pode ser resolvida optando pela primeira produção e descartando a segunda ($S'\to \code{apl}{∊}$)
     \end{itemize}
@@ -343,24 +343,24 @@
 
     \begin{itemize}
         \item Nenhuma gramática recursiva à esquerda ou ambígua pode ser $LL(1)$
-        \pause
+       %\pause
 
         \item Uma gramática $G$ é $LL(1)$ se, e somente se, sempre que $A\to \alpha\ |\ \beta$ forem duas produções distintas de $G$, valem as seguintes condições:
-        \pause
+       %\pause
         \begin{enumerate} 
             \item $\alpha$ e $\beta$ não derivam, ao mesmo tempo, cadeias começando pelo mesmo terminal $a$, qualquer que seja $a$
-            \pause
+           %\pause
 
             \item no máximo um dos dois ($\alpha$ ou $\beta$) deriva a cadeia vazia
-            \pause
+           %\pause
 
             \item se $\beta \overset{\scalebox{0.5}{*}}{\Rightarrow} \code{apl}{∊}$, então $\alpha$ não deriva qualquer cadeia começando por um terminal em
                 \Call{seguinte}{$A$}
-            \pause
+           %\pause
         \end{enumerate} 
 
         \item A gramática para expressões aritméticas é $LL(1)$
-        \pause
+       %\pause
 
         \item A gramática que generaliza o comando \textbf{if-then-else} não é $LL(1)$
     \end{itemize}

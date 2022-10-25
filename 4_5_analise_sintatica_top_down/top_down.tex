@@ -5,14 +5,14 @@
     \begin{itemize}
         \item A análise sintática \textit{top-down} pode ser interpretada como uma tentativa de se encontrar uma derivação mais à esquerda para uma cadeia da
             entrada
-        \pause
+       %\pause
 
         \item Outra forma de interpretar esta análise é como uma tentativa de construção de uma árvore gramatical a partir da raiz, criando os nós da árvore
             em pré-ordem
-        \pause
+       %\pause
 
         \item No caso geral, a análise sintática recursiva-descendente pode envolver algum nível de retrocesso
-        \pause
+       %\pause
 
         \item Um caso especial da análise sintática recursiva-descente é o dos analisadores preditivos, que não demandam retrocesso
     \end{itemize}
@@ -23,7 +23,7 @@
 
     \begin{itemize}
         \item Certas gramaticas impõem ao analisador recursivo-descendente a necessidade de um retrocesso na análise
-        \pause
+       %\pause
 
         \item Por exemplo, considere a entrada $w = cad$ e a gramática
         \[
@@ -32,10 +32,10 @@
                 A \to ab\ |\ a
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item A análise inicia construindo a raiz da árvore sintática, rotulada como $S$
-        \pause
+       %\pause
 
         \item Ao ler o primeiro símbolo da entrada, o caractere $c$, o analisador expande a produção de $S$ para gerar os filhos e obter
         \begin{center}
@@ -59,7 +59,7 @@
 
     \begin{itemize}
         \item O filho mais à esquerda reconhece o caractere $c$, de modo que o apontado avança para o segundo símbolo da entrada, o caractere $a$
-        \pause
+       %\pause
 
         \item A análise usa a primeira alternativa das produções-$A$ para obter
         \begin{center}
@@ -78,10 +78,10 @@
                 \draw[thick] (B2) to (C2);
             \end{tikzpicture}
         \end{center}
-        \pause
+       %\pause
 
         \item A folha à esquerda reconhece o caractere $a$, mas a folha à direita, rotulada $b$, não reconhece o caractere $d$
-        \pause
+       %\pause
 
         \item Aqui acontece o retrocesso: os filhos são descartados e, ao retornar ao nó $A$, é usada a segunda alternativa das produções-$A$ 
     \end{itemize}
@@ -106,14 +106,14 @@
                 \draw[thick] (B2) to (C1);
             \end{tikzpicture}
         \end{center}
-        \pause
+       %\pause
 
         \item Nesta nova árvore o caractere $a$ é recohecido, e a folha mais à esquerda reconhece o caractere $d$, de modo que esta árvore produz a cadeia $w$,
             finalizando a análise sintática
-        \pause
+       %\pause
 
         \item Gramáticas recursivas à esquerda podem levar a laços infinitos, mesmo com o retrocesso
-        \pause
+       %\pause
 
         \item Isto pode acontecer com múltiplas expansões de um não-terminal que não consome a entrada
     \end{itemize}
@@ -124,14 +124,14 @@
     \begin{itemize}
         \item Uma escrita cuidadosa da gramática, por meio de eliminação de recursão à esquerda e do uso de fatorações à esquerda, pode dispensar complementamente
             o retrocesso
-        \pause
+       %\pause
 
         \item Neste caso, a análise sintática recursiva-descendente se torna uma análise gramatical preditiva
-        \pause
+       %\pause
 
         \item Na análise gramatical preditiva a alternativa a se escolhida deve ser detectável examinando-se apenas o primeiro símbolo da cadeia que a mesma
             deriva
-        \pause
+       %\pause
 
         \item Por exemplo, as produções abaixo permitem uma análise preditiva:
         \[
@@ -149,16 +149,16 @@
 
     \begin{itemize}
         \item Assim como foi feito na análise léxica, é possível criar diagramas de transição para analisadores sintáticos
-        \pause
+       %\pause
 
         \item Cada não-terminal da gramática deve ter um diagrama próprio
-        \pause
+       %\pause
 
         \item Os rótulos das arestas são tokens e não-terminais
-        \pause
+       %\pause
 
         \item Uma transição rotulada por um token deve ser seguida se o token do rótulo for o próximo token da entrada
-        \pause
+       %\pause
 
         \item Uma transição rotulada por um não-terminal $A$ implica em uma passagem pelo diagrama de $A$
     \end{itemize}
@@ -190,18 +190,18 @@
 
     \begin{itemize}
         \item O analisador parte do estado inicial do símbolo de partida
-        \pause
+       %\pause
 
         \item Estando o analisador no estado $s$, e se este possui uma aresta rotulada com o token $a$ apontando para o estado $t$, e o próximo token da entrada
             é $a$, o analisador reconhece $a$ e se move para o estado $t$
-        \pause
+       %\pause
 
         \item Se a aresta é rotulada pelo não-terminal $A$, o analisador segue para o estado inicial de $A$, sem reconhecer o próximo token da entrada
-        \pause
+       %\pause
 
         \item Se, em algum momento, o analisador atinge o estado final de $A$, ele deve seguir para $t$, tendo ``lido $A$'' (isto é, reconhecendo quaisquer
             tokens que surgiram no caminho do estado inicial ao final de $A$)
-        \pause
+       %\pause
 
         \item Se a aresta é rotulada por \code{apl}{∊}, o analisador segue para $t$ sem reconhecer a entrada
     \end{itemize}
@@ -296,13 +296,13 @@
     \begin{itemize}
         \item A análise gramatical preditiva só pode ser realizada se os diagramas dos não-terminais forem determinísticos, isto é, caso não exista mais de uma
             transição de um mesmo estado para outros com o mesmo rótulo
-        \pause
+       %\pause
 
         \item Caso exista ambiguidades, estas devem ser resolvidas de forma \textit{ad hoc}
-        \pause
+       %\pause
 
         \item Se não for possível eliminar as ambuiguidades, não será possível realizar uma análise sintática preditiva
-        \pause
+       %\pause
 
         \item Neste caso, será preciso conduzir uma análise sintática recursiva-descendente com retrocesso, avaliando cada um dos caminhos possíveis
     \end{itemize}
@@ -313,7 +313,7 @@
 
     \begin{itemize}
         \item Os diagramas de transição podem ser simplificados por meio da aplicação da substituição de uns nos outros e da observação das produções
-        \pause
+       %\pause
 
         \item Por exemplo, o diagrama de $E'$ pode ser modificado por meio de uma aresta retornando diretamente para $E'$, sem recursão:
         \begin{center}
@@ -351,7 +351,7 @@
             \draw[thick,-latex] (A3) to [bend right] node[above] { \code{apl}{∊} } (A6);  
         \end{tikzpicture} 
         \end{center}
-    \pause
+   %\pause
 
         \item Estas modificações podem ser inseridas no diagrama de $E$, resultando em
         \begin{center}
@@ -389,11 +389,11 @@
             \draw[thick,-latex] (A3) to node[above] { \code{apl}{∊} } (A6);  
         \end{tikzpicture} 
         \end{center}
-        \pause
+       %\pause
 
         \item Aplicando técnicas semelhantes os diagramas apresentados anteriormente podem ser simplificados, reduzindo substancialmente o número de estados e
             consequentemente a memória usada pelo analisador sintático
-        \pause
+       %\pause
 
         \item A simplificação também pode eliminar recursões, reduzindo o tempo de execução do analisador sintático 
     \end{itemize}
