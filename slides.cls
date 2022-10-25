@@ -13,7 +13,7 @@
 
 \usepackage{tikz}
 \usepackage{inconsolata}
-%\usepackage[svgnames,dvipsnames,table]{xcolor}
+\usepackage{colortbl}
 
 \usepackage{booktabs}
 \usepackage{tabularx}
