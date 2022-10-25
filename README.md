@@ -23,6 +23,7 @@ Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Facul
 1. Análise sintática
     1. [O papel do analisador sintático](4_1_o_papel_do_analisador_sintatico/4_1_o_papel_do_analisador_sintatico.pdf)
     1. [Gramáticas livres de contexto](4_2_gramaticas_livres_de_contexto/4_2_gramaticas_livres_de_contexto.pdf)
+    1. [Escrevendo uma gramática](4_3_escrevendo_uma_gramatica/4_3_escrevendo_uma_gramatica.pdf)
     1. [Análise sintática _top-down_](top_down/top_down.pdf)
 1. Tradução dirigida pela sintaxe
     1. [Definições dirigidas pela sintaxe](traducao/traducao.pdf)

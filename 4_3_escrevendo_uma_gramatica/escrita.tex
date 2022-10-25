@@ -4,10 +4,10 @@
 
     \begin{itemize}
         \item Qualquer construção que pode ser descrita por uma expressão regular pode ser descrita por uma gramática
-        \pause
+       %\pause
 
         \item A recíproca nem sempre é verdadeira
-        \pause
+       %\pause
 
         \item Por exemplo, a expressão regular $(a\ |\ b)^*abb$ e a gramática
         \[
@@ -19,7 +19,7 @@
             \end{array}
         \]
         descrevem a mesma linguagem
-        \pause
+       %\pause
 
         \item É possível converter automaticamente um autômatico finito não-determinístico em uma gramática que gere a mesma linguagem do AFN
     \end{itemize}
@@ -53,13 +53,13 @@
 
     \begin{enumerate}
         \item As regras léxicas de uma linguagem geralmente são simples, sendo as expressões regulares suficientes para descrevê-las
-        \pause
+       %\pause
 
         \item As expressões regulares, em geral, descrevem os tokens da linguagem de forma mais concisa e clara do que as gramáticas livres de contexto
-        \pause
+       %\pause
 
         \item É possível gerar analisadores léxicos mais eficientes a partir de expressões regulares do que a partir de gramáticas arbitrárias
-        \pause
+       %\pause
 
         \item A separação da estrutura léxica da estrutura sintática permite a modularização da interface de vanguarda
     \end{enumerate}
@@ -70,26 +70,26 @@
 
     \begin{itemize}
         \item A prova que uma gramática $G$ gera uma linguagem $L(G)$ é feita em duas etapas:
-        \pause
+       %\pause
         \begin{enumerate}
             \item mostrar que cada cadeia gerada por $G$ está em $L(G)$
-            \pause
+           %\pause
 
             \item mostrar que cada cadeia em $L(G)$ pode ser gerada por $G$
         \end{enumerate}
-        \pause
+       %\pause
 
         \item Por exemplo, considere a gramática
         \[
             S\to (S)S\ |\ \code{apl}{∊}
         \]
-        \pause
+       %\pause
 
         \item Esta gramática gera todas as cadeias de parêntesis balanceadas
-        \pause
+       %\pause
 
         \item Para provar esta afirmação, primeiro é preciso provar que qualquer cada sentença derivável de $S$ é uma cadeia de parêntesis balanceada
-        \pause
+       %\pause
 
         \item Esta prova é feita por indução no número de passos da derivação
     \end{itemize}
@@ -100,17 +100,17 @@
 
     \begin{itemize}
         \item Em apenas um passo de derivação, a única cadeia gerada é a cadeia vazia \code{apl}{∊}, a qual é trivialmente balanceada
-        \pause
+       %\pause
 
         \item Suponha que qualquer derivação com menos do que $n$ passos gere uma cadeia balanceada
-        \pause
+       %\pause
 
         \item Uma derivação com exatamente $n$ passos tem a forma
         \[
             S\Rightarrow (S)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)S \overset{\scalebox{0.5}*}{\Rightarrow} (x)y
         \]
         onde $x$ e $y$ são cadeias obtidas por meios de derivações que totalizam exatamente $n - 1$ passos
-        \pause
+       %\pause
 
         \item Pela hipótese de indução, $x$ e $y$ são cadeias de parêntesis balanceadas e, portanto, a derivação $S$ com exatamente $n$ passos também é balanceada
     \end{itemize}
@@ -121,26 +121,26 @@
 
     \begin{itemize}
         \item A prova que qualquer cadeia balanceada é derivável a partir de $S$ é feita por meio de indução no comprimento da cadeia
-        \pause
+       %\pause
 
         \item A menor cadeia balanceada é a cadeia vazia, que é derivável a partir de $S$ por meio da produção $S\to \code{apl}{∊}$
-        \pause
+       %\pause
 
         \item Suponha que todas as cadeias balanceadas com comprimento menor do que $2n$ sejam deriváveis a partir de $S$ e que $w$ seja uma cadeia balanceada de tamanho
             $2n$
-        \pause
+       %\pause
 
         \item Certamente $w$ inicia com um parêntesis à esquerda
-        \pause
+       %\pause
 
         \item Seja $(x)$ o menor prefixo de $w$ com o mesmo número de parêntesis à esquerda e à direita
-        \pause
+       %\pause
 
         \item Assim, $w = (x)y$, onde $x$ e $y$ são cadeias balanceadas com comprimento menor do que $2n$
-        \pause
+       %\pause
 
         \item Pela hipótese de indução, $x$ e $y$ são deriváveis a partir de $S$
-        \pause
+       %\pause
 
         \item Assim, $w$ é derivável a partir de $S$ por meio da derivação
         \[
@@ -154,7 +154,7 @@
 
     \begin{itemize}
         \item Uma gramática pode ser reescrita para eliminar possíveis ambiguidades
-        \pause
+       %\pause
 
         \item Por exemplo, considere a gramática abaixo, que torna o \code{apl}{else} opcional:
         \[
@@ -164,10 +164,10 @@
                 & | & \textbf{outro}
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Na gramática, \textbf{outro} significa qualquer outro enunciado
-        \pause
+       %\pause
 
         \item Esta gramática é ambígua: a cadeia
         \[
@@ -270,14 +270,14 @@
 
     \begin{itemize}
         \item Na maioria das linguagens, a primeira das duas árvores seria a esperada
-        \pause
+       %\pause
 
         \item A regra geral é associar cada \textbf{else} ao \textbf{then} anterior mais próximo ainda não associado
-        \pause
+       %\pause
 
         \item Para reescrita, a ideia é que um enunciado entre um \textbf{then} e um \textbf{else} precisa estar associado, isto é, não pode terminar em um
             \textbf{then} não associado a um \textbf{else}
-        \pause
+       %\pause
     \end{itemize}
 
     \[
@@ -297,14 +297,14 @@
     \begin{itemize}
         \item Uma gramática é recursiva à esquerda se possui um não-terminal $A$ tal que existe um derivação $A\overset{\scalebox{0.5}{+}}{\Rightarrow} A\alpha$
             para alguma cadeia $\alpha$
-        \pause
+       %\pause
 
         \item Métodos \textit{top-down} não podem processar gramáticas recursivas à esquerda, demandando uma reescrita da gramática que elimine a recursão à
         esquerda
-        \pause
+       %\pause
 
         \item Uma recursão simples à esquerda acontece se existe um produção $A\to A\alpha$
-        \pause
+       %\pause
 
         \item A recursão simples à esquerda de uma produção $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
         \[
@@ -335,14 +335,14 @@
 
     \begin{itemize}
         \item No caso geral, é possível eliminar todas as recursões simples à esquerda nas produções-$A$ de uma só vez
-        \pause
+       %\pause
 
         \item Primeiramente, organize todas as produções-$A$ na forma
         \[
             A\to A\alpha_1\ |\ A\alpha_2\ |\ \ldots\ |\ A\alpha_m\ |\ \beta_1\ |\ \beta_2\ |\ \ldots\ |\ \beta_n
         \]
         onde nenhum $\beta_j$ começa com um $A$
-        \pause
+       %\pause
 
         \item Em seguida, substitua estas produções-$A$ pelas produções
         \[
@@ -351,10 +351,10 @@
                 A'\to \alpha_1  A'\ |\ \alpha_2 A'\ |\ \ldots\ |\ \alpha_m A'\ |\ \code{apl}{∊}
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Esta substituição elimina todas as recursões simples à esquerda de uma só vez, desde que $\alpha_i \neq \code{apl}{∊}$ para todo $i = 1, 2, \ldots, m$
-        \pause
+       %\pause
 
         \item Esta técnica, porém, não elimina recursões à esquerda envolvendo derivações com dois ou mais passos
     \end{itemize}
@@ -391,13 +391,13 @@
                 A \to Ac\ |\ Sd\ |\ \code{apl}{∊}
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Observe que o não-terminal $S$ é recursivo à esquerda, pois
         \[
             S \Rightarrow Aa \Rightarrow Sda
         \]
-        \pause
+       %\pause
 
         \item A aplicação do algoritmo de eliminação de recursão poderia não funcionar, por conta da produção-\code{apl}{∊} do não-terminal $A$, mas neste
             caso em particular o algoritmo de fato elimina a recursão
@@ -409,13 +409,13 @@
 
     \begin{itemize}
         \item Usando a ordenação $S, A$, a primeiro iteração do algoritmo não altera a gramática, uma vez que $S$ não tem recursão simples à esquerda
-        \pause
+       %\pause
 
         \item Na segunda iteração, as produções-$A$ que envolvem $S$ devem ser substituídas, obtendo
         \[
             A\to Ac\ |\ Aad\ |\ bd\ |\ \code{apl}{∊}
         \]
-        \pause
+       %\pause
 
         \item A eliminação da recursão simples à esquerda nas produções-$A$ resulta na gramática livre de recursão à esquerda
         \[
@@ -433,16 +433,16 @@
 
     \begin{itemize}
         \item A fatoração à esquerda é uma técnica útil para a criação de gramáticas que beneficiam a análise preditiva
-        \pause
+       %\pause
 
         \item A ideia central da fatoração à esquerda é evitar ambiguidades, quando duas ou mais produções tenham prefixos comuns
-        \pause
+       %\pause
 
         \item Por exemplo, considere as produções $A \to \alpha \beta_1\ |\ \alpha \beta_2$
-        \pause
+       %\pause
 
         \item Se a entrada contém uma cadeia não-vazia derivada a partir de $\alpha$, não é possível decidir, de antemão, qual das duas produções usar
-        \pause
+       %\pause
 
         \item A fatoração à esquerda propõe a reescrita das produções da seguinte forma, que elimina a ambiguidade
         \[
@@ -465,7 +465,7 @@
                 & | & \textbf{if}\ expr\ \textbf{then}\ cmd
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Esta gramática pode ser abstraída da seguinte forma
         \[
@@ -474,7 +474,7 @@
                 E \to b
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item A fatoração à esquerda esta gramática resulta em
         \[
@@ -495,17 +495,17 @@
         \[
             L_1 = \{ wcw\ |\ w\in (a\ |\ b)^*\}
         \]
-        \pause
+       %\pause
 
         \item As sentenças de $L_1$ são formada por uma cadeia $w$ de $a$'s e $b$'s, seguida de um $c$ e repetida em seguida (por exemplo, $abaabcabaab$)
-        \pause
+       %\pause
 
         \item É possível demostrar que a linguagem $L_1$ não é livre de contexto
-        \pause
+       %\pause
 
         \item Tal linguagem abstrai o problema de se verificar se um identificador ($w$) foi declarado antes de seu uso ($c$ é o que separa a declaração do
             primeiro uso)
-        \pause
+       %\pause
 
         \item Não sendo possível definir tal regra sintaticamente, esta verificação fica postergada para a análise semântica
     \end{itemize}
@@ -519,14 +519,14 @@
         \[
             L_2 = \{ a^nb^mc^nd^m\ |\ n \geq 1\ \mbox{e}\ m\geq 1\}
         \]
-        \pause
+       %\pause
 
         \item As senteças de $L_2$ são cadeias onde o número de $a$'s coincide com o número de $c$'s, e o número de $b$'s coincide com o número de $d$'s, em ordem
             lexicográfica
-        \pause
+       %\pause
 
         \item $L_2$ também não é livre de contexto
-        \pause
+       %\pause
 
         \item Ela abstrai o problema de ser verificar se o número de parâmetros na declaração de uma função é igual ao número de parâmetros na chamada ($a^n$ e
             $b^m$ seriam as listas de parâmetros de dois procedimentos e $c^n$ e $d^n$ o número de parâmetros na chamada destes procedimentos)
@@ -542,17 +542,17 @@
             L_3 = \{ a^nb^nc^n\ |\ n\geq 1\}
         \]
         também não é livre de contexto
-        \pause
+       %\pause
 
         \item A diferença entre uma linguagem livre de uma não-livre pode ser sutil
-        \pause
+       %\pause
 
         \item Por exemplo, a linguagem
         \[
             L'_1 = \{ wcw^R\ |\ w\in (a\ |\ b)^*\},
         \]
         onde $w^R$ é o reverso de $w$, é livre de contexto
-        \pause
+       %\pause
 
         \item Ela pode ser gerada pela gramática $S\to aSa\ |\ bSb\ |\ \code{apl}{∊}$
     \end{itemize}
@@ -567,7 +567,7 @@
             L'_2 = \{ a^nb^mc^md^n\ |\ n\geq 1\ \mbox{e}\ m\geq 1\}
         \]
         também é livre de contexto
-        \pause
+       %\pause
 
         \item A gramática abaixo gerada $L'_2$:
         \[
@@ -576,14 +576,14 @@
                 A \to bAc\ |\ bc
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item A linguagem
         \[
             L''_2 = \{ a^nb^nc^md^m\ |\ n\geq 1\ \mbox{e}\ m\geq 1\}
         \]
         também é livre de contexto
-        \pause
+       %\pause
 
         \end{itemize}
 
@@ -600,14 +600,14 @@
                 B \to cBd\ |\ cd
             \end{array}
         \]
-        \pause
+       %\pause
 
         \item Por fim, a linguagem
         \[
             L'_3 = \{ a^nb^n\ |\ n\geq 1\}
         \]
         é livre de contexto, gerada pela gramática $S\to aSb\ |\ ab$
-        \pause
+       %\pause
 
         \item Informalmente, pode-se afirmar que um autômato finito não pode realizar contagens e que uma gramática pode manter uma contagem de dois itens, mas
             não de três
