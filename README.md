@@ -7,6 +7,7 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
     1. [Visão geral](2_1_visao_geral/2_1_visao_geral.pdf)
     1. [Definição da sintaxe](2_2_definicao_da_sintaxe/2_2_definicao_da_sintaxe.pdf)
     1. [Tradução dirigida pela sintaxe](2_3_traducao_dirigida_pela_sintaxe/2_3_traducao_dirigida_pela_sintaxe.pdf)
+    1. [A análise gramatical](2_4_a_analise_gramatical/2_4_a_analise_gramatical.pdf)
     1. [Um tradutor para expressões simples](tradutor_simples/tradutor_simples.pdf)
 1. Análise léxica
     1. [O papel do analisador léxico](analise_lexica/analise_lexica.pdf)
