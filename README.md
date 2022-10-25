@@ -1,6 +1,6 @@
 ## Compiladores
 
-Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Faculdade UnB Gama no período 2022/1.
+Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Faculdade UnB Gama.
 
 1. [Introdução](introducao/introducao.pdf)
 1. Um compilador simples de uma passagem
