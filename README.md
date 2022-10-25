@@ -27,4 +27,5 @@ Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Facul
     1. [Análise sintática _top-down_](4_5_analise_sintatica_top_down/4_5_analise_sintatica_top_down.pdf)
 1. Tradução dirigida pela sintaxe
     1. [Definições dirigidas pela sintaxe](5_1_definicoes_dirigidas_pela_sintaxe/5_1_definicoes_dirigidas_pela_sintaxe.pdf)
+    1. [Construção de árvores sintáticas](5_2_construcao_de_arvores_sintaticas/5_2_construcao_de_arvores_sintaticas.pdf)
     1. [Definicoes L-atribuídas](definicao/definicao.pdf)
