@@ -1,0 +1,312 @@
+\section{Especificação de tokens}
+
+\begin{frame}[fragile]{Alfabetos}
+
+    \begin{block}{Definição de alfabeto}
+        Um alfabeto, ou classe de caracteres, é um conjunto finito de símbolos.
+    \end{block}
+   %\pause
+
+    \vspace{0.2in}
+
+    Exemplos de alfabetos: ASCII, EBCDIC, a alfabeto binário $\{\ 0, 1\ \}$, os dígitos decimais, etc.
+
+\end{frame}
+
+\begin{frame}[fragile]{Cadeias}
+
+    \begin{block}{Definição de cadeia}
+        Uma cadeia sobre um alfabeto $\mathcal{A}$ é uma sequência finita de elementos de $\mathcal{A}$. Os termos sentença, palavra e string são geralmente
+        usados como sinônimos de cadeia.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Conceitos associados à cadeias}
+
+    \begin{itemize}
+        \item O comprimento (número de caracteres) de uma cadeia $s$ é denotado por $|s|$
+       %\pause
+
+        \item A cadeia vazia \mintinline{apl}{∊} tem comprimento igual a zero
+       %\pause
+
+        \item Um prefixo de $s$ é uma cadeia obtida pela remoção de zero ou mais caracteres do fim de $s$
+       %\pause
+
+        \item Um sufixo de $s$ é uma cadeia obtida pela remoção de zero ou mais caracteres do início de $s$
+       %\pause
+
+        \item Uma subcadeia de $s$ é uma cadeia obtida pela remoção de um prefixo e de um sufixo de $s$
+       %\pause
+
+        \item Um prefixo, sufixo ou subcadeia de $s$ são ditos próprios se diferem de \mintinline{apl}{∊} e de $s$
+       %\pause
+
+        \item Um subsequência de $s$ é uma cadeia obtida pela remoção de zero ou mais símbolos de $s$, não necessariamente contíguos
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Linguagens}
+
+    \begin{block}{Definição de linguagem}
+        Uma linguagem é um conjunto de cadeias sobre algum alfabeto $\mathcal{A}$ fixo.
+    \end{block}
+   %\pause
+
+    \vspace{0.2in}
+    Esta definição contempla também linguagens abstratas como $\emptyset$ (o conjunto vazio), ou $\{$ \code{apl}{∊} $\}$, o conjunto contendo apenas a cadeia vazia.
+\end{frame}
+
+\begin{frame}[fragile]{Operações em cadeias}
+
+    \begin{itemize}
+        \item Se $x$ e $y$ são duas cadeias, então a concatenação de $x$ e $y$, denotada $xy$, é a cadeia formada pelo acréscimo, ao final de $x$, de todos 
+            os caracteres de $y$, na mesma ordem
+       %\pause
+
+        \item Por exemplo, se $x = \code{cpp}{"rodo"}$ e $y = \code{cpp}{"via"}$, então $xy = \code{cpp}{"rodovia"}$
+       %\pause
+
+        \item A cadeia vazia \code{apl}{∊} é o elemento neutro da concatenação
+       %\pause
+
+        \item Se a concatenação for visualizada como um produto, é possível definir uma ``exponenciação'' de cadeias
+       %\pause
+
+        \item Seja $s$ uma cadeia e $n$ um natural. Então
+       %\pause
+        \begin{enumerate}
+            \item $s^0 = \code{apl}{∊}$
+           %\pause
+
+            \item $s^n = ss^{n - 1}$
+        \end{enumerate}
+    
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Operações em linguagens}
+
+    Sejam $L$ e $M$ duas linguagens. São definidas as seguintes operações sobre linguagens:
+   %\pause
+    \vspace{0.2in}
+
+    \begin{tabularx}{0.95\textwidth}{llX}
+        \toprule
+        \textbf{Operação} & \textbf{Notação} & \textbf{Definição} \\
+        \midrule
+        união & $L\cup M$ & $L\cup M = \{\ s\ |\ s\in L\ \vee\ s\in M\ \}$ \\
+        \rowcolor[gray]{0.9}
+        concatenação & $LM$ & $LM = \{\ st\ |\ s\in L\ \land\ t\in M\ \}$ \\
+        fechamento de Kleene & $\displaystyle L^*$ & $\displaystyle L^* = \bigcup_{i = 0}^\infty L^i$ \\
+        \rowcolor[gray]{0.9}
+        fechamento positivo & $L^+$ & $\displaystyle L^+ = \bigcup_{i = 1}^\infty L^i$ \\
+        \bottomrule
+    \end{tabularx}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de operações em linguagens}
+
+    Seja $L = \{$ \texttt{A, B, C,} $\ldots$ \texttt{Z, a, b, c,} $\ldots$ \texttt{z} $\}$ e $M = \{$ \texttt{0, 1, 2,} $\ldots$ \texttt{9} $\}$. Então:
+    \vspace{0.2in}
+   %\pause
+
+    \begin{enumerate}
+        \item $L\cup M$ é o conjunto de letras e dígitos
+       %\pause
+
+        \item $LM$ é o conjunto de cadeias formadas por uma letra, seguida de um dígito
+       %\pause
+
+        \item $L^4$ é o conjunto de todas as cadeias formadas por exatamente quatro letras
+       %\pause
+
+        \item $L^*$ é o conjunto de todas as cadeias formadas por letras, incluíndo a cadeia \code{apl}{∊}
+       %\pause
+
+        \item $L(L\cup D)^*$ é o conjunto de cadeias de letras e dígitos, que iniciam com uma letra
+       %\pause
+
+        \item $D^+$ é o conjunto de cadeias formadas por um ou mais dígitos
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Expressões regulares}
+
+    \begin{block}{Definição de expressão regular}
+        Sejam $\Sigma$ um alfabeto. As expressões regulares sobre $\Sigma$ são definidas pelas seguintes regras, onde cada expressão regular define uma linguagem:
+        \begin{enumerate}
+            \item \code{apl}{∊} é uma expressão regular que denota a linguagem $\{$ \code{apl}{∊} $\}$
+            \item Se $a\in\Sigma$, então $a$ é uma expressão regular que denota a linguagem $\{\ a\ \}$
+            \item Se $r$ e $s$ são duas expressões regulares que denotam as linguagens $L(r)$ e  $L(s)$, então
+            \begin{enumerate}[(a)]
+                \item $(r)$ é uma expressão regular que denota $L(r)$
+                \item $(r)|(s)$ é uma expressão regular que denota $L(r)\cup L(s)$
+                \item $(r)(s)$ é uma expressão regular que denota $L(r)L(s)$
+                \item $(r)^*$ é uma expressão regular que denota $(L(r))^*$
+            \end{enumerate}
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Expressões regulares e parêntesis}
+
+    O uso de parêntesis em expressões regulares pode ser reduzido se forem adotadas as seguintes convenções:
+   %\pause
+
+    \vspace{0.2in}
+
+    \begin{enumerate}
+        \item o operador unário $*$ possui a maior precedência e é associativo à esquerda
+       %\pause
+
+        \item a concatenação tem a segunda maior precedência e é associativa à esquerda
+       %\pause
+
+        \item o operador $|$ tem a menor precedência e é associativo à esquerda
+       %\pause
+    \end{enumerate}
+
+    \vspace{0.2in}
+
+    Neste cenário, a expressão regular $(a)\ |\ ((b)^*\ (c))$ equivale a $a\ |\ b^*\ c$.
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos de expressões regulares}
+
+    Seja $\Sigma = \{\ a, b\ \}$. Então
+   %\pause
+
+    \vspace{0.2in}
+    \begin{itemize}
+        \item $a\ |\ b$ denota a linguagem $\{\ a, b\ \}$
+       %\pause
+
+        \item $(a\ |\ b)(a\ |\ b)$ denota $\{\ aa, ab, ba, bb\ \}$
+       %\pause
+
+        \item $a^*$ denota $\{\ \code{apl}{∊}, a, aa, aaa, \ldots\ \}$
+       %\pause
+
+        \item $(a\ |\ b)^*$ denota todas as cadeias formas por zero ou mais instâncias de $a$ ou de $b$
+       %\pause
+
+        \item $a\ |\ a^*\ b$ denota a cadeia $a$ e todas as cadeias iniciadas por zero ou mais $a$'s, seguidos de um $b$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Propriedades das expressões regulares}
+
+    Sejam $r, s, t$ expressões regulares. Valem as seguintes propriedades:
+    \vspace{0.2in}
+
+    \begin{tabularx}{0.95\textwidth}{cX}
+        \toprule
+        \textbf{Axioma} & \textbf{Descrição}\\
+        \midrule
+        $r|s = s|r$ & $|$ é comutativo \\
+        \rowcolor[gray]{0.9}
+        $r|(s|t) = (r|s)|t$ & $|$ é associativo \\
+        $r(st) = (rs)t$ & a concatenação é associativa \\
+        \rowcolor[gray]{0.9}
+        $\begin{array}{l}r(s|t) = rs|rt\\ (r|s)t = rt|st\end{array}$ & {a concatenação é distributiva em relação a $|$} \\
+        $\begin{array}{l}\code{apl}{∊}r = r\\ r\code{apl}{∊} = r\end{array}$ & \code{apl}{∊} é o elemento neutro da concatenação \\
+        \rowcolor[gray]{0.9}
+        $r^* = (r|\code{apl}{∊})^*$ & relação entre \code{apl}{∊} e $*$ \\
+        $r^{**} = r^*$ & $*$ é idempotente \\
+        \bottomrule
+    \end{tabularx}
+
+\end{frame}
+
+\begin{frame}[fragile]{Definições regulares}
+
+    \begin{block}{Definição}
+        Seja $\Sigma$ um alfabeto. Uma definição regular sobre $\Sigma$ é uma sequência de definições da forma
+        \[
+            \begin{array}{l}
+                d_1 \to r_1 \\
+                d_2 \to r_2 \\
+                \ldots \\
+                d_n \to r_n
+            \end{array}
+        \]
+    onde cada $d_i$ é um nome distinto e $r_i$ uma expressão regular sobre o alfabeto
+    $\Sigma \cup \{\ d_1, d_2, \ldots, d_{i - 1}\ \}$.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de definição regular}
+
+    Os identificadores de Pascal, e em muitas outras linguagens, são formados por cadeias de caracteres e dígitos, começando com uma letra.
+   %\pause
+
+    \vspace{0.2in}
+    Abaixo segue a definição regular para o conjunto de todos os identificadores válidos em Pascal:
+   %\pause
+
+    \vspace{0.2in}
+    \[
+        \begin{array}{rl}
+            \mathbf{letra}\to & \texttt{A | B | ... | Z | a | b | ... | z} \\
+            \mathbf{digito}\to & \texttt{0 | 1 | 2 | ... | 9} \\
+            \mathbf{id}\to & \mathbf{letra}\ (\mathbf{letra}\ |\ \mathbf{digito})^* 
+        \end{array}
+    \]
+
+\end{frame}
+
+\begin{frame}[fragile]{Simplificações notacionais}
+
+    As seguintes notações podem simplificar as expressões regulares:
+   %\pause
+
+    \vspace{0.2in}
+
+    \begin{enumerate}
+        \item \textit{Uma ou mais ocorrências}. Se $r$ é uma expressão regular, então $(r)^+$ denota $(L(r))^+$. O operador $+$ tem a mesma associatividade e
+            precedência do operator $*$. Vale que $r^* = r^+|\code{apl}{∊}$ e que $r^+ = rr^*$.
+       %\pause
+
+        \item \textit{Zero ou uma}. Se $r$ é uma expressão regular, então $r?$ denota $L(r)\cup \code{apl}{∊}$. O operador $?$ é posfixo e unário, 
+        e $r? = r|\code{apl}{∊}$.
+       %\pause
+
+        \item \textit{Classes de caracteres}. A notação \texttt{[}$abc$\texttt{]}, onde $a, b, c$ são símbolos do alfabeto, denota a expressão regular 
+            $a\ |\ b\ |\ c$. A notação \texttt{[}$a$\texttt{-}$z$\texttt{]} abrevia a expressão regular $a\ |\ b\ |\ \ldots\ |\ z$.
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Limitações das expressões regulares}
+
+    \begin{itemize}
+        \item Existem linguagens que não podem ser descritas por meio de expressões regulares
+       %\pause
+
+        \item Por exemplo, não é possível descrever o conjunto $\mathcal{P}$ de todas as cadeias de parêntesis balanceados por meio de expressões regulares
+       %\pause
+
+        \item Contudo, o conjunto $\mathcal{P}$ pode ser descrito por meio de uma gramática livre de contexto
+       %\pause
+
+        \item Existem linguagens que não podem ser descritas nem mesmo por meio de uma gramática livre de contexto
+       %\pause
+
+        \item Por exemplo, o conjunto 
+        \[
+            \mathcal{C} = \{ wcw\ |\ w\ \mbox{é uma cadeia de $a$'s e $b$'s} \}
+        \]
+        não pode ser descrito nem por expressões regulares e nem por meio de uma gramática livre de contexto
+    \end{itemize}
+
+\end{frame}
