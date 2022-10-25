@@ -11,6 +11,7 @@ Materiais da disciplina Compiladores, lecionada pelo professor Edson Alves na Fa
     1. [Um tradutor para expressões simples](2_5_um_tradutor_para_expressoes_simples/2_5_um_tradutor_para_expressoes_simples.pdf)
     1. [Análise léxica](2_6_analise_lexica/2_6_analise_lexica.pdf)
     1. [Incorporando uma tabela de símbolos](2_7_incorporando_uma_tabela_de_simbolos/2_7_incorporando_uma_tabela_de_simbolos.pdf)
+    1. [Máquinas de pilha abstratas](2_8_maquinas_de_pilha_abstratas/2_8_maquinas_de_pilha_abstratas.pdf)
     1. [Um tradutor para expressões simples](tradutor_simples/tradutor_simples.pdf)
 1. Análise léxica
     1. [O papel do analisador léxico](analise_lexica/analise_lexica.pdf)
