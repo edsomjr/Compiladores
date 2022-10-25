@@ -2,7 +2,7 @@
 
 Slides da disciplina Compiladores, lecionada pelo professor Edson Alves na Faculdade UnB Gama.
 
-1. [Introdução](introducao/introducao.pdf)
+1. [Introdução](1_introducao/1_introducao.pdf)
 1. Um compilador simples de uma passagem
     1. [Visão geral](2_1_visao_geral/2_1_visao_geral.pdf)
     1. [Definição da sintaxe](2_2_definicao_da_sintaxe/2_2_definicao_da_sintaxe.pdf)
