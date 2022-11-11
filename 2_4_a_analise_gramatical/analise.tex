@@ -12,7 +12,7 @@
         \item Um analisador gramatical pode ser construído para qualquer gramática
        %\pause
 
-        \item Para qualquer gramáticas livres de contexto existe um analisador gramatical que analisa $N$ tokens com complexidade $O(N^3)$
+        \item Para qualquer gramática livre de contexto existe um analisador gramatical que analisa $N$ tokens com complexidade $O(N^3)$
        %\pause
 
         \item Contudo, existem analisadores lineares para quase todas as gramáticas livres de contexto que surgem na prática
@@ -367,7 +367,7 @@
     \begin{enumerate}
         \item Determinar a produção a ser usada a partir de $lookahead$. Para tanto, deve ser localizada, entre as produções $\alpha_1, \alpha_2, \ldots, \alpha_N$,
             a produção $\alpha_i$ tal que $lookahead \in \Call{primeiro}{\alpha_i}$ (deve valer a seguinte propriedade: \Call{primeiro}{$\alpha_i$} $\cap$
-            \Call{primeiro}{$\alpha_j$} = $\emptyset$ se $i\neq j$. Se $\alpha_k$ = \code{apl}{∊} para algum $k$, $\alpha_k$ deve ser usada se $lookahead$ não estiver
+            \Call{primeiro}{$\alpha_j$} = $\emptyset$ se $i\neq j$). Se $\alpha_k$ = \code{apl}{∊} para algum $k$, $\alpha_k$ deve ser usada se $lookahead$ não estiver
             presente em nenhuma outra produção
        %\pause
 
@@ -397,7 +397,7 @@
 
     \begin{block}{Definição de produção recursiva à direita}
         Uma produção é recursiva à direita se o não-terminal à esquerda da produção figura como último símbolo da produção. Por exemplo, se $\alpha$ e $\beta$
-        são sequências de terminais e não-terminais que não terminam em $R$, então a produção
+        são sequências de terminais e não-terminais que não terminam em $R$, então a segunda produção abaixo
         \[
             \begin{array}{l}
             A \to   \beta R\\
