@@ -277,9 +277,7 @@
 
     \begin{algorithmic}[1]
         \Procedure{tipo}{\,}
-        \If{$lookahead$ \code{apl}{∊} \{ \code{pascal}{integer, char, num} \} }
-            \State{\Call{primitivo}{\,}}
-        \ElsIf{$lookahead$ = $\uparrow$}
+        \If{$lookahead$ = $\uparrow$}
             \State{\Call{reconhecer}{$\uparrow$}}
             \State{\Call{reconhecer}{\code{pascal}{id}}}
         \ElsIf{$lookahead$ = \code{pascal}{array}}
@@ -288,7 +286,7 @@
             \State{\Call{reconhecer}{\code{pascal}{]}}}, \State{\Call{reconhecer}{\code{pascal}{of}}}
             \State{\Call{tipo}{\,}}
         \Else
-            \State{\Call{erro}{\,}}
+            \State{\Call{primitivo}{\,}}
         \EndIf
         \EndProcedure
     \end{algorithmic}
