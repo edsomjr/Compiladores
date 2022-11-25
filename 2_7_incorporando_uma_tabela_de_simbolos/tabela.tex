@@ -74,7 +74,7 @@
             \ElsIf{$c$ é uma letra}
                 \State{$lexema \gets$ \Call{lerPalavra}{\,}}
                 \If{$lexema$ não está na tabela de símbolos}
-                    \State{\Call{inserir}{$lexema$, \code{cpp}{ID}}}
+                    \State{\Call{inserir}{\code{cpp}{ID}, $lexema$}}
                 \EndIf
                 \State{\Return{\{ \Call{obterToken}{$lexema$}, $lexema$} \}}
             \Else
