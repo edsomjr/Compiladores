@@ -68,7 +68,7 @@ IOBuffer::tell() const
 void
 IOBuffer::seek(int p)
 {
-    pos = p;
+    pos = p;            // Risco: salto arbritário (pode ir para posição desatualizada!)
 }
 
 int
@@ -83,7 +83,7 @@ IOBuffer::get()
 void
 IOBuffer::unget()
 {
-    --pos;
+    --pos;              // Risco: o ponteiro pode regredir para áreas já atualizadas!
 
     if (pos < 0)
         pos = 2*N;
