@@ -9,7 +9,7 @@
         \item Ele foi escrito em linguagem C por Vern Paxson por volta de 1987
        %\pause
 
-        \item Ele pode ser usado em conjunto com um gerador de analisadores sintáticos (por exemplo, o Yacc e o GNU Bison
+        \item Ele pode ser usado em conjunto com um gerador de analisadores sintáticos (por exemplo, o Yacc e o GNU Bison)
        %\pause
 
         \item Flex é mais flexível e gera códigos mais rápidos que o Lex, outro programa gerador de analisadores léxicos
@@ -110,13 +110,13 @@
         \item Neste caso, o nome deve ser delimitado por chaves
        %\pause
 
-        \item Esta seção é limitada pela sequência de caracteres \verb|%%|
+        \item Esta seção é delimitada pela sequência de caracteres \verb|%%|
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]{Exemplo de seção de declarações}
-    \inputsnippet{cpp}{19}{34}{codes/lex.l}
+    \inputsnippet{cpp}{19}{35}{codes/lex.l}
 \end{frame}
 
 \begin{frame}[fragile]{Seção de código de usuário}
@@ -128,13 +128,13 @@
         \item Uma outra alternativa é definir estes códigos em arquivos separados e depois carregar este código na compilação do analisador léxico
        %\pause
 
-        \inputsnippet{cpp}{36}{48}{codes/lex.l}
+        \inputsnippet{cpp}{37}{49}{codes/lex.l}
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}[fragile]{Exemplo de função {\tt main()} para um analisador léxico independente}
 
-    \inputsnippet{cpp}{50}{68}{codes/lex.l}
+    \inputsnippet{cpp}{51}{70}{codes/lex.l}
 
 \end{frame}

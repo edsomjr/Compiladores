@@ -18,7 +18,7 @@ num     {digito}+(\.{digito}+)?(E[+-]?{digito}+)?
 
 %%
 
-{ws}    { printf("WS\n"); /* Nenhuma ação e nenhum valor retornado */ }
+{ws}    { printf("WS\n"); /* Nenhum valor retornado */ }
 if      { return IF; }
 then    { return THEN; }
 else    { return ELSE; }
@@ -30,6 +30,7 @@ else    { return ELSE; }
 "<>"    { yylval = NE; return RELOP; }
 ">"     { yylval = GT; return RELOP; }
 ">="    { yylval = GE; return RELOP; }
+<<EOF>> { return END_OF_FILE; }
 
 %%
 
@@ -47,7 +48,8 @@ int instalar_num()
     return -2;
 }
 
-int yywrap() { return 1; }
+// Retorno diferente de zero indica que o scanner deve encerrar ao encontrar EOF
+int yywrap() { return 1; }  
 
 int main()
 {
