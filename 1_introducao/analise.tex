@@ -125,8 +125,9 @@
         \centering
 
         \begin{tikzpicture}
-            \node (A) at (0, 5) { \footnotesize \texttt{identificador} };
-            \node (A1) at (0, 4) { \code{cpp}{F} };
+            \node (A) at (0, 5) { \footnotesize \texttt{expressão} };
+            \node (A1) at (0, 4) { \footnotesize \texttt{identificador} };
+            \node (A2) at (0, 3) { \code{cpp}{F} };
             \node (B) at (4, 6) { \footnotesize \begin{tabular}{c}\texttt{enunciado de}\\ \texttt{atribuição}\end{tabular} };
             \node (B1) at (4, 5) { \code{cpp}{=} };
             \node (C) at (8, 5) { \footnotesize \texttt{expressão} };
@@ -145,6 +146,7 @@
 
             \draw[very thick] (A) to (B);
             \draw[very thick] (A) to (A1);
+            \draw[very thick] (A2) to (A1);
             \draw[very thick] (B) to (B1);
             \draw[very thick] (C) to (C1);
             \draw[very thick] (D) to (D1);
