@@ -76,7 +76,7 @@
                 \If{$lexema$ não está na tabela de símbolos}
                     \State{\Call{inserir}{\code{cpp}{ID}, $lexema$}}
                 \EndIf
-                \State{\Return{\{ \Call{obterToken}{$lexema$}, $lexema$} \}}
+                \State{\Return{\{ \Call{buscar}{$lexema$}, $lexema$} \}}
             \Else
                 \State{\Return{\{ $c$, \code{cpp}{NONE}} \}}
             \EndIf
