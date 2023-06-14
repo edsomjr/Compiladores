@@ -296,7 +296,7 @@
 
     \begin{itemize}
         \item Uma gramática é recursiva à esquerda se possui um não-terminal $A$ tal que existe um derivação $A\overset{\scalebox{0.5}{+}}{\Rightarrow} A\alpha$
-            para alguma cadeia $\alpha$
+            para algum $\alpha$
        %\pause
 
         \item Métodos \textit{top-down} não podem processar gramáticas recursivas à esquerda, demandando uma reescrita da gramática que elimine a recursão à
@@ -306,7 +306,7 @@
         \item Uma recursão simples à esquerda acontece se existe um produção $A\to A\alpha$
        %\pause
 
-        \item A recursão simples à esquerda de uma produção $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
+        \item A recursão simples à esquerda de $A\to A\alpha\ |\ \beta$ pode ser eliminada ao substituí-la pelas produções
         \[
             \begin{array}{l}
                 A \to \beta A' \\
@@ -554,7 +554,7 @@
         onde $w^R$ é o reverso de $w$, é livre de contexto
        %\pause
 
-        \item Ela pode ser gerada pela gramática $S\to aSa\ |\ bSb\ |\ \code{apl}{∊}$
+        \item Ela pode ser gerada pela gramática $S\to aSa\ |\ bSb\ |\ c$
     \end{itemize}
 
 \end{frame}
