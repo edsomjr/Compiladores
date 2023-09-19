@@ -26,7 +26,7 @@
         \item A rotina \Call{inserir}{$s, t$} insere o lexema $s$ na tabela, sendo ele associado ao token $t$
        %\pause
 
-        \item A rotina \Call{buscar}{$s$} regasta o lexema $s$, permitindo a consulta (e, se necessário, atualização) de seu token
+        \item A rotina \Call{buscar}{$s$} regasta o token associado ao lexema $s$, permitindo a consulta (e, se necessário, atualização) deste token
        %\pause
 
         \item Em geral a operação de busca é usada para saber se um determinado lexema já está na tabela ou não
@@ -76,7 +76,7 @@
                 \If{$lexema$ não está na tabela de símbolos}
                     \State{\Call{inserir}{\code{cpp}{ID}, $lexema$}}
                 \EndIf
-                \State{\Return{\{ \Call{buscar}{$lexema$}, $lexema$} \}}
+                \State{\Return{ \Call{buscar}{$lexema$}} }
             \Else
                 \State{\Return{\{ $c$, \code{cpp}{NONE}} \}}
             \EndIf
