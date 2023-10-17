@@ -212,13 +212,13 @@
         \item É preciso, portanto, de uma estratégia que torne tais rótulos únicos durante a tradução
        %\pause
 
-        \item Seja $novoRotulo$ um procedimento que gera, a cada chamada, um novo rótulo único
+        \item Seja $\Call{novoRotulo}{\ }$ um procedimento que gera, a cada chamada, um novo rótulo único
        %\pause
 
         \item A ação semântica associada ao comando \code{pascal}{if} assumiria a seguinte forma:
         \[
             \begin{array}{rll}
-            cmd \to \code{pascal}{if}\ expr\ \code{pascal}{then}\ cmd_1 \ \{\ & saida & := novoRotulo; \\
+            cmd \to \code{pascal}{if}\ expr\ \code{pascal}{then}\ cmd_1 \ \{\ & saida & := \Call{novoRotulo}{\ }; \\
             & cmd.t & := expr.t\ \\ & & ||\ \code{cpp}{"gofalse"}\ saida\ \\ & & ||\ cmd_1.t \\
             & & ||\ \code{cpp}{"rotulo"}\ saida\ \}
             \end{array}
